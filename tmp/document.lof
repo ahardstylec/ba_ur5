@@ -1,0 +1,20 @@
+\select@language {german}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 1.1}{\ignorespaces Ausgabeformate eines Sicherheitsdatenblatts}}{12}{figure.1.1}
+\contentsline {figure}{\numberline {\relax 1.2}{\ignorespaces Funktionsumfang der Plattform euSDB}}{13}{figure.1.2}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces Request/Response-Schema in Django}}{18}{figure.2.1}
+\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Ordnerhierarchie ohne APP in Django}}{20}{figure.2.2}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Ordnerhierarchie mit APP in Django}}{21}{figure.2.3}
+\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces Aufbau von Nodes in elasticsearch}}{26}{figure.2.4}
+\contentsline {figure}{\numberline {\relax 2.5}{\ignorespaces Verarbeitung von Daten durch elasticsearch}}{27}{figure.2.5}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Datenbankstruktur der Plattform euSDB}}{30}{figure.3.1}
+\contentsline {figure}{\numberline {\relax 3.2}{\ignorespaces Aufbau von elasticsearch}}{32}{figure.3.2}
+\contentsline {figure}{\numberline {\relax 3.3}{\ignorespaces Aufbau des euSDB-Django-Projektes}}{33}{figure.3.3}
+\contentsline {figure}{\numberline {\relax 3.4}{\ignorespaces Navigations\IeC {\"u}bersicht durch die REST-konforme API}}{36}{figure.3.4}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

@@ -1,0 +1,234 @@
+\chapter{Konzept}
+\label{konzept_kon}
+
+\section{Datenbank}
+\label{datenbank_kon}
+
+Für die Realisierung von \sona{euSDB} ist der Einsatz von zwei Datenbanksystemen
+geplant, eines für die gesamte
+Datenverwaltung (Kapitel \ref{datenverwaltung_i_kon}), das andere
+für die schnelle Abwicklung von Suchanfragen an das System (Kapitel
+\ref{datenverwaltung_ii_kon}). Dies bietet mehrere Vorteile: Eine angemessene
+Datenverwaltung, die eine übersichtliche Datenstruktur bietet und mit Hilfe von
+\ac{SQL}-Befehlen, auch ohne Nutzung des \sona{Django}-Frameworks, gepflegt und
+administriert werden kann und eine Suchdatenbank, die die modernen Anforderungen
+nach Datenintegrität, Skalierbarkeit und Erweiterbarkeit in vollem Umfang
+abdeckt.
+
+\subsection{Datenbank zur Verwaltung von Sicherheitsdatenblättern}
+\label{datenverwaltung_i_kon}
+
+Für die Datenverwaltung und Speicherung kommt ein \sona{MySQL}-Datenbanksystem
+zum Einsatz. \sona{MySQL} wird von \fina{Oracle} weiterentwickelt und vermarktet.
+Es gibt eine kostenlose und eine kostenpflichtige
+Enterpriseversion. \cite{ORACOR-2013}
+\\
+Neben einer Nutzer- und Rechteverwaltung, wird in der Datenbank auch eine
+Logtabelle geführt. Diese speichert jede Änderung am Datenbestand. Die
+Kernaufgabe besteht in der Verwaltung der \ac{SDB}.
+\begin{figure}
+  \centering
+    \includegraphics[width=0.99\textwidth]{pic/db_entwurf.png}
+      \caption[Datenbankstruktur der Plattform euSDB]{Die Graphik zeigt die
+      Datenbankstruktur (Entwurf) von euSDB.
+      Aus Gründen der Übersichtlichkeit zeigen die Tabellen nur wenige Felder. Im Anhang Din A3/2}
+      \label{fig:db_entwurf}
+\end{figure}
+\\
+Ein Sicherheitsdatenblatt wird durch die in Kapitel \ref{fachliche_domaene}
+vorgestellten Kennzeichnungen (siehe Tabelle \ref{tab:meinetabelle}) und
+Hinweise beschrieben. Diese Kennzeichnungen sind für alle Chemikalien einheitlich und
+erfahren in absehbarer Zeit keine Änderungen. Die H-, P-, R- und S-Sätze,
+GHS-, EU- und Hazard-Gefahrenkennungen werden mehrfach
+verwendet und liegen in jeweils einer eigenen Tabelle in der Datenbank
+vor (siehe Graphik \ref{fig:db_entwurf}).
+\\
+Wird eine Anweisung oder Gefahrenkennung mit einer Chemikalie verknüpft,
+geschieht dies über eine Matchingtabelle. Eine Solche Matchingtabelle enthält
+dann einen Fremdschlüssel (Foreign-Key) der Chemikalie und eine mit der
+Chemikalie verknüpfte Anweisung bzw. Gefahreneinstufung. Bei der Verknüpfung
+von Chemikalien und Anweisungen bzw. Gefahreneinstufung handelt es sich um
+sogenannte Many-To-Many Beziehungen.
+\\
+Many-To-Many Beziehungen bedeuten in diesem Fall, dass eine Anweisung mit
+mehreren Chemikalien verknüpft und eine Chemikalie mit mehreren
+Anweisungen verknüpft sein kann.
+\\
+Bei der herstellenden Firma verhält es sich anders. Ein \ac{SDB}
+wird immer nur von einer Firma für die von ihr hergestellte Chemikalie
+herausgegeben. Ein \ac{SDB} einer Chemikalie hat genau einen Hersteller. In
+diesem Fall ist es möglich direkt den Fremdschlüssel in der Tabelle der
+Chemikalie abzulegen. \ac{SDB} gleicher Chemikalien
+verschiedener Hersteller sind nicht identisch.
+\\
+Jeder Hersteller gibt leicht unterschiedliche Daten zu Chemikalien an. So
+ist es theoretisch möglich, dass sich die Angaben zum Siedepunkt unterscheiden.
+Aus diesem Grund werden daher gleiche Chemikalien unterschiedlicher Hersteller
+als unterschiedliche Chemikalien betrachtet. Auch geben die Hersteller gerne
+unterschiedliche Einsatz- und Verwendungszwecke an. Zur Veranschaulichung ein
+Beispiel: Ein Farbenhersteller stellt selbst Aceton her. Es wird zur Verdünnung
+von Farben eingesetzt. Verkauft der Farbenhersteller sein Aceton, wird er im
+\ac{SDB} angeben, dass es zur Verdünnung von Farben zu verwenden
+ist. Ein Reinigungsmittelhersteller wird vermutlich in seinem
+\ac{SDB} angeben, dass es sich um ein Reinigungsmittel handelt und
+dafür einzusetzen ist. Dies macht es ebenfalls sinnvoll, gleiche Chemikalien
+verschiedener Hersteller als unterschiedliche Chemikalien zu speichern.
+\\
+Die Datenbank ist in ihrer Struktur sehr einfach gehalten. Das macht das
+Migrieren und Warten der Daten sehr leicht. Der Einsatz eines
+Standarddatenbanksystems gewährleistet einen langfristigen Support auf vielen
+Plattformen. Ein ständiger Umzug von einem Datenbanksystem zu einem anderen ist
+bei Plattformwechseln nicht nötig.
+\\
+Eine Chemikalie selbst wird dabei durch ungefähr 60 Parameter
+(Siedetemperatur, Dichte, molare Masse, \ldots) gekennzeichnet. Hinzukommen noch
+die Angaben zur Einstufung der Gefahren und sich aus den Gefahren ergebende
+Sicherheits- und Arbeitsanweisungen. Jeder dieser Parameter stellt ein eigenes
+Feld in der Tabelle der Chemikalien dar.
+\\
+Hinzu kommt noch die Möglichkeit einer Versionierung. Häufig verändern sich im
+Laufe der Zeit die Angaben auf einem \ac{SDB}. Jede Veränderung
+geht mit der Herausgabe einer neuen Version eines \ac{SDB}
+einher. Um die Informationen, die in einem \ac{SDB} aufgeführt sind,
+lange nachhalten zu können, existiert nicht nur für die Chemikalie selbst eine
+Versionierung, sondern auch für alle mit ihr verknüpften Komponenten. Sollte
+sich nun eine Einstufung oder ein Satz ändern, kann man trotzdem nachschlagen,
+wie ein früheres \ac{SDB} aufgebaut war.
+
+\subsection{Datenbank zur Realisierung einer effektiven Volltextsuche}
+\label{datenverwaltung_ii_kon}
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/aufbau_es_dat_chem.jpg}
+      \caption[Aufbau von elasticsearch]{Entwurf des Aufbaus von elasticsearch.
+      Es gibt einen Node mit fünf Shards. Der Index ChemicalIndex verteilt sich
+      auf diesen Node und die Shards. Beispielhaft sind hier drei Dokumente auf
+      Shard 2 und 4 verteilt worden}
+      \label{fig:aufbau_es_dat_chem}
+\end{figure}
+\\
+Das System, das zur Suche eingesetzt wird, heißt \sona{elasticsearch}. Das
+System ist zunächst auf einen Node mit fünf Shards begrenzt. Für jede Chemikalie
+wird in dem Index "`ChemicalIndex"' ein Dokument abgelegt. Dieses enthält die
+möglichen Identifizierer. Diese sollen nach internationalen Vorgaben möglichst
+eindeutige Bezeichner (z.B. Name der Chemikalie, internationale Formeln,
+internationale Identifizierungsnummern) sein. Nur nach solchen zu suchen ist sinnvoll.
+Wird ein neuer Datensatz einer Chemikalie erstellt oder der einer bestehenden
+Chemikalie bearbeitet, sollen die Änderungen automatisch auch auf die in
+\sona{elasticsearch} abgelegten Daten übertragen werden. Auf diese Weise hält
+sich der Verwaltungsaufwand, die Suchfunktion betreffend, im laufenden Betrieb
+in Grenzen.
+\\
+Später ist es möglich den Suchindex noch um Einträge zu erweitern oder
+neue Suchindizes zu erstellen. Auch kann das gesamte Suchsystem zu einem
+verteilten System umgebaut werden.
+
+\section{Aufbau des Djangoprojekts}
+\label{aufbau_djangoprojekt_kon}
+
+Die Grundstruktur eines Djangoprojektes ist im Kapitel \ref{sec:django_gru}
+Grundlagen beschrieben. Das System setzt sich aus den folgenden
+Grundfunktionen zusammen: (1) Beschreibung von Chemikalien mit ihren \ac{SDB},
+(2) die Suche nach Chemikalien und \ac{SDB} und (3) eine Benutzer- und
+Rechteverwaltung (siehe Abbildung \ref{fig:django_module}).
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/django_module.jpg}
+      \caption[Aufbau des euSDB-Django-Projektes]{Das Projekt euSDB besteht aus
+      den drei Kernmodulen chemicals, search und userauth.}
+      \label{fig:django_module}
+\end{figure}
+\\
+(1) Soll dabei dem Kunden nicht nur die chemischen Daten und \ac{SDB} zur
+Verfügung stellen, sondern regelt die Versionierung und langfristige Speicherung
+von \ac{SDB}. Dazu nutzt diese Funktion eine \ac{REST}-konforme \ac{API}, die
+nicht nur den menschlichen manuellen, sondern auch den automatisierten Zugriff
+durch Programme und Maschinen erlaubt. Diese Funktion vermag es, \ac{SDB} in den
+Formaten \ac{JSON}, \ac{XML}, \ac{HTML}, \ac{PDF} auszugeben.
+\\
+(2) \sona{elasticserach} ermöglicht die gezielte Suche nach einzelnen \ac{SDB}.
+Nicht immer führen die angegebenen Werte, nach denen gesucht wird, zu eindeutigen Ergebnissen. Aus
+diesem Grund wird immer eine Liste mit den möglichen \ac{SDB} zurückgegeben.
+Diese kann kein Element, ein Element oder mehrere Elemente enthalten.
+\\
+(3) Die Administrationsoberfläche erlaubt es dem Administrator, Rechte an die
+Benutzer zu vergeben, Benutzer in Gruppen zusammenzufassen und diesen Gruppen
+Rechte zuzuweisen, damit auf die \ac{SDB} zugegriffen werden kann.
+\\
+Durch die hohe Funktionalität von \sona{Python} und den Aufbau des Projektes mit
+Hilfe des \sona{Django}-Frameworks wird eine langfristige Nutzung der Plattform
+angestrebt.
+
+\section{Aufbau der REST-konformen Schnittstelle}
+\label{aufbau_rest_schnittstelle_kon}
+
+Die \ac{REST}-konforme \ac{API} soll vier Ausgabeformate haben: \ac{JSON}, \ac{XML},
+\ac{HTML} und \ac{PDF} (siehe Abbildung \ref{fig:ausgabeformate}). Dabei
+soll das Ausgabeformat sowohl im \ac{HTTP}-Header, als auch als Parameter an die
+\ac{URI} angehängt werden können. 
+\begin{lstlisting}[
+    caption={Beispielanfragen, bei denen das Ausgabeformat jeweils header- und
+    parametergesteuert ist},
+    label=lst:bsp_abfrage_kon,
+    captionpos=b
+]
+https://www.euSDB.de/chemicals/?format=json 
+https://www.euSDB.de/chemicals/?format=xml
+curl -X GET -H "Accept: application/json" https://www.euSDB.de/chemicals/
+curl -X GET -H "Accept: application/xml" https://www.euSDB.de/chemicals/
+\end{lstlisting}
+\\
+Auf diese Weise soll nach der Eingabe von Zeile 1 des Listing
+\ref{lst:bsp_abfrage_kon} im Browser ein \ac{JSON}-Dokument angezeigt
+werden, nach Eingabe von Zeile 2 des Listing \ref{lst:bsp_abfrage_kon} ein
+\ac{XML}-Dokument. Ebenfalls soll man das Ausgabeformat über den "`Accept"'-Wert
+des \ac{HTTP}-Headers steuern können. Ziel ist, das Zeile 1 und 3 des
+Listings \ref{lst:bsp_abfrage_kon} das gleiche Ergebnis ergeben, genau wie die
+Zeilen 2 und 4. Zeile 3 und 4 sind Abfragen von einem Unix-System aus dem Programm
+\sona{curl}.
+\\
+Zunächst ist es geplant, nur ein Abrufen von \ac{SDB} mittels der
+\ac{HTTP}-GET-Standardmethode bereitzustellen. Dennoch ist bei dem Design der
+\ac{REST}-konformen \ac{API} darauf zu achten, dass sich diese leicht erweitern
+lässt. Die Antworten des Servers sind in \ac{UTF-8} codiert.
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.75\textwidth]{pic/baum_rest.jpg}
+      \caption[Navigationsübersicht durch die REST-konforme API]{Die Darstellung
+      zeigt wie mittels der REST-konforme API durch das System euSDB navigiert
+      werden soll. Dabei spielt es keine Rolle, ob man durch die Suche direkt
+      bei einer Chemikalie startet, oder von der API-Wurzel (root) ausgeht.
+      (Darstellung nicht UML-konform)}
+      \label{fig:baum_rest}
+\end{figure}
+\\
+Als Einstiegspunkt soll es zwei Möglichkeiten geben. Zum einen den
+vordefinierten (\ac{API}-Wurzel) und zum anderen soll es auch mit Hilfe jedes
+Suchergebnisses möglich sein, einen Einstieg und somit einen erfolgreichen
+Zugriff auf die Daten zu erhalten. Mittels Verlinkungen (Hypermedia) der
+einzelnen Ressourcen untereinander soll es dann möglich sein, auf alle relevanten Daten, die im
+System zu einem \ac{SDB} gespeichert sind, zugreifen zu können. Abgesehen von
+der Wurzel hat jedes Objekt ein Vorgänger-Objekt. Dieses ist ebenfalls verlinkt.
+Mit diesen Links kann man durch die gesamte Datenstruktur, die zur Verfügung
+steht, navigieren. Abbildung \ref{fig:baum_rest} veranschaulicht, wie die
+Verlinkungen und das Navigieren funktionieren.
+\begin{lstlisting}[caption={Beispielrequest zur
+Steuerung des Paging (Seite 2 mit 50 Einträgen)}, label=lst:bsp_paging,
+captionpos=b] 
+https://www.euSDB.de/chemicals/?page=2&per_page=50
+\end{lstlisting}
+\\
+Beim Anzeigen von Listen werden bei mehr als 20 Objekten Seiten
+ausgegeben (Paging). Dann erhält man, sofern sie verhanden sind, einen
+Link auf die vorangegangen und die nachfolgenden Seiten. Mittels
+Parameterübergabe lässt sich steuern, wie viele Objekte pro Seite verlinkt werden sollen, und auch das
+direkte Springen auf eine Seite ist möglich. Listing \ref{lst:bsp_paging}
+veranschaulicht dies anhand eines Beispiels.
+\\
+Der generelle Aufbau der \ac{URI} ist hierarchisch (Abbildung
+\ref{fig:baum_rest}). Es dient dazu, die Treffermöglichkeiten immer weiter
+einzuschränken, bis man bei der gewünschten Ressource angekommen ist. Von dort
+aus sind dann alle dazugehörigen Anweisungen, Hinweise und Symbole schnell und
+direkt erreichbar.
+

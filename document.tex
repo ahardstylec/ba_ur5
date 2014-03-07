@@ -1,0 +1,94 @@
+\documentclass[
+a4paper,
+12pt,
+oneside,
+headsepline,		% Linie für Kopfzeile
+footsepline,		% Linie für Fußzeile
+%bibtotoc
+]{scrbook}
+ 
+% Druckbereich: \areaset[BCOR]{textwidth}{textheight}
+% BCOR ist "Binding Correction", also wieviel Innenrand verloren geht
+% A4 hat 297mm x 210mm
+% wenn keine Marginalien, dann ist Breite 15cm vielleicht besser
+\areaset[1.5cm]{14cm}{25cm}
+ 
+%% Die folgende Zeile sorgt dafür, daß die Fußnoten eingerückt werden,
+%% und zwar um 2em (class scrbook).
+\deffootnote{2em}{2em}{\textsuperscript{\normalfont\thefootnotemark} }
+ 
+\usepackage[utf8x]{inputenc}  % Unterstützung für Unicode-Zeichen-Eingabe
+\usepackage[T1]{fontenc}      % Unterstützung für Europäische-Zeichen-Ausgabe
+\usepackage{ae}               % verbesserte Unterstützung für Umlaute
+\usepackage[german]{babel}    % deutsche Übersetzungen und Wortumbrüche
+\usepackage[scaled]{helvet}  % schönere Schriftart: Helvetica
+\usepackage{mathptmx}            % passende Mathe-Schriftart
+\usepackage{courier}             % passende Monospaced-Schriftart
+\usepackage{pgf}              % Unterstützung für Graphiken
+\usepackage{tikz}             % Unterstützung für Graphiken
+\usepackage[onehalfspacing]{setspace}
+\usepackage{acronym} 
+\usepackage{listings}
+\usepackage{color}
+\definecolor{Gray}{gray}{0.9}
+\definecolor{sun1}{rgb}{0.2,0.2,0.4}
+\definecolor{sun2}{rgb}{0.4,0.4,0.6}
+\definecolor{sun3}{rgb}{0.6,0.6,0.8}
+\definecolor{sun4}{rgb}{0.8,0.8,1}
+\definecolor{msblau}{rgb}{0.31,0.4,0.517}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+ 
+\usepackage[                
+   pdftex,                  % Ausgabe-Medium: PDF
+   colorlinks=true,         % farbige Links in der Bildschirm-Version?
+   pdfstartview=FitV,       % wie soll Acrobat starten?
+   linkcolor=blue,         % Farbe für Querverweise
+   citecolor=blue,         % Farbe für Zitierungen
+   urlcolor=blue,          % Farbe für Links
+   bookmarks=true
+   ]{hyperref}              % Paket für Links im PDF
+ 
+%%%% Informationen über den Text festlegen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Bachelorarbeit}
+\author{Marius Paus}
+\date{\today}
+ 
+%%% hier können noch viel viel mehr Einstellungen kommen
+%%%% hier beginnt der Inhalt %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\spacing{1.5}
+
+\makeindex
+
+\include{doc/gen_macro}
+\begin{document}
+
+ %\input{doc/leerseite}
+ 
+ \include{doc/titelseite}
+ 
+ \include{doc/erklaerung}
+ \include{doc/abstract}
+ 
+ \tableofcontents
+ \listoffigures
+ \listoftables
+ \lstlistoflistings
+ 
+ \include{doc/einleitung}
+ \include{doc/grundlagen}
+ \include{doc/konzept}
+ \include{doc/realisierung}
+ \include{doc/ergebniss}
+ \include{doc/fazit}
+ 
+ \clearpage
+ \appendix
+ 
+ \input{doc/literaturverzeichnis}% 
+ \input{doc/glossar.tex}
+ \input{doc/anhang}
+
+ 
+\end{document}

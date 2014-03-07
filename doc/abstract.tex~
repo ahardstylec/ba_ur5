@@ -1,0 +1,40 @@
+\section*{Abstract}
+\label{abstract}
+
+Im Chemikalienhandel sind alle Teilnehmer der Lieferkette, also Hersteller,
+Spediteur und Endabnehmer, dazu verpflichtet, zu jeder weitergegebenen
+Chemikalie ein dazugehöriges \ac{SDB}\footnote{In Anhang
+\ref{sec:Glossar_glo}, Glossar, finden sich Informationen zu
+Fachbegriffen und Abkürzungen.} zu übergeben. Dieses muss von allen Beteiligten
+für mindestens zehn Jahre aufgehoben werden und auf Verlangen zur Verfügung
+gestellt werden. Ein \ac{SDB} beinhaltet Informationen des Herstellers einer
+Chemikalie zur Nutzung, Lagerung und (Umwelt-)Gefährdungen und sichert den
+Hersteller rechtlich bei falschem Einsatz der Chemikalie ab.
+\\
+Zu Unterstützung dieses Zwecks wird eine Onlineplattform, \sona{euSDB},
+bereitgestellt, die den Austausch und die Archivierung von \ac{SDB} ermöglicht.
+Dabei spielt die Realisierung einer \ac{REST}-konformen Schnittstelle eine
+zentrale Rolle. Diese gewährleistet eine einfache und intuitive Nutzung der
+Plattform durch die geeignete Definition der Ressourcen und deren
+Repräsentationen, Vergabe von eindeutigen \ac{URI} an diese, lose Kopplung von
+Server und Client. Außerdem ist die statuslose Kommunikation zwischen Server
+und Client, die Verknüpfung der Repräsentationen der Ressourcen mittels
+Hypermedia bzw. Hypertext, und die Nutzung der \ac{HTTP}-Standardmethoden PUT,
+GET, usw. möglich.
+\\
+Eine Volltextsuche nach \ac{SDB} wurde mit dem auf
+\sona{Apache Lucene} basierenden Volltextsuchsystem \sona{elasticsearch} umgesetzt.
+\\
+Die Plattform wird mit dem
+\sona{Django}-Framework \cite{DJANGO-2013} realisiert. Dabei
+handelt es sich um ein in der Programmiersprache \sona{Python} geschriebenes Webentwicklungsframework,
+welches der schnellen Webentwicklung auf Basis des \ac{MVC}-Designmusters dient.
+\\
+Das Projekt gliederte sich in folgende Phasen: Analyse eines bestehenden Systems,
+Erstellen eines Lasten- und Pflichtenheftes, Konzeption und Realisierung der
+Plattform \sona{euSDB}. Die Realisierung wurde nach einem iterativen
+Vorgehensmodell umgesetzt.
+\\
+Das Ergebnis des Projektes ist eine Plattform, die sehr flexibel, erweiterbar
+und portierbar ist. Sie wird der Aufgabenstellung in fast allen Punkten gerecht
+und verfügt über einen Funktionsumfang, der den der alten Plattform übersteigt.

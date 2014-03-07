@@ -1,0 +1,463 @@
+\chapter{Realisierung}
+\label{chap:umsetzung}
+
+\section{Datenbank}
+\label{sec:Datenbank_rel}
+
+Das \sona{Django}-Framework nimmt dem Entwickler einige Aufgaben ab. So kann es
+unter anderem auch eine Datenbank gemäß den Einstellungen und Klassen erzeugen, die
+bei der Umsetzung verwendet und eingesetzt werden. Die Einstellungen, die die
+Kommunikation mit der Datenbank ermöglichen, werden in der "`settings.py"'
+(siehe Anhang \ref{settings}) im Konfigurationsverzeichnis vorgenommen. Die
+Zentrale Einheit zur Verwaltung und Nutzung einer Datenbank ist in jeder \sona{Django}-\ac{APP} die "`models.py"';
+in Kapitel \ref{sec:django_gru} wurde bereits die Ordnerhierarchie und der Aufbau
+von \sona{Django}-Projekten vorgestellt.
+\begin{lstlisting}[caption={Einstellungen eines Django-Projektes zur
+Ansteuerung eines MySQL-Datenbanksystems
+}, label=lst:anbindung_db_rea,captionpos=b] 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'euSDB',
+        'USER': 'eusdb',
+        'PASSWORD': 'XXX',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+\end{lstlisting}
+\\
+Die Einträge in der "`settings.py"', die hier auch noch mal in Listing
+\ref{lst:anbindung_db_rea} aufgeführt sind, erlauben den Zugriff auf ein lokales
+\sona{MySQL}-Datenbanksystem. In Zeile 3 wird der Typ der verwendeten Datenbank
+und die Komponente ausgewählt, die die Verbindung zur Datenbank aufbauen wird.
+In diesem Fall ist eine Standardklasse des \sona{Django}-Framework angegeben.
+In Zeile 4 steht der Name der Datenbank, danach folgen der Benutzername und
+dessen Passwort in Klartext (hier in Form von "`XXX"' dargestellt). "HOST"' und
+"`PORT"' werden je nach Datenbanksystem automatisch eingefügt und können in
+diesem Fall frei gelassen werden.
+\begin{lstlisting}[caption={Ausschnitt aus der
+Datei "`models.py"' der chemicals-APP, die in der Datenbank durch die Tabelle
+"`chemicals\_chemicals"' und allen dazugehörigen Matchingtabellen dargestellt
+wird }, label=lst:chemical_model,captionpos=b]
+class Chemical(models.Model):
+    """Chemical model."""
+    id = models.AutoField(u'id', primary_key=True, editable=False)
+    name = models.CharField(u'Name', max_length=255, default='')
+    company = models.ForeignKey(CompanyData,
+        verbose_name=u'Hersteller-Firma', related_name='chemicals')
+    hazard = models.ManyToManyField(Hazard, verbose_name=u'Hazard Symbol')
+    ghs = models.ManyToManyField(Ghs, verbose_name=u'GHS Gefahren Kennung')
+    eu = models.ManyToManyField(Eu, verbose_name=u'EU Gefahren Kennung')
+    p_phrase = models.ManyToManyField(P_phrase, verbose_name=u'P-Satz')
+    s_phrase = models.ManyToManyField(S_phrase, verbose_name=u'S-Satz')
+    r_phrase = models.ManyToManyField(R_phrase, verbose_name=u'R-Satz')
+    h_phrase = models.ManyToManyField(H_phrase, verbose_name=u'H-Satz')
+    slug_chemical = models.SlugField(unique=True)
+    previous_data = models.OneToOneField('self', blank=True,
+        null=True, related_name='Vorgaenger_von')
+    replacement_data = models.OneToOneField('self', blank=True,
+        null=True, related_name='Nachfolger_von', editable=False)
+    last_update = models.DateTimeField(editable=False)
+\end{lstlisting}
+\\
+In der Datei "`models.py"' einer jeden \ac{APP} werden die einzelnen Tabellen in
+Form von Klassen abgelegt. Die Variablen dieser Klassen findet man in der
+Datenbank als Felder der entsprechenden Tabellen wieder. Das Listing
+\ref{lst:chemical_model} zeigt die Klasse, die die Tabelle
+"`chemicals\_chemicals"' mit all ihren Matchingtabellen auf andere Tabellen darstellt. Das erste "`chemicals"' steht dabei
+für die \acc{APP}, der die Tabelle zuzuordnen ist, das zweite für die
+eigentliche Komponente. Es existieren noch die Tabellen "`chemicals\_p\_phrase"',
+"`chemicals\_ghs"', \ldots. Die Matchingtabellen werden nach der \ac{APP}, der
+Hauptkomponente und der zu verknüpfenden Komponente benannt. Es entstehen
+Tabellennamen wie "`chemicals\_chemicals\_p\_phrase"',
+"`chemicals\_chemicals\_ghs"', \ldots.
+\\
+Man erkennt an Listing \ref{lst:chemical_model} sehr gut, wie die Komponenten
+mit Chemikalien verknüpft werden. Der Hersteller wird durch das Aufnehmen
+seines Schlüssels als Fremdschlüssel mit der Tabelle "`chemicals\_chemicals"'
+verknüpft (siehe Zeilen 5 und 6). Andere Komponenten werden in Form von
+Many-To-Many Beziehungen verknüpft (siehe Zeilen 7 bis 13).
+\\
+Dabei existieren im \sona{Django}-Framework schon Basisklassen, für die
+wichtigsten Datentypen und für das Verknüpfen von Komponenten. Diese sind in der
+Klasse "`Models"' gespeichert und können verwendet werden. Es ist auch möglich,
+eigene Feldtypen zu definieren, die das bestehende Angebot an
+Datentypen erweitern.
+\\
+Hat man die "`Models"' definiert und eine Verbindung zu einem Datenbanksystem
+erstellt, kann das \sona{Django}-Framework über die Eingabe der Befehle aus
+Listing \ref{lst:erstellung_db_rea} selbstständig eine Datenbank mit den
+Tabellen erzeugen. Zeile 1 überprüft zunächst, ob Syntaxfehler vorliegen. Zeile
+2 erstellt die \ac{SQL}-Befehle und speichert sie zwischen. Zeile 3 sendet die
+\ac{SQL}-Befehle an das Datenbanksystem und sorgt somit für das direkte
+Erstellen der Datenbank.
+\begin{lstlisting}[caption={Befehlfolge zur Eingabe in ein Linux-Terminal
+direkt auf dem Server zur Erstellung einer Datenbank in einem Datenbanksystem
+mit allen Tabellen der APP chemicals
+}, label=lst:erstellung_db_rea,captionpos=b]
+python manage.py validate
+python manage.py sqlall chemicals
+python manage.py syncdb
+\end{lstlisting}
+\\
+Die Datei mit allen Model-Klassen ist im Anhang \ref{model_py} angefügt.
+Betrachtet man diese Datei, stellt man fest, dass diese eine Subklasse enthält.
+In dieser wird bestimmt, wie der Name des bzw. der Objekte ist. Ebenfalls gibt
+es Funktionen, die die Handhabung der Objekte erleichtern sollen. Mit der in den
+Zeilen 19 und 20 von Listing \ref{model_py} definierten Methode
+"`\_\_unicode\_\_"' wird eine Standardtextausgabe eines Objektes erzeugt. Sie kann
+sowohl im Terminal, als auch auf Webseiten verwendet werden.
+\\
+Da es manchmal nicht reicht, Objekte einfach in einer Datenbank abzulegen, wird
+in der Methode "`save"' (z.B. Listing \ref{model_py}, Zeile 22 bis 29) die
+Speichermethode überladen. Es wird ein Erstellungsdatum gesetzt, wenn das Objekt
+vom Datenbanksystem noch keine "`ID"' zugewiesen bekommen hat. Ist eine "`ID"' schon
+verhanden und wird nur eine Aktualisierung bzw. Veränderung an einem
+Datensatz durchgeführt, ist es nicht mehr notwendig das Erstellungsdatum zu
+verändern (z.B. Listing \ref{model_py}, Zeile 23 und 24). 
+
+\section{REST-Schnittstelle}
+\label{sec:REST-Schnittstelle_rel}
+
+\subsection{Aufbau der URI}
+\label{sec:aufbau_uri}
+
+Der Aufbau der \ac{URI} wird hierarchisch durchgeführt. Das bedeutet, dass nicht
+alle Funktionen direkt über die Wurzel der \ac{API} aufgerufen werden, sondern
+sich aus gewissen Zusammenhängen zwischen den Ressourcen ergeben.
+\begin{lstlisting}[caption={Ein Ausschnitt aus der Datei "`urls.py"' der APP "`chemicals"'. Anhand
+    dieser lässt sich der Aufbau der hierarchischen URI
+    nachvollziehen}, label=lst:urls, captionpos=b] 
+urlpatterns = patterns('chemicals.views',
+  url(r'^$', 'api_root', name = 'api_root'),
+  url(r'^producers/$', views.ProducerList.as_view(), name = 'producer_list'),
+  url(r'^producers/(?P<id_comp>[-\w]+)/$', views.ProducerDetail.as_view(), 
+      name = 'companydata-detail'),    
+  url(r'^producers/(?P<id_comp>[-\w]+)/chemicals/$', 
+      views.ChemicalList.as_view(), name = 'chemical_list'),
+  url(r'^producers/(?P<id_comp>[-\w]+)/chemicals/(?P<id_chem>[-\w]+)/$', 
+      views.ChemicalDetail.as_view(), name = 'chemical-detail'),   
+  url(r'^producers/(?P<id_comp>[-\w]+)/chemicals/(?P<id_chem>[-\w]+)
+      /hazards/$',
+      views.HazardList.as_view(), name = 'hazard_list'),
+  url(r'^producers/(?P<id_comp>[-\w]+)/chemicals/(?P<id_chem>[-\w]+)
+      /hazards/(?P<id_haz>[-\w]+)/$', views.HazardDetail.as_view(), 
+      name = 'hazard-detail'),
+  url(r'^producers/(?P<id_comp>[-\w]+)/chemicals/(?P<id_chem>[-\w]+)
+      /p_phrases/$', 
+      views.P_phraseList.as_view(), name = 'p_phrase_list'),
+  url(r'^producers/(?P<id_comp>[-\w]+)/chemicals/(?P<id_chem>[-\w]+)
+      /p_phrases/(?P<id_p_ph>[-\w]+)/$', views.P_phraseDetail.as_view(), 
+      name = 'p_phrase-detail'),
+   )
+\end{lstlisting}
+\\
+Die im Listing \ref{lst:urls} gezeigten \ac{URI}-Muster realisieren diese
+Hierarchie. Direkt unter der Wurzel befinden sich die "`producer"'. Hierarchisch
+unter einem "`producer"' befinden sich die mit ihm verknüpften "`chemicals"',
+unterhalb der "`chemicals"' befinden sich dann die weiteren Ressourcen.
+\\
+Der Aufbau eines Befehls zur Verarbeitung von Anfragen ist dabei fast immer
+identisch. Zeile 8 bis 10 des Listings \ref{lst:urls} ist wie folgt aufgebaut:
+"`url(\ldots)"' erzeugt ein neues Muster für eine \ac{URI}; dann folgt ein
+regulärer Ausdruck, der den genauen Aufbau der \ac{URI} definiert. Die
+Variablen sind daran zu erkennen, dass sie von "`<\ldots>"' eingefasst
+sind. Im Beispiel sind folgende Variablen angegeben:
+"`<id\_comp>"' und "`<id\_chem>"', es sind die ID der entsprechenden
+Ressourcen.
+\\
+Nach dem folgenden Komma erfolgt der Aufruf der verarbeitenden "`view"'. Views
+können objektorientiert oder funktional programmiert werden. Die im Listing
+\ref{lst:urls} in Zeile 2 gezeigte \ac{URI} zur \ac{API}-Wurzel ist durch
+einen Funktionsaufruf, die anderen durch den Aufrufen der
+objektorientierten "`view"'-Klasse realisiert worden.
+\\
+Der Aufruf der Detailansicht einer einzigen Ressource ist über die Verwendung
+der ID eindeutig geregelt. Es gibt keine Mehrfachverwendung der ID und
+es ist der Eindeutigkeit im Bezug auf \ac{URI} genüge getan.
+
+\subsection{Serialisierung von Ressourcen}
+\label{sec:serialisierung}
+
+\begin{lstlisting}[caption={Serialisierer-Klassen zur Serialisierung von
+Chemikalien. Sowohl für die Detailansicht, als auch für die Listenansicht
+(Ressource: Producer)
+}, label=lst:serialisierer, captionpos=b] 
+class CompanyData_List_Serializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(lookup_field='slug_company',
+        view_name='companydata-detail',)
+    class Meta:
+        model = CompanyData
+        fields = ('name', 'url')
+    def restore_object(self, attrs, instance=None):
+        return CompanyData(**attrs)
+
+class PaginatedCompanyDataListSerializer(PaginationSerializer):
+    class Meta:
+        object_serializer_class = CompanyData_List_Serializer
+
+class CompanyData_Detail_Serializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(lookup_field='slug_company',
+        view_name='companydata-detail',)
+    chemicals = serializers.SerializerMethodField('get_producer_chemicals')
+    def get_producer_chemicals(self, obj):
+        return reverse('chemical_list', args=[obj.slug_company, 
+            self.context['format']], request=self.context['request'])
+    class Meta:
+        model = CompanyData
+        fields = ('url', 'name', 'chemicals', 'previous_data', 
+            'replacement_data')
+    def restore_object(self, attrs, instance=None):
+        return CompanyData(**attrs)
+\end{lstlisting}
+\\
+Ressourcen werden zur Verarbeitung durch Views serialisiert.
+Sie liegen dann nicht mehr als strukturierter Datensatz vor, sondern in einer
+sequenziellen Form.
+\\
+Zur Serialisierung von Ressourcen wird die chemicals-\ac{APP} um
+die Datei "`serializer.py"' erweitert. Diese Datei enthält alle
+Serialisierer-Klassen, die zur Serialisierung von Daten notwendig sind.
+Listing \ref{lst:serialisierer} zeigt die Serialisierer-Klassen zur
+Serialisierung der Chemikalien sowohl in Listenform, als auch für die
+Detailansicht.
+\\
+An Hand des Beispiels (Listing \ref{lst:serialisierer}) sieht man, dass nur die
+wichtigsten Informationen einer Ressource zur Darstellung für die
+Listenübersicht (Zeile 1 bis 8) übergeben werden, Name und \ac{URI} (Zeile 6).
+\\
+Erst in der Detailansicht (Zeile 14 bis 26) werden mehr Informationen zur
+Verfügung gestellt. Die Ausgabe der Informationen kann ebenfalls
+angegeben werden (Zeile 23 und 24).
+\\
+
+\subsection{Funktionsweise der Views}
+\label{sec:views}
+
+\begin{lstlisting}[caption={View-Klassen zur Bearbeitung von Anfragen an das
+System und zum Erstellen der entsprechenden Antworten (Ressource: Producer)
+}, label=lst:view,captionpos=b] 
+class ProducerList(APIView):
+    renderer_classes = (TemplateHTMLRenderer, UnicodeJSONRenderer, XMLRenderer)  
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
+    def get(self, request, format=None):
+        companys = CompanyData.objects.all().filter(replacement_data=None)
+        paginate_by = 3
+        paginator = Paginator(companys, paginate_by)
+        page = request.QUERY_PARAMS.get('page')
+        try:
+            obj = paginator.page(page)
+        except PageNotAnInteger:
+            obj = paginator.page(1)
+        except EmptyPage:
+            obj = paginator.page(paginator.num_pages)
+        serializer = PaginatedCompanyDataListSerializer(obj, 
+            context ={'request': request, 'format': format})
+        if (format == 'html') | (format == None):
+            return Response({'object_list': obj}, 
+                template_name='chemicals/producer_list.html')
+        return Response(serializer.data)
+
+class ProducerDetail(APIView):
+    renderer_classes = (TemplateHTMLRenderer, UnicodeJSONRenderer, XMLRenderer)  
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
+    def get_object(self, slug_company):
+        try :
+            return CompanyData.objects.get(slug_company=slug_company)
+        except CompanyData.DoesNotExist:
+            raise Http404
+    def get(self, request, slug_company, format=None):
+        companys = self.get_object(slug_company)
+        serializer = CompanyData_Detail_Serializer(companys, 
+            context ={'request': request, 'format': format})
+        if (format == 'html') | (format == None):
+            return Response(serializer.data, 
+                template_name='chemicals/producer_detail.html')
+        return Response(serializer.data)
+\end{lstlisting}
+\\
+Die Views erzeugen die Repräsentationen, die der Kunde von \sona{euSDB} auf
+seinem Client oder Webbrowser zur Verfügung gestellt bekommt. Dabei wird
+unterschieden, ob es eine Standardausgabe (\ac{JSON} oder \ac{XML}) oder eine
+graphisch aufbereitete Ausgabe (\ac{HTML} oder \ac{PDF}) ist.
+\\
+Im ersten Schritt werden der View Renderer-Klassen zur Verfügung gestellt. Dabei
+handelt es sich um Standardklassen und Funktionen, die in der Lage sind, Daten
+in das entsprechende Format zu überführen. Darauf folgen die Authentifizierungs-
+und Rechtevergabe-Klassen. Das ist notwendig, um zu verhindern, dass Unbefugte
+Zugriff auf das System bekommen.
+\\
+Zum Implementieren der Standardmethoden des \ac{HTTP} sind für Entwickler
+mehrere Methodennamen ("`get"', "`post"', "`head"', \ldots) reserviert. In dem
+Beispiel (Listing \ref{lst:view}) sind die "`get"'-Methoden (Zeile 5 bis 21 und
+32 bis 39) realisiert.
+Neben den für die Standardmethoden reservierten Funktionen können auch weitere
+Funktionen in die Klassen implementiert werden. Zeile 27 bis 31 des Listings
+\ref{lst:view} rufen die Daten aus der Datenbank ab, ist das nicht erfolgreich,
+erzeugen sie eine Standard-Fehlermeldung.
+\\
+Die Standardausgaben müssen nicht graphisch aufbereitet werden. Sie haben den
+Zweck, möglichst kompakt die Daten dem Kunden zur maschinellen
+Weiterverarbeitung zur Verfügung zu stellen. Dabei ist ein Seitenlayout nicht von Bedeutung und
+würde bei einer schnellen Verarbeitung stören. Der Datensatz wird sowohl in
+der Listenübersicht (Listing \ref{lst:view} Zeile 1 bis 21), als auch in der
+Detailansicht (Listing \ref{lst:view} Zeile 23 bis 39) jeweils serialisiert.
+Dabei werden die im vorigen Kapitel \ref{sec:serialisierung} vorgestellten
+Serialisierer verwendet (Zeilen 16 und 17 bzw. 34 und 35).
+\\
+Nachdem die Daten serialisiert wurden, werden sie aufbereitet und dem Kunden als
+Antwort zugeschickt. Dabei werden die Daten in den Formaten \ac{JSON} und
+\ac{XML} direkt an den Kunden versandt. Sollen die Daten jedoch als
+\ac{HTML}-Dokument ausgegeben werden, generiert die View mit Hilfe eines
+Templates das Antwortdokument (z.B. Zeile 18 bis 20).
+
+\subsection{Hypermedia zwischen den Ressourcen}
+\label{sec:hypermedia}
+
+Die Grundlagen über Hypermedia sind im Kapitel \ref{hypermedia_gru} zu finden.
+Hier wird beschrieben, wie die Verlinkungen zwischen den Ressourcen realisiert
+wurden.
+\\
+Die Models wurden, wie im Abschnitt \ref{sec:serialisierung} beschrieben,
+serialisiert, sodass sie von den Models verarbeitet und verwendet werden
+können. Im Beispiel (Listing \ref{lst:serialisierer}) wird in den Zeilen 2 und 3
+die Variable "`url"' definiert. Diese dient dazu, in der Listenansicht zu
+jeder Instanz einer Ressource einen Link zu erzeugen.
+\begin{lstlisting}[caption={Definition der Variablen "`url"' aus dem Serialisierer einer Liste} 
+, label=lst:url_def,captionpos=b] 
+    serializers.HyperlinkedIdentityField(lookup_field='slug_company',
+        view_name='companydata-detail',)
+\end{lstlisting}
+\\
+Der Befehl aus Listing \ref{lst:url_def} funktioniert wie folgt:
+Das "`HyperlinkedIdentityField"' erzeugt einen Link auf eine Ressource. Dabei
+wird als Identifizierungsfeld (lookup\_field) ein ID-Feld (id\_\ldots)
+der zu verlinkenden Ressource verwendet. Am Schluss wird dann die
+aufzurufende View angegeben.
+\begin{lstlisting}[caption={Definition der Variablen "`url"' und
+"`chemicals"' aus dem Serialisierer der Detailansicht eines Herstellers} 
+, label=lst:hypermedia,captionpos=b] 
+    url = serializers.HyperlinkedIdentityField(lookup_field='id_comp',
+        view_name='companydata-detail',)
+    chemicals = serializers.SerializerMethodField('get_producer_chemicals')
+
+    def get_producer_chemicals(self, obj):
+        return reverse('chemical_list', args=[obj.id_comp, 
+            self.context['format']], request=self.context['request'])
+\end{lstlisting}
+\\
+Bei der Vergabe von Links in der Detailansicht gibt es zwei Links. Einer
+verweist auf sich selbst ("`url"') und einer, im Beispiel (Listing
+\ref{lst:hypermedia}) auf die Chemikalien ("`chemicals"'). Der Link auf sich
+selbet kann clientseitig als Lesezeichen oder zur Weitergabe verwendet werden. Die Variablen werden auch im Serialisierer
+initialisiert (Listing \ref{lst:hypermedia}, Zeile 1 bis 3). Es ist notwendig,
+den Link auf eine andere Ressource selbst zu erstellen, da das System eigentlich
+keine hierarchischen \ac{URI} unterstützt. Dies übernimmt die Funktion aus den
+Zeilen 5 bis 7. Hier wird mittels des "`reverse"' Befehls eine Link erstellt.
+Diesem werden das vom Kunden angeforderte Datenformat und der Hersteller an
+die aufzurufende View ("`chemical\_list"') übergeben. Am Ende entsteht eine absolute \ac{URI}.
+\\
+Ohne den genauen Aufbau des Systems zu kennen, kann sich der Kunde über die
+Verlinkungen und bereits bekannten Links durch das System bewegen.
+
+\subsection{Paging in den Listenansichten}
+\label{sec:paging}
+
+Das Paging, also das Einteilen von Listen in mehrere Pakete (Seiten), wird
+sowohl von der View, als auch dem Serialisierer gesteuert. Dabei teilt der
+Serialisierer den Datensatz auf (Listing \ref{lst:paging}).
+\begin{lstlisting}[caption={Einteilen der Seiten durch den Serialisierer (Ressource: Producer) }
+, label=lst:paging,captionpos=b]
+class PaginatedCompanyDataListSerializer(PaginationSerializer):
+    class Meta:
+        object_serializer_class = CompanyData_List_Serializer
+\end{lstlisting}
+\\
+Die von dem "`CompanyData\_List\_Serializer"' gelieferten Daten werden durch
+den "`PaginationSerializer"', einer Standardmethode, in Seiten eingeteilt.
+\\
+In der View kann man angeben, wie viele Einträge pro Seite zu führen sind, und
+welche Seite gerade zurückgeliefert werden soll.
+\begin{lstlisting}[caption={Steuerung und Validierung des Paging in der View (Ressource: Producer) }
+, label=lst:paging_view,captionpos=b]
+        paginate_by = 25
+        paginator = Paginator(companys, paginate_by)
+        page = request.QUERY_PARAMS.get('page')
+        try:
+            obj = paginator.page(page)
+        except PageNotAnInteger:
+            obj = paginator.page(1)
+        except EmptyPage:
+            obj = paginator.page(paginator.num_pages)
+\end{lstlisting}
+\\
+In Listing \ref{lst:paging_view} wird in Zeile 1 ein Standardwert für die
+Anzahl an Einträgen pro Seite angegeben. Danach werden die Daten von der
+Datenbank angefordert und unter "`page"' gespeichert. In den Zeilen 4 bis 9 wird
+dann überprüft, ob die Anfrage korrekt ist und beantwortet werden kann; z.B. ob
+für die Seitenzahl ein Integer-Wert angegeben oder eine leere Seite
+angefordert wurde. Sollte eine ungültige Anfrage gestellt werden, wird die erste
+Seite als Antwort bereitgestellt.
+
+\section{Suchfunktion}
+\label{sec:Suchfunktion_rel}
+
+\begin{lstlisting}[caption={Die Datei "`search\_index.py"' verwaltet den Index und die zu indizierenden
+    Daten
+} 
+, label=lst:search_index,captionpos=b]
+class ChemicalIndex(indexes.SearchIndex, indexes.Indexable):
+    text = indexes.EdgeNgramField(document=True, use_template=True)
+    name = indexes.CharField(model_attr='name')
+    cas = indexes.CharField(model_attr='cas')
+    ec_number = indexes.CharField(model_attr='ec_number')
+    ec_index_number = indexes.CharField(model_attr='ec_index_number')
+    hill_formula = indexes.CharField(model_attr='hill_formula')
+    pub_date = indexes.DateTimeField(model_attr='pub_date')
+
+    def get_model(self):
+        return Chemical
+
+    def index_queryset(self, using=None):
+        return self.get_model().objects.
+            filter(pub_date__lte=datetime.datetime.now())
+\end{lstlisting}
+\\
+Die Suchfunktion ist in einer eigenen \ac{APP} ausgelagert. Die
+"`search"'-\ac{APP} stellt die Verbindung zu \sona{elasticsearch} her und fügt
+die Daten automatisch in die Suchdatenbank ein.
+\\
+Die "`search"'-\ac{APP} enthält neben den automatisch von \sona{Django}
+erstellten Dateien die Datei "`search\_index.py"' (Listing
+\ref{lst:search_index}).
+\\
+In den Zeilen 2 bis 8 werden die zu indizierenden Werte einer Chemikalie
+definiert. Es handelt sich in den meisten Fällen um Textfelder (CharField).
+Dabei werden Werte verwendet, die es erlauben, Chemikalien möglichst eindeutig
+zu identifizieren. Auf diese Weise wird die Suchdatenbank schlank und
+schnell gehalten.
+\\
+Die Klasse "`ChemicalIndex"' hat eine Funktion, die es ihr erlaubt
+auf Chemikalien zuzugreifen (Zeile 10 und 11). Diese Funktion ist
+notwendig, damit man schnell Zugriff auf zu aktualisierende Datensätze bekommt.
+Das Abrufen von Suchergebnissen wird mit Standardmethoden der Bibliothek
+"`haystack"' durchgeführt.
+\\
+Die "`haystack"'-Bibliothek ist eine speziell zur Anbindung von
+\sona{elasticsearch} an \sona{Django}-Projekte entwickelte Programmbibliothek.
+Sie verfügt über eine Grundfunktionalität, die der Entwickler original nutzen
+kann, oder sie gegebenenfalls anpassen muss.
+\\
+Zu der Suchfunktion wird ein Template erstellt. Dieses enthält ein
+Suchfeld, um die Anfragen einzugeben. In einer Textdatei wird 
+angegeben, in welcher Reihenfolge und welche Felder
+durchsucht werden. Die View und auch der Aufbau des Formulars muss
+nicht durch den Entwickler, es sei denn, er möchte ein individuelles Formular
+haben, definiert werden. Die "`haystack"'-Bibliothek enthält die notwendigen
+Views und Formulare und stellt sie dem Entwickler zur Verfügung.
+
+
+

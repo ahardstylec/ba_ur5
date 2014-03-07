@@ -1,0 +1,578 @@
+\chapter{Grundlagen}
+
+Einfachheit von Programmstruktur, Datenverarbeitung, Wartung und Nutzung werden
+durch lose Kopplung, den Einsatz des \sona{Django}-Frameworks, die
+Einhaltung der \ac{REST}-Prinzipien und die Nutzung von \sona{elasticsearch}
+angestrebt.
+
+\section{Lose Kopplung}
+\label{lose_kopplung_gru}
+
+Teilkomponenten einer Software agieren häufig miteinander. Lose Kopplung
+beschreibt den Zustand, dass die einzelnen Komponenten (Teile) der Software von
+einander möglichst unabhängig sind: "`So wenige Schnittstellen wie möglich, so
+viele wie nötig."' Ändert sich eine Komponente, jedoch nicht deren
+Schnittstelle, müssen die gekoppelten Komponenten nicht geändert werden.
+\\
+Lose Kopplung erleichtert Portierbarkeit, Skalierbarkeit, Erweiterbarkeit und
+Wartbarkeit. Als Nachteil stellt sich in einigen Fällen eine schlechtere
+Performanz ein. Diese ist bei vielen Systemen, dank der hohen Systemleistung,
+aber vernachlässigbar und wird daher billigend in Kauf genommen.
+\\
+Bei loser Kopplung sind globale Variablen oder öffentliche Attribute zu
+vermeiden, damit keine Softwarestati entstehen. Es erlaubt jeder Komponente,
+sofern sie kommunikationsbereit ist, ohne Vorbedingungen zu kommunizieren.
+
+\section{Die Programmiersprache Python}
+\label{python_gru}
+
+\sona{Python} ist unter anderem eine prozedurale Programmiersprache. Allerdings werden
+auch andere Programmierparadigmen von ihr vereint. So ist es zum Beispiel auch
+möglich, objektorientiert \cite{BELAGR-2009}\footnote{Diese Quelle findet sich
+auch unter folgendem Link als Webseite:
+\url{http://openbook.galileocomputing.de/oop/oop_kapitel_01_001.htm#mj311565c5c46a3b13daf9951e408cac80}}
+oder funktional \cite{RAIGRI-2009}zu programmieren. 
+Der vom Entwickler erzeugte Quellcode wird kompiliert. Der
+daraus entstandene Byte-Code kann dann vom Interpreter einer virtuellen
+\sona{Python}-Maschine ausgeführt werden. Der Einsatz einer virtuellen Maschine
+macht Python plattformunabhängig.
+\\
+Im Lieferumfang von Python ist eine sehr mächtige Standardbibliothek enthalten.
+Sie ermöglicht es dem Entwickler schnell und einfach strukturierte Anwendungen
+zu programmieren, die sehr komplexe Aufgaben verrichten und lösen können. Die
+Programmiersprache wird gerne für die Prototypentwicklung
+eingesetzt.
+Auf Grund der Einfachheit, mit der man Software erstellen kann, lassen sich die Prototypen schnell
+entwickeln. Auf diese Weise kann man schon früh Designfehler der
+späteren Software entdecken und beheben.
+\\
+\sona{Python} wird unter einer \ac{PSF}-Lizenz vertrieben. Diese Lizenz ist weniger
+einschränkend als die \ac{GPL}-Lizenz und
+erlaubt es, die \sona{Python}-Software lizenzkostenfrei in große, kommerzielle
+Projekte einzubinden.
+
+\\
+Ein herausragendes Merkmal von \sona{Python} ist seine hohe Flexibilität. Daher
+wird es nicht nur als Programmiersprache in kleinen und
+großen Projekten, sondern auch serverseitig im Internet und als
+Skriptsprache in anderen Programmiersprachen eingesetzt. Die Wichtigkeit von
+\sona{Python} im wachsenden Markt von Embedded-Systemen nimmt immer mehr zu.
+\begin{lstlisting}[caption={Beispielfunktion in Python zur Berechnung der Summe
+aller Zahlen von 1 bis 5}, label=lst:bsppytsum ,captionpos=b] 
+def sum_1_5{self}:
+    sum = 0
+    for i in range(1,5):
+        sum=sum+i
+        print sum
+    print sum
+ \end{lstlisting}
+\\
+\sona{Python} ist mit dem Anspruch entwickelt worden, für den Entwickler möglichst
+einfach zu sein. Dies spiegelt sich schon in seiner Syntax wieder. Diese ist
+leicht und schnell zu erlernen. Dabei wird vor allem auf sauber formatierten
+Quellcode geachtet. Bei vielen Programmiersprachen, z.B. \sona{Java} oder
+\sona{C/C++}, wird ein Befehl durch eine "` ; "' abgeschlossen, der Inhalt einer
+Schleife mit "`\{\ldots\}"' eingefasst, in \sona{Python} wird dies über
+Einrückung gesteuert (siehe Listing \ref{lst:bsppytsum}).
+ \\
+Der "`range()"'-Befehl liefert die Zahlen 1 bis 5 in Form einer Liste. Die
+"`for"'-Schleife durchläuft mit jedem Iterationsschritt diese Liste und legt die
+jeweilige Zahl in die Variable i. Man sieht sofort, dass die einzelnen Befehle
+der Funktion nicht durch ein Semikolon abgeschlossen werden und es keine
+einfassenden geschweiften Klammern bei der "`for"'-Schleife gibt. Der
+"`print"'-Aufruf in der Schleife gibt bei jedem Durchlauf den aktuellen Inhalt
+der Variable "`sum"' auf der Konsole aus. Die letzte Zeile Code gibt einmalig
+das Endergebnis nach dem vollständigen durchlaufen der Schleife aus. Der
+Compiler erwartet zum Einrücken eines hierarchisch untergeordnetem Quellcodes
+immer die gleiche Folge von Leerzeichen bzw. Tabulatoren. Ein unter
+Programmierern üblicher Standard ist das Einrücken mit vier Leerzeichen.
+\\
+Mit Hilfe der sogenannten \sona{Python}-\ac{API} ist es möglich, die
+Standardbibliothek von \sona{Python} flexibel zu erweitern. Auf diese Weise
+können auch Komponenten in anderen Programmiersprachen an \sona{Python}
+angebunden werden, z.B. C/C++ Module, die im Gegensatz zu \sona{Python}, sehr
+hardwarenah sind.
+\\
+Die Popularität von \sona{Python} nimmt immer mehr zu. Unter anderem setzt die
+\fina{NASA} diese Programmiersprachen ein. Aber auch Internetnutzer
+kommen inzwischen tagtäglich mit Produkten auf Basis von \sona{Python} in
+Kontakt, z.B. mit \href{http://www.youtube.com/}{Youtube} oder \href{https://www.google.de}{Google}.
+Der Entwickler der Programmiersprache \sona{Python}, Guido van Rossum, arbeitet heute selbst
+für \fina{Google}.
+
+\section{Webentwicklung mit Django}
+\label{sec:django_gru}
+
+"`\sona{Django} ist ein hochwertiges \sona{Python} Web Framework zur schnellen
+Entwicklung und für sauberes, praktisches Design."' Dies ist die freie
+Übersetzung des Einleitungsatzes der englischsprachigen Internetseite des
+\sona{Django}-Projektes: "`Django is a high-level Python Web framework that
+encourages rapid development and clean, pragmatic design"' \cite{DJANGO-2013}.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/MTV_1.jpg}
+      \caption[Request/Response-Schema in Django]{Ablauf eines Request vom
+      Client/Browser an den Server und die Response des Servers an den Client/Browser.}
+      \label{fig:mtv}
+\end{figure}
+\\
+Wie man der Abbildung \ref{fig:mtv} entnehmen kann, ist das
+\sona{Django}-Framework nach dem \ac{MTV}-Muster (nn der Abbildung \ref{fig:mtv}
+grau hinterlegt) aufgebaut. Die View verarbeitet den Request. Über das
+entsprechenden Model werden die Daten aus der Datenbank geholt. Die View
+verarbeitet dieses Model und dessen Daten mit Hilfe eines Templates und erzeugt
+eine Response, die dann über den Webserver an den Client weitergeleitet wird.
+Dieser Aufbau ist dem \ac{MVC}-Muster nachempfunden.
+\\
+Die \ac{MTV}-Architektur, ein zentrales Designmuster der Informatik, entkoppelt
+Rohdaten von deren Darstellung, sodass Datenbank und Darstellung der Daten
+unabhängig von einander ausgetauscht werden können. Die \ac{MTV}-Architektur
+wird von dem \sona{Django}-Framework hervorragend nachgebildet.
+\\
+Die Komponenten des \sona{Django}-Frameworks sind lose gekoppelt und nach dem
+\ac{DRY}-Prinzip aufgebaut. Es gilt zu verhindern, gleiche Funktionen mehrfach
+zu implementieren. Änderungen und Fehlerbehebungen müssen dann an genau einer
+Stelle im Quellcode durchgeführt werden. Der Code sollte an einer Stelle stehen,
+an der man ihn auch erwartet. Dies erleichtert die Verständlichkeit und
+Wartbarkeit des Programms.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.6\textwidth]{pic/ordnerhirachie_basis.jpg}
+      \caption[Ordnerhierarchie ohne APP in Django]{Ordnerhierarchie direkt nach
+      dem Erzeugen des Projektes euSDB.}
+      \label{fig:ordnerhirachie_basis}
+\end{figure}
+\\
+\begin{table}
+ \begin{tabular}{|p{0.15\textwidth}|p{0.17\textwidth}|p{0.59\textwidth}|l|l|l|}
+ \hline \textbf{Dateiname} & \textbf{Verzeichnis} & \textbf{Aufgabe}\\
+     \hline \hline 
+     manage.py & Projekt & Das \sona{Django}-Framework enthält eine Datei mit
+     dem Namen "`django-admin.py"'. Mit dieser Datei werden fast alle
+     administrativen Aufgaben über die Eingabeaufforderung gesteuert. In ihr ist
+     auch ein Webserver zum Test des Projektes enthalten. Die "`manage.py"'
+     leitet die Befehle an die "`django-admin.py"' weiter und legt vorher das
+     Projekt auf den richtigen Pfad, sodass es korrekt vom Framework verarbeitet
+     werden kann und setzt die Variable "`DJANGO\_SETTINGS\_MODULE"' so, dass
+     sie auf die "`settings.py"' im Konfigurationsverzeichnis zeigt.
+     \\ 
+     \hline
+     \_\_inti\_\_.py & Konfiguration & Diese Datei sorgt dafür, dass das
+     Verzeichnis als "`package"' (Paket) erkannt wird. Nur Dateien in
+     einem package können in andere Dateien importiert werden.
+     \\ 
+     \hline
+     settings.py & Konfiguration & Hier werden die projektweiten Einstellungen
+     gespeichert. Zu diesen gehören zum Beispiel die Anbindung an eine
+     Datenbank (siehe Anhang \ref{settings}, Zeile 15 - 24) oder auch Angaben zu
+     statischen Verzeichnissen (siehe Anhang \ref{settings}, Zeile 54 - 60).
+     \\ 
+     \hline
+     urls.py & Konfiguration & In dieser Datei werden die möglichen \ac{URL} bzw \ac{URI}  mit
+     Hilfe von regulären Ausdrücken abgelegt und mit den entsprechenden Views
+     verknüpft. Dies erlaubt es elegant und leicht, höchst flexibele \ac{URI}
+     nach eigenen Wünschen und Bedürfnissen zu erzeugen. Es ist auch möglich,
+     dynamische \ac{URI} zu bauen.
+     \\ 
+     \hline
+     wsgi.py & Konfiguration & Die Datei dient später beim Veröffentlichen des
+     Projektes dazu, dass der Webserver eine Verbindung zu dem Projekt
+     herstellen kann und dieses dann für Clients und Browser über das
+     Internet zugreifbar ist.
+     \\ 
+     \hline
+  \end{tabular}
+ \caption[Dateibeschreibungen eines Django-Projekts]{Beschreibung der Dateien im
+ Projektverzeichnis und dem Konfigurationsverzeichnis und deren Aufgaben.}
+ \label{tab:datei_bedeutung_i}
+\end{table}
+Die Entwicklung einer neuen Webanwendung in \sona{Django} erfolgt in einem
+sogenannten Projekt. Beim Erstellen eines Projektes erhält man das Projektverzeichnis
+mit dem gleichnamigen Konfigurationsverzeichnis (siehe Abbildung
+\ref{fig:ordnerhirachie_basis}). Außerdem werden die für das Framework
+unbedingt notwendigen Dateien erzeugt. Tabelle
+\ref{tab:datei_bedeutung_i} enthält die Kurzbeschreibungen der einzelnen Dateien im
+Projekt- und Konfigurationsvereichnis.
+\\
+Das Projekt kann um viele Anwendungen, sogenannten \ac{APP}, erweitert werden.
+Eine \ac{APP} ist dabei in sich abgeschlossen und wird als eigener Ordner im
+Projektverzeichnis abgelegt. Hat man beispielsweise eine Webseite mit Gästebuch
+und Benutzerverwaltung, dann stellt sowohl das Gästebuch als auch die
+Benutzerverwaltung jeweils eine eigene \ac{APP} dar. Auf diese Weise kann man
+das Gästebuch einfach entfernen, ohne die Funktionalität der Benutzerverwaltung
+zu beeinflussen.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.6\textwidth]{pic/ordnerhirachie_mit_app.jpg}
+      \caption[Ordnerhierarchie mit APP in Django]{Ordnerhierarchie nach dem
+      Erzeugen der ersten APP}
+      \label{fig:ordnerhirachie_mit_app}
+\end{figure}
+\\
+Der Aufbau des Projektes mit \ac{APP} unterstützt die lose Kopplung der
+Anwendungen. Eine \ac{APP} steht dem Projekt erst zur Verfügung, wenn man diese
+im Konfigurationsverzeichnis in der "`settings.py"' des Projektes \sona{euSDB}
+unter "`INSTALLED\_APPS"' bekannt gemacht hat (siehe Zeile 91 bis 103, Anhang
+\ref{settings}).
+\\
+Eine von der "`manage.py"' erzeugt \ac{APP} besteht dabei immer aus folgenden
+Dateien: \_\_init\_\_.py, models.py, tests.py, views.py. Die Ordnerhierarchie
+können Sie auch der Abbildung \ref{fig:ordnerhirachie_mit_app} entnehmen. Die
+Rolle einzelner Dateien werden im Kapitel \ref{chap:umsetzung} erläutert.
+\\
+Es kann sinnvoll sein, die entsprechende Struktur zu erweitern, z.B. um eine
+\ac{APP}-interne "`urls.py"'. Diese müssen in der projektweiten
+"`urls.py"' importiert werden. Auf diese Weise wird eine noch losere Kopplung
+der \ac{APP} gewährleistet. Bei der Einbindung muss man nur den Import der
+"`urls.py"' (eine Zeile) einfügen und die \ac{APP} in der "`settings.py"'
+bekannt machen, und nicht jede einzelne \ac{URL} (mehrere Zeilen) um die App in
+das Gesamtprojekt einzubinden. Auch ist es mit einer \ac{APP}-internen
+"`urls.py"' einfacher eine \ac{APP} in ein anderes Projekt zu portieren. Bei
+sehr Umfangreichen \ac{APP} werden weitere Komponenten benutzt, wie z.B.
+Serialisierer oder Administratoren. Diese werden in \ac{APP}-eigenen Dateien
+ausgelagert.
+
+\section{Das REST-Prinzip}
+\label{sec:rest_prinzip_gru}
+
+\ac{REST}, Representional State Transfer, ist ein Konzept, mit dem
+größtmögliche Einfachheit bei Webanwendungen gewährleistet werden soll.
+Die Forderungen des Konzepts sind seid der privaten und kommerziellen Nutzung
+des Internets bekannt und ergeben sich aus den Problemen bei der
+Entwicklung von großen Anwendungslandschaften und der firmenübergreifenden
+Integration von Daten:
+\begin{itemize}
+  \item Lose Kopplung
+  \item Interoperabilität
+  \item Wiederverwendung
+  \item Performance und Skalierbarkeit
+\end{itemize}
+Diese Probleme versucht man durch Einführung mehrerer Grundprinzipien bei der
+Erstellung von Webanwendungen zu lösen bzw. zu umgehen.
+Man fasst sie unter dem Begriff \ac{REST} zusammen:
+\begin{itemize}
+  \item Ressourcen und deren unterschiedliche Repräsentationen
+  \item Ressourcen mit eindeutiger Identifikation
+  \item Verknüpfungen und Hypermedia
+  \item Standardmethoden
+  \item Statuslose Kommunikation
+\end{itemize}
+In den folgenden Abschnitten  wird \ac{REST} an Hand der Grundprinzipien
+erklärt.
+
+\subsection{Ressourcen und Repräsentationen}
+\label{res_u_rep_gru}
+
+Ressourcen sind die Menge an Daten, die in einer Webanwendung
+serverseitig verarbeitet und verwaltet werden. Liegen die Ressorcen
+clientgerecht vor, spricht man von Repräsentationen der Ressourcen. Zum Beispiel
+gibt es bei einer Benutzerverwaltung für ein Internetkaufhaus die Ressource "`User"'.
+Sie wird definiert durch Parameter, im Beispiel durch "`Name"' und
+"`E-Mail"' als \ac{HTML}-Repräsentation der Ressource "`User"' (siehe Listing
+\ref{lst:format_i_gru}). 
+\begin{lstlisting}[
+    caption={HTML-Dokument für die Ausgabe eines Users},
+    label=lst:format_i_gru, captionpos=b]
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>Benutzerverwaltung - Max Mustermann</title> 
+    </head>
+    <body>
+        <h1>Max Mustermann</h1>
+        <p>E-Mail: max.mustermann@bsp.de</p>
+    </body>
+</html>
+\end{lstlisting}
+\\
+Je mehr Datenformate bzw. Repräsentationen beim Abruf von Ressourcen
+unterstützt werden, desto mehr Entwickler werden ein solches System nutzen, und
+umso leichter fällt es ihnen. Der Webbrowser ist wohl der weltweit bekannteste
+Client für Webanwendungen. Er ist in der Lage, \ac{HTML}-Daten graphisch
+aufzubereiten, mit Hilfe von Skripten ist er in der Lage auch andere
+Datenformate darzustellen.
+\\
+Anhang \ref{format_ii_gru} zeigt die "`User"'-Ressource als
+\ac{JSON}-Repräsentation, Anhang \ref{format_iii_gru} als
+\ac{XML}-Repräsentation.
+
+\subsection{Eindeutige Identifikation}
+\label{identification_gru}
+
+Es hat sich als praktisch erwiesen, Ressourcen eindeutige Bezeichner zu geben.
+Im Web hat sich für die Vergabe solcher Bezeichner ein einheitliches Konzept
+entwickelt. Die einheitlichen Bezeichner werden als \ac{URI} bezeichnet. Mit
+Hilfe einer \ac{URI} kann eine Ressource weltweit eindeutig identifiziert werden.
+\\
+Der Vorteil von einem weltweit anerkannten und genutzten Schema zur Vergabe von
+\ac{URI} liegt darin, dass man kein eigenes erfinden muss, stattdessen ein
+bereits sehr gut erprobtes verwenden kann, das sehr gut skaliert und
+für fast jeden verständlich ist.
+\begin{lstlisting}[caption={Beispiel URI eines
+Bestellsystems \cite{STETIL-2009a} }, label=lst:bsp_uris_gru ,captionpos=b]
+http://example.com/customers/1234 
+http://example.com/orders/2007/10/776654
+http://example.com/products
+\end{lstlisting}
+\ac{URI} enthalten alle wesentlichen Elemente zur eindeutigen Identifizierung
+einer Ressource oder einer Menge von Ressourcen (Beispiele siehe Listing
+\ref{lst:bsp_uris_gru}).
+\\
+\ac{URL} beschreibt einen Speicherort auf einem Server. \ac{URI}
+identifizieren Ressourcen weltweit eindeutig. Der Oberbegriff \ac{URI}
+beschreibt auch jede \ac{URL}. Im allgemeinen Sprachgebrauch wird zunehmend
+\ac{URI} statt \ac{URL} verwendet.
+
+\subsection{Hypermedia}
+\label{hypermedia_gru}
+
+Hypermedia ist die Verallgemeinerung des aus \ac{HTML} bekannten Hypertext. Das
+effiziente und sinnvolle Verlinken von Ressourcen und deren Funktionen wird
+im Listing \ref{lst:hypermedia_gru} beispielhaft gezeigt und nachfolgend
+erklärt.
+Die vorgestellte Repräsentation zeigt einen reduzierten Datensatz eines Herstellers.
+Zeile 2 gibt den Namen eines Herstellers zurück. Zeile 3 enthält einen Link
+auf sich selbst. Dieser kann sehr nützlich sein, wenn die Repräsentation
+maschinell verarbeitet wird, oder der Link an andere Personen oder Funktionen
+weitergegeben werden muss. Zeile 4 führt dann zu einer Liste mit allen
+geführten Chemikalien des Herstellers.
+\begin{lstlisting}[caption={Beispiel für ein JSON Dokument eines Herstellers},
+label=lst:hypermedia_gru, captionpos=b] { 
+    "name": "BASF", 
+    "url": "http://localhost:8000/producers/01/.json",
+    "chemicals": "http://localhost:8000/producers/basf/chemicals/.json", 
+}
+\end{lstlisting}
+Diese Art der Verlinkung ermöglicht es, fast intuitiv durch die Webanwendung zu
+navigieren. Selbst ein Programm, welches diese Daten auswertet, ist sehr leicht
+zu programmieren. Der Entwickler eines solchen Programms muss keine Kenntnis
+über das serverseitige System haben, da alle für ihn wichtigen \ac{URI} durch
+die Repräsentation selbst zur Verfügung gestellt werden. Er kann alle Daten,
+den Zusammenhang in dem diese zueinander stehen, den Repräsentationen
+entnehmen.
+\\
+Dem Nutzer können auch die Links auf zur Verfügung stehende Funktionen übergeben
+werden, z.B. Registrieren eines neuen Nutzers. Dadurch werden Zustände ohne den
+Einsatz von Zustandsvariablen beschrieben. Für den Client können sich jedoch
+Zustände und Folgezustände völlig unabhängig vom Server ergeben.
+\\
+Die Repräsentationen sollen so miteinander verknüpft werden, dass ein
+intuitives und leichtes Navigieren zwischen den Ressourcen möglich ist.
+Entwickler von Clients können schneller und effizienter programmieren, da sie
+nicht zwingend das serverseitige System kennen müssen.
+
+\subsection{Standardmethoden}
+\label{standardmethoden_gru}
+
+Das Standardprotokoll im Internet ist \ac{HTTP}. In der
+\ac{HTTP}-Spezifikation sind unter anderem sechs Standardmethoden bekannt: GET,
+POST, PUT, DELETE, HEAD und OPTIONS. Die Methoden GET, PUT und DELETE sind
+laut Spezifikation immer idempotent. Das bedeutet, sollte man mit einer
+\ac{URI} wiederholt eine idempotente Standardmethode aufrufen, ist der Zustand
+des Systems unverändert. Wird beispielsweise zweimal
+ein GET auf eine gleiche \ac{URI} aufgerufen, bekommt man jeweils das gleiche Ergebnis zurück. 
+Ruft man mehrfach die DELETE-Funktion auf ein bestimmtes Objekt auf, darf der
+Befehl nur einmal ausgeführt werden. Der Aufruf der DELETE-Funktion auf ein
+bereits gelöschtes Objekt darf nicht zum Löschen anderer Objekte führen.
+\\
+POST ist laut der Spezifikation eine nicht idempotente Methode. Das bedeutet es
+gibt keine Garantien wie das System bei einem mehrmaligen POST auf
+eine URI reagiert. Die Reaktion des Systems hängt von der Implementierung des
+Systementwicklers ab.
+\\
+Die vier Standardmethoden GET, POST, PUT, DELETE sind auch für ein weiteres
+Grundprinzip der Webentwicklung von großer Bedeutung. Beim Verwalten
+und Bearbeiten von Ressourcen wird mittels des \ac{CRUD}-Prinzips eine
+transparente Implementierung vorgeschrieben. Der Nutzer kann sich im allgemeinen
+sicher sein, dass die idempotenten Methoden auch so implementiert wurden und ihm
+die vier bzw. sechs Standardmethoden bereitgestellt werden, wenn er mit einer
+\ac{REST}-konformen Anwendung arbeitet.
+\\
+Eine natürliche und intuitive Handhabung einer Webanwendung mit
+\ac{REST}-konformer \ac{API} setzt voraus, dass alle auf der Website
+bereitgestellten Funktionen auch in der \ac{REST}-konformen \ac{API} zur
+Verfügung gestellt werden.
+
+\subsection{Statuslose Kommunikation}
+\label{kommunikation_gru}
+
+Bei der statuslosen Kommunikation wird der Status des Servers vom Client
+gehalten oder als Ressourcenstatus übergeben. Einen Ressourcenstatus lässt
+sich anhand eines Onlineshops erklären: Der Status des Kunden wird im
+Warenkorb gespeichert und zu einer eigenen Ressource. Der Ressourcenstatus gibt
+dem Kunden die Möglichkeit, Lesezeichen zu setzen oder Links darauf zu
+verschicken.
+\\
+Der Verzicht auf einen expliziten Sitzungsstatus hat vor allem Vorteile, wenn es
+darum geht, eine Webanwendung skalierbar zu machen. Durch die lose Kopplung
+von Client und Server können aufeinanderfolgende Anfragen eines Clients von
+verschiedenen Serverinstanzen verarbeitet werden. Während ein Client
+arbeitet, ist der Status des Servers für ihn nicht relevant, z.B.
+kann der Server gewartet oder repariert werden. Mittels eines Links
+werden erst nach erfolgreichem Ausführen der clientseitigen Aufgabe, die
+Ergebnisse dem Server mitgeteilt. Hat der Server einen Client mit Informationen
+versorgt und die Kommunikation ist abgeschlossen, geht der Server in seinen
+Grundzustand zurück und kann andere Anfragen von anderen Clients bearbeiten.
+\\
+Eine statuslose Kommunikation impliziert ebenfalls eine lose Kopplung. Es
+gibt eine klar definierte Schnittstelle, über die die Daten ausgestauscht
+werden. Der Server ist völlig unabhängig vom Client und muss keine
+clientspezifischen Informationen kennen. Er kann jederzeit mit allen
+verarbeitbaren Daten umgehen, ohne dafür in einem zusätzlichen Status befindlich
+zu sein.
+\\
+Dieses \ac{REST}-Prinzip wird genutzt, um eine einfache
+Kommunikation zwischen Server und Client sicherzustellen. Die Trennung der
+Verantwortlichkeiten für Daten und Operationen sind ein weiteres Ziel. Für den
+Datenaustausch sollten Standardformate, wie \ac{XML}, \ac{JSON} usw.,
+verwendet werden. Die Kommunikation sollte ebenfalls auf Standardprotokollen
+basieren, z.B. \ac{HTTP}. Auf Grund dieser Standards ist der
+Informationsaustausch zwischen Client und Server leicht zu realisieren.
+
+\section{Volltextsuche mit elasticsearch}
+\label{sec:Volltextsuche_gru}
+
+\sona{elasticsearch}\cite{ELASBV-2013} ist ein auf
+\sona{Apache Lucene}\cite{THAPSO-2013} basierender
+Suchserver zur Volltextsuche.
+Er wurde mit dem Anspruch entwickelt, hoch skalierbar
+und dennoch leicht bedienbar zu sein. Dabei sollte ein
+Funktionsumfang, wie man ihn von \sona{Apache Lucene} kennt, zur Verfügung
+gestellt werden, ohne dabei die Komplexität und die schwierige Bedienung von
+\sona{Apache Lucene} auf \sona{elasticsearch} zu übertragen. Die
+Entwickler achteten außerdem darauf, dass das System in Form von Modulen
+aufgebaut wird, sodass es leicht um neue Module erweitert werden kann.
+Ein im Softwarepaket enthaltenes \ac{API}-Modul erlaubt es, den Suchserver zu
+konfigurieren und zu bedienen.
+\\
+\sona{elasticsearch} speichert Daten schemalos und dokumentenorientiert.
+Dabei werden die zu indizierenden Daten als {JSON}-Dokument an
+\sona{elasticsearch} übergeben. 
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.7\textwidth]{pic/aufbau_es_rep.jpg}
+      \caption[Aufbau von Nodes in elasticsearch]{Aufbau der Nodes mit Shards
+      und Replicas (grau) in einem System mit zwei Nodes. Die Replicas sind die Kopien der Shards eines anderen
+      Nodes und werden im Falle eines Node-Ausfalls zu Shards.}
+      \label{fig:aufbau_es_node_shard_rep}
+\end{figure}
+% \begin{figure}[ht]
+%   \centering
+%     \includegraphics[width=0.8\textwidth]{pic/aufbau_es.jpg}
+%       \caption{Aufbau von Nodes und Shardverteilung bei elasticsearch
+%       mit einem Node (oben) und zwei Nodes (unten) }
+%       \label{fig:aufbau_es_node_shard}
+% \end{figure}
+\\
+Wie \sona{elasticsearch} intern und pysikalisch aufgebaut ist, zeigt Abbildung
+\ref{fig:aufbau_es_node_shard_rep}. Jeder Server auf dem \sona{elasticsearch}
+läuft, stellt einen sogenannten Node dar. Mehrere Nodes bilden ein Cluster.
+Jeder Node besteht aus \sona{Apache Lucene}-Instanzen, den Shards. Die Shards
+dienen der Lastverteilung und der parallelen Verarbeitung, wenn mehrere Anfragen
+vom Server verarbeitet werden. Bei mehreren Nodes findet eine möglichst
+gleichmäßige Verteilung der Shards auf diese statt, jedoch werden einzelne
+Shards nicht auf mehrere Nodes aufgeteilt.
+Ein logischer Index, die zur Suche bereitgestellten Daten, kann dabei auf
+mehreren Shards und mehreren Nodes verteilt abgelegt werden. 
+\\
+Um eine höhere Ausfallsicherheit zu gewährleisten, enthält ein Node in einem
+Verbund von Nodes Replicas. Replicas sind die Kopien der Shards die ein Node
+nicht enthält. Graphik \ref{fig:aufbau_es_node_shard_rep} zeigt dies ebenfalls.
+Fällt nun ein Node aus, werden die Replicas wieder zu Shards und das System
+steht mit allen Daten und Dokumenten zur Verfügung.
+\\
+Der Aufbau des Systems durch Nodes, Shards und Replicas dient dazu, höchste
+Performanz, Effizienz und Ausfallsicherheit zu gewährleisten. Aufgrund der
+angesprochenen modularen Aufbauweise und der Unterstützung von Clustern, kann
+\sona{elasticsearch} sowohl in verteilten Systemen als auch in nicht verteilten
+Systemen effektiv genutzt werden. Entwickler können sehr leicht weitere Module
+realisieren, die den Funktionsumfang von \sona{elasticsearch} erweitern oder
+verbessern.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.9\textwidth]{pic/aufbau_es_dat.jpg}
+      \caption[Verarbeitung von Daten durch elasticsearch]{Der Index adresses
+      verteilt sich auf Node 1 und Node 2. Eines der Dokumente (grau) des Indexes adresses liegt auf Node 1 in
+      Shard 3 (Kaiser Platz) und auf Node 2 in Shard 5 (Königsplatz). Der Index
+      names liegt auf Node 2 in den Shards 4 (Brigitte Schön) und 5 (Hans
+      Schulz)}
+      \label{fig:aufbau_es_node_shard_rep_dat}
+\end{figure}
+\\
+Die logische Einteilung ist nicht an die physikalische gebunden. Ein Index kann
+zum Speichern von Dokumenten mehrere Shards, sogar auf verschiedenen Nodes
+nutzen, andererseits können auf einem Shard auch Dokumente mehrerer Indizes
+gespeichert werden (siehe Abbildung \ref{fig:aufbau_es_node_shard_rep_dat}).
+\\
+Die Logik hinter der Volltextsuche mit \sona{elasticsearch} ist dabei sehr
+einfach. Vom System wird eine Tabelle angelegt (Beispieltabelle
+\ref{tab:token_dokument_mapping}), die in einer Spalte
+alle Wörter (Token) enthält, die in den indizierten Dokumenten vorkommen.
+In einer zweiten Spalte werden die Wörter mit allen Dokumenten, in denen das
+Wort vorkommt, verknüpft. Sucht man jetzt ein Wort oder einen Wortteil, wird nur
+diese eine Tabelle durchsucht und man bekommt sehr schnell alle enthaltenden
+Dokumente. Sucht man nach "`Mr"' erhält man nur Dokument 1. Sucht man nach
+"`Müller"' ist das Ergebnis nur Dokument 3. Bei der Verknüpfung
+von Tokens werden bei der Suchabfrage diese mit der logischen UND-Operation
+verknüpft. Die Bearbeitung erfolgt serverseitig, genaugenommen bitweise. Das hat
+zur Folge, dass die Suchabfrage "`Mr. Müller"' keinen Treffer ergibt.
+Die Suchanfrage "`Michael Jackson"' liefert als Suchergebnis die Treffer in
+Dokument 2 und 3. Dokument 1 wird nicht berücksichtigt.
+\begin{minipage}[h]
+ {\textwidth}
+ \centering %wenn tabelle mittig ausgerichtet sein soll
+  \begin{tabular}{|p{0.3\textwidth}|p{0.3\textwidth}|l|l|}
+   \hline
+   \textbf{Token} & \textbf{Dokument(e)}\\ \hline \hline 
+     Mr & 1
+     \\ 
+     \hline 
+     Jackson & 1+2+3
+     \\ 
+     \hline 
+     verstarb & 1
+     \\ 
+     \hline 
+     vor & 1
+     \\ 
+     \hline 
+     wenigen & 1
+     \\ 
+     \hline 
+     Jahren & 1
+     \\ 
+     \hline 
+     Michael & 2+3
+     \\ 
+     \hline 
+     war & 2+3
+     \\ 
+     \hline 
+     ein & 2+3
+     \\ 
+     \hline 
+     berühmter & 2
+     \\ 
+     \hline 
+     Künstler & 2
+     \\ 
+     \hline 
+     Müller & 3
+     \\ 
+     \hline 
+     Fan & 3
+     \\ 
+     \hline 
+     von & 3
+     \\ 
+     \hline 
+  \end{tabular}
+ \captionof{table}[Aufbau eines Beispielindex in elasticsearch]{Tabelle, die den
+ Wörtern (Tokens) Dokumente zuweist.
+ Die Tabelle enthält unter anderem die drei Sätze: "`Mr. Jackson
+                   verstarb vor wenigen Jahren."'(Dokument 1) "`Michael Jackson
+                   war ein berühmter Künstler."'(Dokument 2) "`Michael Müller
+                   war ein Fan von Micheal Jackson."'(Dokument 3)}
+ \label{tab:token_dokument_mapping}
+\end{minipage}
+

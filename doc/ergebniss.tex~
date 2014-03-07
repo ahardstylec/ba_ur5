@@ -1,0 +1,231 @@
+\chapter{Ergebnis}
+\label{sec:ErreichteErgebnisse}
+
+\section{Vergleich der Datenbanksysteme zum Speichern der Datensätze
+(Access und MySQL)}
+\label{sec:vgl_db}
+
+Der Wechsel des Datenbanksystems bringt viele Vorteile mit sich.
+\fina{Mircososft}-\sona{Access} ist ein Datenbanksystem, dass nur unter
+dem Betriebssystem \sona{Windows} läuft. Somit sind Nutzer des Datenbanksystems
+an die Betriebssysteme von \fina{Microsoft} gebunden. Der Erwerb einer
+Nutzungslizenz von \fina{Mircososft}-\sona{Access} kostet zur Zeit etwa 360
+Euro. Der Umfang an Daten den \sona{Access} verwalten kann ist ebenfalls
+eingeschränkt: Eine Datenbank, genauso wie einzelne Tabellen, können nicht
+größer als 2 GB werden. Schnell übersteigen \ac{PDF} die
+Größe von mehreren MB. Daher könnte eine Datenbank sehr schnell an ihre
+Grenzen kommen und dem Datenaufkommen nicht gewachsen sein.
+\\
+Mit dem Verwenden des Datenbanksystems \sona{MySQL} erhalten die Betreiber von
+\sona{euSDB} eine plattformunabhängige und professionelle Lösung, die ihn nicht
+dazu zwingen weitere Produkte eines einzigen Herstellers zu benutzen. Die
+Möglichkeit das System günstig zu beschaffen und die weitverbreitete Nutzung
+erlauben einen effizienten Betrieb. Die Grenzen der Datenmengen, die verwaltet
+werden können, sind wesentlich weiter gesteckt als bei einer
+\fina{Mircososft}-\sona{Access} Datenbank. Datenbanken unterliegen bei
+\sona{MySQL} nur einer physischen Grenze in Form von Festplattengröße bzw. der
+Schranke, die das verwendete Betriebssystem beim Verwalten des Speichers setzt.
+Tabellen können bis zu 256 TB groß werden und bieten somit eine vielfach höhere
+Speicherkapazität als eine \fina{Mircososft}-\sona{Access} Datenbank.
+\\
+\begin{minipage}[h]
+ {\textwidth}
+ \centering %wenn tabelle mittig ausgerichtet sein soll
+  \begin{tabular}{|p{0.4\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|l|l|l|}
+   \hline
+   \ & \textbf{Access} & \textbf{MySQL}\\ \hline \hline 
+     Maximale Datenbankgröße & 2 GB & unbegrenzt
+     \\ 
+     \hline 
+     Maximale Tabellengröße & 2 GB & 256 TB  
+     \\ 
+     \hline  
+     Maximale "`Blob"'-Größe & 1 GB & 4 GB  
+     \\ 
+     \hline 
+  \end{tabular}
+ \captionof{table}{Vergleich von zwei Datenbanksystemen}
+ \label{tab:vgl_dbs}
+\end{minipage}
+\\
+\\
+Die Analyse der alten Datenbank ergab ebenfalls, dass diese von Grund auf
+strukturell neu entworfen werden muss. Grundprinzipien wie Normalisierung und
+Wiederverwendung von Daten wurden nicht genutzt. Außerdem gab es
+keine Verknüpfung von Ressourcen, sondern die Gefahren- und Sicherheitssätze
+waren einfach in einem Textfeld in der Tabelle abgelegt worden.
+\\
+Die neue Datenstruktur erlaubt ein schnelles Verstehen der Zusammenhänge, auch
+für nicht fachkundige Betreuer der Software \sona{euSDB}. Durch die Einhaltung
+strenger Normalisierung werden Redundanzen an Daten vermieden.
+Dies ermöglicht auch bei großen Datenmengen speicherplatzschonend 
+schnellen Zugriff auf die Daten.
+\\
+Die Datenstruktur kann problemlos erweitert und verändert werden. Somit lassen
+sich zum Beispiel Gesetzesänderungen und Auflagen für \ac{SDB} schnell und ohne
+großen Aufwand auf die Datenstruktur übertragen.
+\\ 
+Der Betreiber ist nicht mehr an ein Betriebssystem gebunden und kann sich frei
+entscheiden, welche Plattform er als Serverumgebung nutzen möchte. Dies sind nur
+einige Vorteile, die das Datenbanksystem \sona{MySQL} mit sich bringt.
+
+\section{Das PHP-Slim-Framework im Vergleich mit dem Python-Django-Framework}
+\label{sec:vgl_frameworks}
+
+Das Vorgängersystem des neu zu entwickelnden Systems ist mit dem
+\sona{Slim}\footnote{Die offizielle Webseite des Slim-Framework ist unter
+folgender URL zu finden:
+\url{http://www.slimframework.com/} zu finden}-Framwork geschrieben.
+Dieses Framework ist in der Skript-Sprache \ac{PHP}\footnote{Die
+offizielle Webseite von PHP ist unter folgender URL zu finden:
+\url{http://php.net/}.
+Früher stand die Abkürzung PHP für Personal Homepage Tools} geschrieben.
+\\
+Bei dem \sona{Slim}-Framework handelt es sich um ein sogenanntes
+"`leichtgewichtiges"' Framework. Leichtgewichtige Frameworks dienen dazu, den
+Entwicklern einen schnellen Einstieg in eine Materie zu erleichtern. Schnell
+sind die funktionalen Grenzen eines solchen Frameworks erreicht.
+\\
+Dies ist auch der Grund, warum der Entwickler und Betreiber von \sona{euSDB}
+nicht mehr weiter mit dem \sona{Slim}-Framework arbeiten möchte. Die
+Anforderungen die an die Software \sona{euSDB} gestellt werden, können nicht
+mehr ausschließlich durch das \sona{Slim}-Framework bewerkstelligt werden. Das
+Erweitern des \sona{Slim}-Frameworks durch den Entwickler ist sehr zeitintensiv
+und fordert ein hohes Maß an Fachkunde. Da die Entwicklung und der Betrieb
+bisher und auch in Zukunft durch einen Nicht-Informatiker durchgeführt werden
+soll, ist es notwendig ein leicht zu erlernendes, allumfassendes und dadurch
+mächtiges Framework zu verwenden.
+\\
+Die Wahl fiel durch den Betreiber auf das \sona{Django}-Framework. Dieses
+bringt einen sehr großen Funktionsumfang mit sich. Dieser Funktionsumfang lässt
+sich durch weitere Module und Bibliotheken leicht erweitern. Somit stellt es
+eine Lösung dar, die leicht zu erlernen ist, und dennoch den Betreiber nicht in
+der Funktionalität einschränkt. Die Entwickler des \sona{Django}-Framework
+stellen ebenfalls eine ausführliche Dokumentation zur Verfügung. Diese wird mit
+jedem Update des Frameworks ebenfalls aktualisiert.
+\\
+Mit Hilfe der Dokumentation des Frameworks und der Dokumentation der
+entwickelten Software kann der Betreiber sich einen Überblick verschaffen, die
+Nutzung des Frameworks erlernen und die Plattform seinen eigenen Bedürfnissen
+anpassen.
+
+\section{Suchen mit elasticsearch}
+\label{sec:elasicsearch_erg}
+
+\sona{elasticsearch} ist eine praktische Unterstützung für das effektive Suchen.
+Der Einsatz ist leicht zu erlernen und das System kann schnell und ohne
+großen Zeit- oder Arbeitsaufwand an ein \sona{Django}-Projekt angebunden werden.
+Die Plattform \sona{euSDB} ist ein relativ kleines Web-Projekt, wenn man es z.B. mit
+\href{http://www.youtube.com/}{Youtube} vergleicht. \sona{elasticsearch} ist eine professionelle Lösung, die erheblich
+mehr Datenaufkommen durchsuchen kann, als es bei \sona{euSDB} momentan der Fall
+ist.
+\\
+Die Möglichkeiten des Einsatzes auf einer verteilten Serverarchitektur, als
+Cluster wird nicht benötigt und nicht genutzt. Auch die damit einhergehende
+redundante Datensicherung wird nicht genutzt.
+\\
+Der Einsatz von \sona{elasticsearch} hat keine negativen Auswirkungen auf das
+Gesamtprojekt. Es lässt sich festhalten, dass für den momentanen
+Funktionsumfang und den Aufbau des Projekts \sona{elasticsearch}
+überdimensioniert ist. Mit \fina{Apache}-\sona{Lucene} oder dem darauf
+aufbauenden \fina{Apache}-\sona{Solr} hätten Lösungen für das Einbinden
+einer Suchfunktion zur Verfügung gestanden, die wesentlich "`leichter"', also
+mit weniger Funktionsumfang, zur Verfügung gestanden hätten.
+\\
+Der Einsatz von \sona{elasticsearch} hat einen großen Vorteil. Wenn das
+System in absehbarer Zeit wachsen würde, oder zu einem auf mehreren
+Servern verteilten System umgebaut würde, müsste die Datensuche nicht
+komplett neu aufgebaut und überarbeitet werden, sondern kann dynamisch wachsen.
+Es müssten lediglich wenige Konfigurationsparameter geändert werden. Das
+Verteilen von Daten und das Herstellen einer hohen Datensicherheit würde das
+Programm selbstständig übernehmen.
+
+\section{Vergleich der Benutzeroberflächen und Funktionalitäten von euSDB im
+alten und neuentwickelten System}
+\label{sec:vgl_bof}
+
+Das alte System \sona{euSDB} umfasst bisher nur eine rudimentär
+implementierte \ac{REST}-konforme \ac{API}. Diese wurde vom Betreiber zu Testzwecken
+entwickelt und wird nur in wenigen Punkten den Anforderungen einer
+\ac{REST}-konformen \ac{API} gerecht. Die Themen Hypermedia und eindeutige ID
+sind nicht umgesetzt worden.
+\\
+Die Vergabe von \ac{URI} ist nicht \ac{REST}-konform. Will man alle Chemikalien
+eines Herstellers aufgelistet bekommen, ist die zugehörige \ac{URI} nicht
+\ac{REST}-konform. Listing \ref{lst:vgl_uri} zeigt die \ac{URI} des alten
+Systems in Zeile 1. Die korrekte \ac{URI} ist in Zeile 3 zu sehen.
+\begin{lstlisting}[caption={Aufbau der URI im alten System (Zeile 1) und im neuen System (Zeile 3)
+}, label=lst:vgl_uri,captionpos=b]
+https://localhost:8000/basf/chemicals
+
+https://localhost:8000/producer/basf/chemicals
+\end{lstlisting}
+\\
+Hypermedia, also die Verlinkung von Ressourcen untereinander, ist im
+alten System nicht beachtet worden. Folglich wurden die Daten alle in einem
+Paket dem Kunden angeboten. Das neue System erlaubt dem Kunden die Daten
+auszuwählen, die er benötigt. Somit werden zwar mehrere Abfragen
+an das System gestellt, jedoch ist der Kunde flexibler in der Auswahl der Daten,
+auf die er zugreifen möchte. Kennt der Kunde die Wurzel der \ac{API}, ist er in
+der Lage sich selbständig durch Probieren der angegebenen Links durch das
+System zu bewegen. Kunden, die sich im Umgang mit Chemikalien und \ac{SDB}
+auskennen, werden ohne genaue Kenntnis der \ac{API}-Spezifikation, schnell die
+für sie relevanten Daten finden.
+\\
+Das alte System war einzig zur Ausgabe von \ac{SDB}
+spezialisiert. Eine Auflistung von anderen Ressourcen war nicht vorgesehen. Das
+neu entwickelte System bringt in dieser Hinsicht mehr Flexibilität. Die neue
+\ac{API} wird den Ansprüchen nach \ac{REST}-Konformität gerecht. Sie erlaubt es,
+sich nach den Richtlinien des Hypermedia durch die Ressourcen zu bewegen, ohne
+das System genau zu kennen.
+\\
+Der Kunde kann nun beim Abruf von Daten aus der Datenbank zwischen mindestens
+drei Formaten unterscheiden (\ac{XML}, \ac{JSON} und \ac{HTML}). Dies gilt für
+den Zugriff auf sämtliche Ressourcen. Im alten System konnte der Zugriff nur
+auf den gesamten Datensatz erfolgen. Dabei standen nicht immer die gleichen
+Variablen zum Abrufen der \ac{SDB} zur Verfügung. In diesem Bereich ist das
+System strukturierter und einheitlicher geworden.
+\\
+Das neue System \sona{euSDB} umfasst nicht alle Funktionen, die die
+\ac{REST}-Konformität bedienen würde. Dies hat seine Gründe darin, dass es nicht
+jedem erlaubt sein soll, beliebig die Datensätze zu manipulieren oder neue
+hinzuzufügen. Teilweise macht es auch keinen Sinn, gewisse Standardfunktionen zu
+implementieren. Dennoch wurde bei der Neuentwicklung stets darauf geachtet, dass
+man fehlende Komponenten schnell und leicht in das bestehende System
+integrieren kann. Dabei kommt dem Entwickler vor allem der modulare Aufbau
+entgegen, der es erlaubt, neue Module in das bestehende System zu integrieren.
+\\
+Das alte System wurde direkt auf dem Server mittels einer dort installierten
+Software verwaltet. Im neuen System steht dem Betreiber und Administrator eine
+Weboberfläche zur Verfügung, die er von überall aus dem Web aufrufen kann. Der
+Administrator ist also nicht mehr gezwungen, direkt am Server zu arbeiten,
+sondern kann auch von entfernten Arbeitsplätzen, oder aus dem Urlaub die
+Verwaltung der Plattform durchführen.
+\\
+Die Ziele des Bachelorprojektes sind im Wesentlichen erreicht. Es sind die
+Möglichkeiten des \sona{Django}-Frameworks anhand der prototypischen Umsetzung aufgezeigt
+worden. Es eignet sich, um das Projekt nicht nur prototypisch zu
+realisieren, sondern auch ein reales Produktivsystem für den globalen Einsatz zu
+entwickeln.
+
+\section{Nicht erreichte Ziele}
+\label{sec:Nicht_erreichte_ziele}
+
+Einige Ziele und Aufgabenstellungen sind auf Grund von Zeitmangel bisher
+außer Acht gelassen worden. Zum einen handelt es sich dabei um einen Dienst, der
+den Kunden informiert, sobald sich ein \ac{SDB} ändert, bzw. wenn es
+aktualisiert wird. Diese Komponente lässt sich jedoch später entwickeln und in
+das existierende System einbinden.
+\\
+Des Weiteren wurden keine Machbarkeitsstudien zur Klärung der Bezahlung der
+Dienstleistungen erstellt. Dies ist jedoch ein zweitrangiges Problem. Es
+existiert bereits ein System, dass es ermöglicht, den Kunden
+verschiedene Leistungen zur Verfügung zu stellen. Dieses Bezahlsystem kann
+erstmal weitergenutzt werden.
+\\
+Langfristig soll es auch für die Hersteller von Chemikalien finanziell lukrativ
+werden, \ac{SDB} auf \sona{euSDB} zu veröffentlichen. Auf welche
+Weise man dies sicherstellt, muss ebenfalls geklärt werden und geht in dieselbe
+Richtung wie die Machbarkeitsstudien zur Abrechnung. Dabei können prozentuale
+Gewinnbeteiligungen ebenso in Betracht gezogen werden, wie
+Pauschalenpreise pro Upload gezahlt werden.

@@ -1,0 +1,48 @@
+\select@language {german}
+\contentsline {chapter}{\numberline {1}Einleitung}{10}{chapter.1}
+\contentsline {section}{\numberline {1.1}Fachliche Umgebung}{10}{section.1.1}
+\contentsline {section}{\numberline {1.2}Motivation und Ziel des Projektes}{10}{section.1.2}
+\contentsline {section}{\numberline {1.3}Aufgabenstellung}{13}{section.1.3}
+\contentsline {section}{\numberline {1.4}Einordnung in die Themenfelder der Informatik}{14}{section.1.4}
+\contentsline {chapter}{\numberline {2}Grundlagen}{15}{chapter.2}
+\contentsline {section}{\numberline {2.1}Lose Kopplung}{15}{section.2.1}
+\contentsline {section}{\numberline {2.2}Die Programmiersprache Python}{15}{section.2.2}
+\contentsline {section}{\numberline {2.3}Webentwicklung mit Django}{17}{section.2.3}
+\contentsline {section}{\numberline {2.4}Das REST-Prinzip}{21}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Ressourcen und Repr\IeC {\"a}sentationen}{22}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Eindeutige Identifikation}{23}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Hypermedia}{23}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Standardmethoden}{24}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}Statuslose Kommunikation}{25}{subsection.2.4.5}
+\contentsline {section}{\numberline {2.5}Volltextsuche mit elasticsearch}{26}{section.2.5}
+\contentsline {chapter}{\numberline {3}Konzept}{29}{chapter.3}
+\contentsline {section}{\numberline {3.1}Datenbank}{29}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Datenbank zur Verwaltung von Sicherheitsdatenbl\IeC {\"a}ttern}{29}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Datenbank zur Realisierung einer effektiven Volltextsuche}{32}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Aufbau des Djangoprojekts}{33}{section.3.2}
+\contentsline {section}{\numberline {3.3}Aufbau der REST-konformen Schnittstelle}{34}{section.3.3}
+\contentsline {chapter}{\numberline {4}Realisierung}{37}{chapter.4}
+\contentsline {section}{\numberline {4.1}Datenbank}{37}{section.4.1}
+\contentsline {section}{\numberline {4.2}REST-Schnittstelle}{39}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Aufbau der URI}{39}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Serialisierung von Ressourcen}{41}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Funktionsweise der Views}{42}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Hypermedia zwischen den Ressourcen}{43}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Paging in den Listenansichten}{44}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}Suchfunktion}{45}{section.4.3}
+\contentsline {chapter}{\numberline {5}Ergebnis}{47}{chapter.5}
+\contentsline {section}{\numberline {5.1}Vergleich der Datenbanksysteme zum Speichern der Datens\IeC {\"a}tze (Access und MySQL)}{47}{section.5.1}
+\contentsline {section}{\numberline {5.2}Das PHP-Slim-Framework im Vergleich mit dem Python-Django-Framework}{48}{section.5.2}
+\contentsline {section}{\numberline {5.3}Suchen mit elasticsearch}{49}{section.5.3}
+\contentsline {section}{\numberline {5.4}Vergleich der Benutzeroberfl\IeC {\"a}chen und Funktionalit\IeC {\"a}ten von euSDB im alten und neuentwickelten System}{50}{section.5.4}
+\contentsline {section}{\numberline {5.5}Nicht erreichte Ziele}{52}{section.5.5}
+\contentsline {chapter}{\numberline {6}Fazit}{53}{chapter.6}
+\contentsline {section}{\numberline {6.1}Ausblick}{53}{section.6.1}
+\contentsline {section}{\numberline {6.2}Zusammenfassung}{55}{section.6.2}
+\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{58}{appendix*.28}
+\contentsline {chapter}{\numberline {B}Glossar}{60}{appendix.B}
+\contentsline {chapter}{\numberline {C}Quellcode}{65}{appendix.C}
+\contentsline {section}{\numberline {C.1}User-Daten als JSON-Dokument}{65}{section.C.1}
+\contentsline {section}{\numberline {C.2}User-Daten als XML-Dokument}{65}{section.C.2}
+\contentsline {section}{\numberline {C.3}Die Datei settings.py}{65}{section.C.3}
+\contentsline {section}{\numberline {C.4}Die models-Klassen der chemicals-APP}{68}{section.C.4}
