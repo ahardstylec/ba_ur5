@@ -5,58 +5,63 @@
 \BOOKMARK [1][-]{section.1.4}{Einordnung in die Themenfelder der Informatik}{chapter.1}% 5
 \BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 6
 \BOOKMARK [1][-]{section.2.1}{Roboter-Mensch-Kollaboration}{chapter.2}% 7
-\BOOKMARK [2][-]{subsection.2.1.1}{Beschreibung}{section.2.1}% 8
-\BOOKMARK [2][-]{subsection.2.1.2}{Richtlinien}{section.2.1}% 9
-\BOOKMARK [1][-]{section.2.2}{Ur5 Roboter}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.1}{Beschreibung}{section.2.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.2}{Eigenschaften}{section.2.2}% 12
-\BOOKMARK [2][-]{subsection.2.2.3}{Update}{section.2.2}% 13
-\BOOKMARK [2][-]{subsection.2.2.4}{Datensicherung}{section.2.2}% 14
-\BOOKMARK [1][-]{section.2.3}{Programmierschnittstellen \334bersicht}{chapter.2}% 15
-\BOOKMARK [1][-]{section.2.4}{URControl}{chapter.2}% 16
-\BOOKMARK [2][-]{subsection.2.4.1}{Konfiguration}{section.2.4}% 17
-\BOOKMARK [2][-]{subsection.2.4.2}{Real Time Interface}{section.2.4}% 18
-\BOOKMARK [2][-]{subsection.2.4.3}{Secondary and Primary Interface}{section.2.4}% 19
-\BOOKMARK [2][-]{subsection.2.4.4}{Polyscope}{section.2.4}% 20
-\BOOKMARK [1][-]{section.2.5}{C-API}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.5.1}{Beschreibung}{section.2.5}% 22
-\BOOKMARK [2][-]{subsection.2.5.2}{Beispiel Kontroll Schleife}{section.2.5}% 23
-\BOOKMARK [2][-]{subsection.2.5.3}{PTP Bahnen}{section.2.5}% 24
-\BOOKMARK [2][-]{subsection.2.5.4}{Linear Bahnen}{section.2.5}% 25
-\BOOKMARK [0][-]{chapter.3}{Konzept}{}% 26
-\BOOKMARK [1][-]{section.3.1}{Anwendungsbeispiel}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.1.1}{Beschreibung Anwendungsbeispiel}{section.3.1}% 28
-\BOOKMARK [1][-]{section.3.2}{Bewertung der einzelnen L\366sungen}{chapter.3}% 29
-\BOOKMARK [1][-]{section.3.3}{Speichern der Daten}{chapter.3}% 30
-\BOOKMARK [2][-]{subsection.3.3.1}{Speichern ueber Polyscope und Script}{section.3.3}% 31
-\BOOKMARK [2][-]{subsection.3.3.2}{Speichern \374ber Eigene API}{section.3.3}% 32
-\BOOKMARK [0][-]{chapter.4}{Realisierung}{}% 33
-\BOOKMARK [1][-]{section.4.1}{Polyscope}{chapter.4}% 34
-\BOOKMARK [2][-]{subsection.4.1.1}{Programmierung}{section.4.1}% 35
-\BOOKMARK [2][-]{subsection.4.1.2}{User Interaktion}{section.4.1}% 36
-\BOOKMARK [2][-]{subsection.4.1.3}{Debugging}{section.4.1}% 37
-\BOOKMARK [1][-]{section.4.2}{UR Script}{chapter.4}% 38
-\BOOKMARK [2][-]{subsection.4.2.1}{Programmierung}{section.4.2}% 39
-\BOOKMARK [2][-]{subsection.4.2.2}{Laden des Scripts auf den Controller}{section.4.2}% 40
-\BOOKMARK [2][-]{subsection.4.2.3}{Debuggen}{section.4.2}% 41
-\BOOKMARK [2][-]{subsection.4.2.4}{User Interaktion}{section.4.2}% 42
-\BOOKMARK [1][-]{section.4.3}{Script mit h\366herer Schicht}{chapter.4}% 43
-\BOOKMARK [2][-]{subsection.4.3.1}{Script mit h\366herer Schicht}{section.4.3}% 44
-\BOOKMARK [2][-]{subsection.4.3.2}{Schnittstelle zum Interface}{section.4.3}% 45
-\BOOKMARK [2][-]{subsection.4.3.3}{Programmierung mit Schnittstelle}{section.4.3}% 46
-\BOOKMARK [2][-]{subsection.4.3.4}{User Interaktion}{section.4.3}% 47
-\BOOKMARK [2][-]{subsection.4.3.5}{Debuggen}{section.4.3}% 48
-\BOOKMARK [0][-]{chapter.5}{Ergebnis}{}% 49
-\BOOKMARK [1][-]{section.5.1}{Vergleich der Schnittstellen}{chapter.5}% 50
-\BOOKMARK [1][-]{section.5.2}{Nicht erreichte Ziele}{chapter.5}% 51
-\BOOKMARK [2][-]{subsection.5.2.1}{C-API}{section.5.2}% 52
-\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 53
-\BOOKMARK [1][-]{section.6.1}{Ausblick}{chapter.6}% 54
-\BOOKMARK [1][-]{section.6.2}{Zusammenfassung}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.2.1}{C-API}{section.6.2}% 56
-\BOOKMARK [2][-]{subsection.6.2.2}{UR-Script}{section.6.2}% 57
-\BOOKMARK [2][-]{subsection.6.2.3}{Polyscope}{section.6.2}% 58
-\BOOKMARK [0][-]{appendix*.7}{Literaturverzeichnis}{}% 59
-\BOOKMARK [0][-]{appendix.B}{Glossar}{}% 60
-\BOOKMARK [0][-]{appendix.C}{Quellcode}{}% 61
-\BOOKMARK [1][-]{section.C.1}{Speichern der daten \374ber TCP in der Datenbank}{appendix.C}% 62
+\BOOKMARK [2][-]{subsection.2.1.1}{Richtlinien}{section.2.1}% 8
+\BOOKMARK [1][-]{section.2.2}{Ur5 Roboter}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.1}{Eigenschaften}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.2}{System Aktualisieren}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.3}{Datensicherung}{section.2.2}% 12
+\BOOKMARK [1][-]{section.2.3}{\334bersicht der Programmierschnittstellen}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.4}{Kriterien f\374r die Bewertung der Schnittstellen}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.5}{URControl}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.5.1}{Konfiguration des URControllers}{section.2.5}% 16
+\BOOKMARK [2][-]{subsection.2.5.2}{Echtzeit Schnittstelle}{section.2.5}% 17
+\BOOKMARK [2][-]{subsection.2.5.3}{Secondary und Primary Schnittselle}{section.2.5}% 18
+\BOOKMARK [2][-]{subsection.2.5.4}{Polyscope}{section.2.5}% 19
+\BOOKMARK [1][-]{section.2.6}{C-API}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.6.1}{Beschreibung}{section.2.6}% 21
+\BOOKMARK [2][-]{subsection.2.6.2}{Kontrollstruktur}{section.2.6}% 22
+\BOOKMARK [2][-]{subsection.2.6.3}{PTP Verfahren}{section.2.6}% 23
+\BOOKMARK [2][-]{subsection.2.6.4}{Linear Verfahren}{section.2.6}% 24
+\BOOKMARK [0][-]{chapter.3}{Konzept}{}% 25
+\BOOKMARK [1][-]{section.3.1}{Anwendungsbeispiel}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.2}{Speichern der Anwendungsdaten}{chapter.3}% 27
+\BOOKMARK [2][-]{subsection.3.2.1}{Speichern \374ber Polyscope und URScript}{section.3.2}% 28
+\BOOKMARK [2][-]{subsection.3.2.2}{Speichern \374ber Eigene API}{section.3.2}% 29
+\BOOKMARK [0][-]{chapter.4}{Realisierung}{}% 30
+\BOOKMARK [1][-]{section.4.1}{TCP Server mit Datenbank zum dauerhaften speichern der Daten}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.2}{C-API}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.2.1}{gel\366ste Aufgabe}{section.4.2}% 33
+\BOOKMARK [2][-]{subsection.4.2.2}{Aufgetretene Probleme}{section.4.2}% 34
+\BOOKMARK [1][-]{section.4.3}{Polyscope}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.3.1}{Programmierung}{section.4.3}% 36
+\BOOKMARK [2][-]{subsection.4.3.2}{Benutzer Interaktion}{section.4.3}% 37
+\BOOKMARK [2][-]{subsection.4.3.3}{Test und Fehlersuche im Programm}{section.4.3}% 38
+\BOOKMARK [2][-]{subsection.4.3.4}{Aufwand der Programmierung}{section.4.3}% 39
+\BOOKMARK [1][-]{section.4.4}{URScript}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.4.1}{Laden des Scripts auf den Controller}{section.4.4}% 41
+\BOOKMARK [2][-]{subsection.4.4.2}{Programmierung}{section.4.4}% 42
+\BOOKMARK [2][-]{subsection.4.4.3}{Test und Fehlersuche im Programm}{section.4.4}% 43
+\BOOKMARK [2][-]{subsection.4.4.4}{Benutzer Interaktion}{section.4.4}% 44
+\BOOKMARK [2][-]{subsection.4.4.5}{Aufwand der Programmierung}{section.4.4}% 45
+\BOOKMARK [1][-]{section.4.5}{Anwendung mit Eigener API}{chapter.4}% 46
+\BOOKMARK [2][-]{subsection.4.5.1}{Adapter zur Secondary Schnittstelle}{section.4.5}% 47
+\BOOKMARK [2][-]{subsection.4.5.2}{Programmierung mit Adapter}{section.4.5}% 48
+\BOOKMARK [2][-]{subsection.4.5.3}{Benutzer Interaktion}{section.4.5}% 49
+\BOOKMARK [2][-]{subsection.4.5.4}{Test und Fehlersuche im Programm}{section.4.5}% 50
+\BOOKMARK [2][-]{subsection.4.5.5}{Aufwand der Programmierung}{section.4.5}% 51
+\BOOKMARK [0][-]{chapter.5}{Ergebnis}{}% 52
+\BOOKMARK [1][-]{section.5.1}{Vergleich der Schnittstellen}{chapter.5}% 53
+\BOOKMARK [1][-]{section.5.2}{Nicht erreichte Ziele}{chapter.5}% 54
+\BOOKMARK [2][-]{subsection.5.2.1}{C-API}{section.5.2}% 55
+\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 56
+\BOOKMARK [1][-]{section.6.1}{Ausblick}{chapter.6}% 57
+\BOOKMARK [1][-]{section.6.2}{Zusammenfassung}{chapter.6}% 58
+\BOOKMARK [2][-]{subsection.6.2.1}{C-API}{section.6.2}% 59
+\BOOKMARK [2][-]{subsection.6.2.2}{UR-Script}{section.6.2}% 60
+\BOOKMARK [2][-]{subsection.6.2.3}{Polyscope}{section.6.2}% 61
+\BOOKMARK [2][-]{subsection.6.2.4}{Eigene API}{section.6.2}% 62
+\BOOKMARK [2][-]{subsection.6.2.5}{Grobe Empfehlung, welche Schnittstelle, bei welchem Anwendungsfall verwendet werden soll}{section.6.2}% 63
+\BOOKMARK [0][-]{appendix*.7}{Literaturverzeichnis}{}% 64
+\BOOKMARK [0][-]{appendix.B}{Glossar}{}% 65
+\BOOKMARK [0][-]{appendix.C}{Quellcode}{}% 66
+\BOOKMARK [1][-]{section.C.1}{Speichern der daten \374ber TCP in der Datenbank}{appendix.C}% 67

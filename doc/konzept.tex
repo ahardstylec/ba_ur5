@@ -4,23 +4,28 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 \section{Anwendungsbeispiel}
 \label{sec:anwendung_kon}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-\subsection{Beschreibung Anwendungsbeispiel}
-\label{beschreibung_anwendung_kon}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Das Anwendungsbeispiel ist ein Kinderspiel. Dieses Spiel soll die motorischen Fähigkeiten bei Kindern verbessern.
+Gegeben ist ein Kugel mit löschern aus Verschiedenen Formen(Kreis, Oval, Viereck, Trapez, etc.). Zu diesen Formen existieren die Entsprechenden Klötzchen, die entsprechend Groß sind un die Form der Löscher besitzen. Die Aufgabe des Spiel ist es alle Klötzchen in die entsprechende Form zu drücken, bis alle in der Kugel sind.
+\\
+Die Kugel wird an den Kopf des Roboterarms befestigt. Es soll eine Anwendung entwickelt werden, die für den entsprechenden Spieler die Höhe des Roboters einstellt. Der Spieler soll die möglichkeit haben diese Start Position zu verstellen und für sich zu speichern. Bei einem bestimmten Knopf druck soll der Roboter das Loch für die jeweils nächste Form so ausrichten, damit der Mensch das Klötzchen nurnoch einwerfen braucht.
 
-\section{Bewertung der einzelnen Lösungen}
-\label{sec:criterias_of_solutions_kon}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-\section{Speichern der Daten}
+\section{Speichern der Anwendungsdaten}
 \label{sec:save_of_data_kon}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-\subsection{Speichern ueber Polyscope und Script}
+Um Auf bestimmte Menschen zugeschnittene Bewegungsabläufe zu machen muss der Roboter Daten über den Anwender kennen. Diese sollten persistent gespeichert werden, damit bei einem wechsel des Anwenders die Daten nicht verloren gehen.
+Daten der Anwender sind z.B Name, Alter, bestimmte Positionen im RoboterProgramm, etc.
+
+\subsection{Speichern über Polyscope und URScript}
 \label{sec:save_data_polyscope_kon}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+In der Polyscope Software oder in einem URScript Programm, können Daten die von den Benutzern erstellt oder erhoben werden nicht persistent
+gespeichert werden. Hierzu muss eine Zweite Anwendung Entwickelt werden, auf die sich das URScript oder URP Programm verbindet und die Daten zum persistenten speichern versendet.
+\\
+In Polyscope und URScript muss sehr aufwendig mit den vorhandenen Script Befehlen eine Socket Verbindung aufgebaut werden.
+Damit diese Zwei Programme miteinander Kommunizieren können muss ein gemeinsames Protokoll mit bestimmten Befehlen festgelegt werden.
+
 \subsection{Speichern über Eigene API}
 \label{save_data_own_api_kon}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Mit der Eigenen API muss keine zweite Software entwickelt werden, da die API auf einem Client Rechner läuft und dort die Daten persistent gespeichert werden können. Es muss im Anwendungsprogramm eine verbindung zu einer Datenbank aufgebaut werden und dort können die Daten gespeichert werden.
