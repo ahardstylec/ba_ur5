@@ -15,54 +15,53 @@
 \contentsline {section}{\numberline {2.4}Kriterien f\IeC {\"u}r die Bewertung der Schnittstellen}{14}{section.2.4}
 \contentsline {section}{\numberline {2.5}URControl}{15}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Konfiguration des URControllers}{15}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}Echtzeit Schnittstelle}{15}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Secondary und Primary Schnittselle}{15}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.2}Echtzeit Schnittstelle}{16}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Secondary und Primary Schnittselle}{16}{subsection.2.5.3}
 \contentsline {subsection}{\numberline {2.5.4}Polyscope}{16}{subsection.2.5.4}
 \contentsline {section}{\numberline {2.6}C-API}{16}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Beschreibung}{16}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Kontrollstruktur}{16}{subsection.2.6.2}
-\contentsline {subsection}{\numberline {2.6.3}PTP Verfahren}{17}{subsection.2.6.3}
-\contentsline {subsection}{\numberline {2.6.4}Linear Verfahren}{17}{subsection.2.6.4}
-\contentsline {chapter}{\numberline {3}Konzept}{18}{chapter.3}
-\contentsline {section}{\numberline {3.1}Anwendungsbeispiel}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2}Speichern der Anwendungsdaten}{19}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Speichern \IeC {\"u}ber Polyscope und URScript}{19}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Speichern \IeC {\"u}ber Eigene API}{19}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Realisierung}{20}{chapter.4}
-\contentsline {section}{\numberline {4.1}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{20}{section.4.1}
-\contentsline {section}{\numberline {4.2}C-API}{20}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}gel\IeC {\"o}ste Aufgabe}{20}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Aufgetretene Probleme}{21}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Polyscope}{21}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Programmierung}{21}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Benutzer Interaktion}{21}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{22}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Aufwand der Programmierung}{22}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}URScript}{22}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Laden des Scripts auf den Controller}{23}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Programmierung}{23}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Test und Fehlersuche im Programm}{23}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Benutzer Interaktion}{24}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{24}{subsection.4.4.5}
-\contentsline {section}{\numberline {4.5}Anwendung mit Eigener API}{24}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Adapter zur Secondary Schnittstelle}{24}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Programmierung mit Adapter}{25}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Benutzer Interaktion}{25}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Test und Fehlersuche im Programm}{25}{subsection.4.5.4}
-\contentsline {subsection}{\numberline {4.5.5}Aufwand der Programmierung}{25}{subsection.4.5.5}
-\contentsline {chapter}{\numberline {5}Ergebnis}{26}{chapter.5}
-\contentsline {section}{\numberline {5.1}Vergleich der Schnittstellen}{26}{section.5.1}
-\contentsline {section}{\numberline {5.2}Nicht erreichte Ziele}{26}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}C-API}{27}{subsection.5.2.1}
-\contentsline {chapter}{\numberline {6}Fazit}{28}{chapter.6}
-\contentsline {section}{\numberline {6.1}Ausblick}{28}{section.6.1}
-\contentsline {section}{\numberline {6.2}Zusammenfassung}{28}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}C-API}{28}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}UR-Script}{29}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Polyscope}{29}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Eigene API}{29}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Grobe Empfehlung, welche Schnittstelle, bei welchem Anwendungsfall verwendet werden soll}{30}{subsection.6.2.5}
-\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{31}{appendix*.7}
-\contentsline {chapter}{\numberline {B}Glossar}{32}{appendix.B}
-\contentsline {chapter}{\numberline {C}Quellcode}{33}{appendix.C}
-\contentsline {section}{\numberline {C.1}Speichern der daten \IeC {\"u}ber TCP in der Datenbank}{33}{section.C.1}
+\contentsline {subsection}{\numberline {2.6.1}Kontrollstruktur}{17}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}PTP Verfahren}{18}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Linear Verfahren}{18}{subsection.2.6.3}
+\contentsline {chapter}{\numberline {3}Konzept}{20}{chapter.3}
+\contentsline {section}{\numberline {3.1}Anwendungsbeispiel}{20}{section.3.1}
+\contentsline {section}{\numberline {3.2}Speichern der Anwendungsdaten}{20}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Speichern \IeC {\"u}ber Polyscope und URScript}{20}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Speichern \IeC {\"u}ber Eigene API}{21}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Realisierung}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}C-API}{22}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}gel\IeC {\"o}ste Aufgabe}{22}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Aufgetretene Probleme}{23}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Polyscope}{23}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Programmierung}{23}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Benutzer Interaktion}{23}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{24}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Aufwand der Programmierung}{24}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}URScript}{24}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Laden des Scripts auf den Controller}{25}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Programmierung}{25}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Test und Fehlersuche im Programm}{25}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Benutzer Interaktion}{26}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{26}{subsection.4.4.5}
+\contentsline {section}{\numberline {4.5}Anwendung mit Eigener API}{26}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Adapter zur Secondary Schnittstelle}{26}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Programmierung mit Adapter}{27}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Benutzer Interaktion}{27}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Test und Fehlersuche im Programm}{27}{subsection.4.5.4}
+\contentsline {subsection}{\numberline {4.5.5}Aufwand der Programmierung}{27}{subsection.4.5.5}
+\contentsline {chapter}{\numberline {5}Ergebnis}{28}{chapter.5}
+\contentsline {section}{\numberline {5.1}Vergleich der Schnittstellen}{28}{section.5.1}
+\contentsline {section}{\numberline {5.2}Nicht erreichte Ziele}{28}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}C-API}{29}{subsection.5.2.1}
+\contentsline {chapter}{\numberline {6}Fazit}{30}{chapter.6}
+\contentsline {section}{\numberline {6.1}Ausblick}{30}{section.6.1}
+\contentsline {section}{\numberline {6.2}Zusammenfassung}{30}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}C-API}{30}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}UR-Script}{31}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Polyscope}{31}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Eigene API}{31}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Grobe Empfehlung, welche Schnittstelle, bei welchem Anwendungsfall verwendet werden soll}{32}{subsection.6.2.5}
+\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{33}{appendix*.7}
+\contentsline {chapter}{\numberline {B}Glossar}{34}{appendix.B}
+\contentsline {chapter}{\numberline {C}Quellcode}{35}{appendix.C}
+\contentsline {section}{\numberline {C.1}Speichern der daten \IeC {\"u}ber TCP in der Datenbank}{35}{section.C.1}
