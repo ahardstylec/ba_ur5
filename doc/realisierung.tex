@@ -9,54 +9,99 @@ In Polyscope und URScript gibt es keine Objectorientierung, deshalb musss dort a
 
 \section{C-API}
 \label{sec:capi_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 
 \subsection{gelöste Aufgabe}
 \label{sub:capi-problems_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+Es konnte ein Programm erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Es konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist
 
 \subsection{Aufgetretene Probleme}
 \label{sub:capi-problems_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstop. Die Abweichung der Stromstärke wird zu groß. Dies kann Analysiert werden, wenn man sich den Durchschnitt der Soll und Ist Werte der Stromstärke ansieht. Die Abweichung ist besonders beim 2. Gelenk hoch, da dieser am meisten Gewicht tragen muss und dort die Erdanziehung am meisten wirkt. Deswegen wird angenommen, dass der Regeler nicht die Dynamik der Gravitation mitrechnet. Dies kann man auch beobachten, wenn man in den Roboter immer die aktuellen Ist werte mit übergibt. Der Roboter sakt zusammen und nur ein Notaus kann vor Schädigungen schützen.
 
 \section{Polyscope}
 \label{sec:Polyscope_rel}
 
 \subsection{Programmierung}
 \label{programmierung_polyscope_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
+Die Programmierung findet meist nur auf dem Touch Tablet statt. Ein neues Programm fängt mit einem leeren Ereigniss Baum an. Es kann per touch eingabe alle möglichen Funktionen, die die Script Sprache bietet dem Baum Hinzugefügt werden. Wenn das Programm abläuft, werden von der Wurzel an die Befehle abgearbeitet.
+Wie in Abbildung \ref{programm_in_polyscope} zu sehen ist, ist die Ansicht des Programmbaumes sehr unübersichtlich.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.5\textwidth]{pic/polyscope_program_tree.png}
+      \caption[Programm Baum in Polyscope]{Ein Ausschnitt aus einem Programm Baum in Polyscope}
+      \label{fig:programm_in_polyscope}
+\end{figure}
+
+Es ist möglich andere Script Dateien in das Programm einzufügen. Dazu gibt es ein feld ``Script''. Das Script Programm muss sich auf dem Linux Rechner befinden. Es ist also nötig das Script Programm auf einem anderen Rechner zu programmieren und bei jeder änderung auf den Linux Rechner des Roboters zu senden.
+\\
+Alternativ zu dem Touch Tablet, könnte der Xserver von dem Linux Rechner auf ein anderen Rechner umzuleiten um dort mit dem Program per Maus und Tastatur zu arbeiten. Dies wurde aber noch nicht getestet.
+\\
+Eine andere möglichkeit ein Programm unter Polyscope zu programmieren gibt es nicht.
 
 \subsection{Benutzer Interaktion}
 \label{user_interaktion_polyscope_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Die möglichkeiten zur Interaktion mit dem Benutzer sind sehr begrenzt. Die Software und die URScript sprache lassen es zu, dass auf dem Touch Tablet Popup Nachrichten auftauchen. Wenn man mit dem Benutzer Interagieren will, gibt mehrere Arten dieser Popups.
+Als Nachricht, ja/nein Fragen, oder Text abfragen, bei denen der Benutzer mit Text anworten soll. In Abbildung \ref{polyscope_popup} 
+ist als Beispiel eine Nachricht und eine Ja/Nein Popup zu sehen.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.5\textwidth]{pic/popup_question.png}
+      \caption[Popup in Polyscipe]{Abbildung zeigt Zwei verschiedene Arten von Popups in Polyscope}
+      \label{fig:polyscope_popup}
+\end{figure}
+
+Kompliziertere Menüs sind mit dieser Methode nicht möglich. Wenn ein Programm erstellt werden soll, bei dem der Benutzer viele eingaben machen muss, ist es mit Polyscope sehr schwer das zu realisieren.
 
 \subsection{Test und Fehlersuche im Programm}
 \label{debuggin_polyscope_rel}
-Bevor Polyscope ein Programm ablaufen lässt wird das Script auf die richtige Syntax geprüft. Sollte ein Fehler vorhanden sein wird dies beim Start als Popup angezeigt. Fehler die in Abschnitten mit Touch hinzugefügt wurden, können jedoch nicht lokalisiert werden. Nur in extra eingefügtem Script code kann grob lokalisiert werden, was für ein Fehler aufgetreten ist, weil dieser Teil extra geprüft wird.
+
+Bevor Polyscope ein Programm ablaufen lässt wird das Script auf die richtige Syntax geprüft. Sollte ein Fehler vorhanden sein wird dies beim Start als Popup angezeigt. Fehler die in Abschnitten mit Touch hinzugefügt wurden, können jedoch nicht lokalisiert werden. Nur in extra eingefügtem Script Code kann grob lokalisiert werden, was für ein Fehler aufgetreten ist, weil dieser Teil extra geprüft wird.
+\\\\
+Da das Programm mit dem Touch Panel ausgeführt werden kann, ist es möglich wärend der Programmierung das Programm ablaufen zu lassen. Es kann sehr schnell getestet werden ob die gewünchten Einstellungen dem Ergebniss entsprechen. Bei Großen Programen mit vielen Benutzeranfragen, kann dies jedoch viel Zeit in anspruch nehmen. Es muss von einem Benutzer bei Jeder Anfrage eines Popups von Hand geantwortet werden.
 
 \subsection{Aufwand der Programmierung}
 \label{polyscope_aufwand}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Kleine Programme in Polyscope sind sehr schnell geschrieben. Mit dem Touch Panel kann sehr schnell eine kleine Kontrollstruktur aufgebaut werden. Das Tablet hat jedoch große Nachteile. Wie in abbildung \ref{polyscope_program_tree} zu sehen ist der Bereich für den Programm Baum sehr klein. Wenn ein Programm nun 1000 Befehle enthällt, ist es nicht möglich ein Überblick zu halten. Auch ist es sehr aufwändig zu bestimmten Bereichen hinzuspringen, da das Touch Tablet nicht genau ist. Möglich ist es geschriebene Bereiche auf Scriptdateien zu verschieben, die dann im Polyscope Programm verwendet werden. 
 
 \section{URScript}
 \label{sec:ur_script_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Die URScriptsprache ist sehr stark an Python gelent. Es wird auf Einrückung des Textes geachtet.
+Das Manual von Univeral Robots umfasst alle nötigen Funktionen um Komplexe Aufgaben zu Erfüllen.
 
 \subsection{Laden des Scripts auf den Controller}
 \label{load_script_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Das Script kann nicht direkt auf dem Rechner über die Polyscope Software ausgeführt werden. Um ein selbst geschriebenes Programm in URScript auszuführen ist es nötig sich mit dem Secondary Interface des URControllers \ref{urcontrol_spi_gru} per TCP zu verbinden und dann die Einzelnen Zeilen der Script Datei an den Controller zu senden.
+\\\\
+Es ist möglich einzelne Befehle oder ein großes Program auszuführen. Um einzelne Befehle auszuführen, werden diese nacheinander versendet.
+Ein ganzes Programm wird versendet, indem wie in Listing \ref{urscipt_program_lst} gezeigt eine Funktion die ganzen Befehle umschließt. Der Controller führt diese Funktion aus, sobald diese mit dem ``end'' abgeschlossen ist.
+
+\begin{lstlisting}[caption={Kleines Beispielprogram in URScript}, label=lst:urscipt_program_lst ,captionpos=b] 
+def myProg():
+	popup("hello world","test", False, False)
+	set_digital_out(1, True)
+	movej([0.23,1.23,0.343,0.34.0.0,0.0],a=0.5,v=0.3)
+end
+\end{lstlisting}
 
 \subsection{Programmierung}
 \label{programmierung_ur_script_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Programmiert werden, kann das Script mit allen vorhandenen Textverarbeitungsprogrammen. Vorteilhaft, ist es wenn das Programm Syntaxhighlighting für Python beherscht. Da URScript sehr stark an Python angelehnt ist, hilft dies ein wenig den überblick zu behalten.
 
 \subsection{Test und Fehlersuche im Programm}
 \label{ur_script_debuggen}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Nach dem senden des Programms an den URController ist die einzigste möglichkeit zu sehen ob das Programm fehler enthällt, wenn der Controller kein ``Programm läuft'' Bit setzt. Man erhällt keine Nachrichten was nicht in Ordnung ist, falls das Scriptprogramm nicht abläuft.
 
 \subsection{Benutzer Interaktion}
 \label{ur_script_user_interaction}

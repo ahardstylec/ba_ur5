@@ -6,14 +6,16 @@
 Man unterscheidet die Arbeiten mit einem Roboter unter mehrere Arten.
 Roboter die mit anderen Robotern gleichzeitig arbeiten nennt man Kooperation zwichen Robotern.
 Der Mensch ist in diesem Arbeitsumfeld nicht dabei und kann nur von außen einfluss nehmen.
-
+\\\\
 Als nächstes gibt es die Kollaboration zwichen dem Roboter und dem Mensch. 
 Hier wird auch eine Unterteilung vorgenommen die unterschiedliche Richtlinien erfordern.
 
-- Sicherhaltshalt, wenn der Mensch den Kollaborationsraum betritt.
-- Verminderte Geschwindigeit. Führung des Roboters durch den Mensch. Sensoren erfassen die kräfte, die vom Menschen ausgeführt werden und übertragen sie auf den Roboter.
-- Dauerhafte Überwachung des abstands zwichen Mensch und Roboter, der mit reduzierter geschwindigkeit arbeitet.
-- Beschränkung der im Roboter ausgeführten Energie. Überwachung des Roboters auf Kollision und sofortigem Stop
+\begin{itemize}
+\item Sicherhaltshalt, wenn der Mensch den Kollaborationsraum betritt.
+\item Dauerhafte Überwachung des abstands zwichen Mensch und Roboter, der mit reduzierter geschwindigkeit arbeitet.
+\item Verminderte Geschwindigeit. Führung des Roboters durch den Mensch. Sensoren erfassen die kräfte, die vom Menschen ausgeführt werden und übertragen sie auf den Roboter.
+\item Beschränkung der im Roboter ausgeführten Energie. Überwachung des Roboters auf Kollision und sofortigem Stop
+\end{itemize}
 
 \subsection{Richtlinien}
 \label{kol_richtlinien_gru}
@@ -32,28 +34,31 @@ Die Dänische Firma Universal Robots hat den leichten Ur5 und mittelgroßen Ur10
 
 Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca 85cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet. 
 Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
-\\
+\\\\
 Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. bei Start wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den URController. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner Herstellt.
-
-TODO !! Administrativer modus
+\\\\
+Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann ein Software Update der Polyscope Software gemacht werden.
 
 \subsection{System Aktualisieren}
 \label{ur_update_gru}
 
-Zwei Arten von Updates sind hier zu unterscheiden. Zum einen kann das Linux System geupdatet werden. Auf normalem wege über den Packetmanager des Systems, oder wenn man das neuste Image von Universal Robots runterläd und dann das System neu aufspielt. Hier ist jedoch zu beachten, dass dabei alle Daten verloren gegangen werden. Deshalb sollte eine Datensicherung vorgenommen werden. Wie dies geschieht wird im darauf folgenden Unterkapitel beschrieben.
-
-Updates für dem Roboter müssen allerdings manuell gemacht werden. Hierfür müssen die aktuellen Updates von der Homepage von universal robots runtergeladen werden. Die müssen in einem bestimmten Format auf einen USB Stick abgelegt werden.
-
-ABSCHNITT WIE DAS FORMAT AUSSIEHT mit BILD !!
-
-Das Update kann nun von der Polyscope Software ausgeführt werden. Einstellungen->updates. TODO nachschauen!!
-Im Administrativen modus können auch die einzelnenen Gelenkcontroller geupdatet werden. Die werden im Update mitgeliefert.
-
+Zwei Arten von Updates sind hier zu unterscheiden. Zum einen kann das Linux System geupdatet werden. Auf normalem wege über den Packetmanager des Systems, oder wenn man das neuste Image von Universal Robots runterläd und dann das System neu aufspielt. Hier ist jedoch zu beachten, dass dabei alle Daten verloren gegangen werden. Deshalb sollte eine Datensicherung vorgenommen werden. Wie dies geschieht wird im darauf folgenden Unterkapitel beschrieben(\ref{ur_datensicherung_gru}).
+\\\\
+Updates für dem Roboter müssen allerdings manuell gemacht werden. Hierfür müssen die aktuellen Updates von der Homepage von Universal Robots runtergeladen werden. Die Update-Datei muss mit der dateiendung .urup auf einen USB Stick mit einem FAT32 Dateisystem abgelegt werden.\\\\
+Nachdem der USB Stick an das Linuy System angeschlossen ist, kann von der Polyscope Software das Update ausgeführt werden. Einstellungen->Updates.\\
+Im Administrativen Modus können nach dem Update die Firmware's der einzelnen Gelenkcontroller geupdatet werden. Die werden im Update mitgeliefert. Die einzelnen Schritte sind in den Dokumentationen beiliegend auf der CD zu finden.
 
 \subsection{Datensicherung}
 \label{ur_datensicherung_gru}
 
-TODO !! Datensicherung
+Die Daten des Roboters sind abgelegt in root verzeichniss unter 
+
+\begin{lstlisting}[caption={Pfade Der Ur5 Relevanten Dateien}, label=lst:ur5data ,captionpos=b] 
+/root/.urcontrol    #Konfigurationsdateien des Ur5Roboters
+/programs   		#alle geschriebenen Programme unter Polyscope
+\end{lstlisting}
+
+Es ist möglich die Dateien per USB Stick zu sichern oder über Programme wie ``SCP'' über das Netzwerk zu Kopieren.
 
 \section{Übersicht der Programmierschnittstellen}
 \label{sec:programm_api_uebersicht_gru}
@@ -78,7 +83,6 @@ Der Ur5 Roboter kann auf drei Ebenen angesprochen werden.\\
 \label{sec:criterias_of_solutions_kon}
 
 Die Schnittstellen werden wie folgt bewertet:
-\\
 
 \begin{itemize}
 \item Programmierbarkeit
@@ -89,7 +93,7 @@ Die Schnittstellen werden wie folgt bewertet:
 
 Wie schwer ist es ein Programm für die einzelnen Schnittsellen zu entwickeln.
 Kann der Mensch das Programm Intuitiv bedienen? Wichtig hierbei ist, dass der Mensch mit dem Roboter Kommunizieren kann. Dies geschieht am besten, wenn der Mensch nicht Kryptisch was eingeben muss. Der Mensch braucht Anwenderfreundliche Programme.
-
+\\\\
 Beim Entwickeln von Programmen ist es wichtig, dass der Entwickler Fehler im Programm entdeckt um diese schnell zu beheben.
 Je Größer und Komplexer das Programm wird, desto schwieriger wird es Fehler zu entdecken.
 
@@ -104,9 +108,20 @@ Dieser Controller dient als Schnittstelle von der Roboter Hardware und Software 
 \label{urcontrol_rci_gru}
 
 Den URController kann man bevor er gestartet wird in einer Konfigurationsdatei konfigurieren.
-Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der Ur5 oder Ur10 Serie gehören.
+Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der Ur5 oder Ur10 Serie gehören. Folgend ist ein ausschnitt der Konfigurationsdatei zu sehen
 \\
-TODO !! Listing Config
+\begin{lstlisting}
+[Config]
+# masterboard_version, 0 = Zero-series, 1 = One-series, 
+# 3 = Pause function enabled, 4 = first cb2 version, 5 = ur10 support added
+masterboard_version = 4
+dump_bytecode_on_exception = 1
+
+[Hardware]
+controller_box_type = 2 # 1=CB1, 2=CB2UR5, 3=CB2UR10
+robot_type = 1  # 1=UR5, 2=UR10
+robot_sub_type = 1
+\end{lstlisting}
 
 \subsection{Echtzeit Schnittstelle}
 \label{urcontrol_rci_gru}
