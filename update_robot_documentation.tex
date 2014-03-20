@@ -1,0 +1,107 @@
+\documentclass[
+a4paper,
+12pt,
+oneside,
+headsepline,		% Linie für Kopfzeile
+footsepline,		% Linie für Fußzeile
+%bibtotoc
+]{scrbook}
+ 
+% Druckbereich: \areaset[BCOR]{textwidth}{textheight}
+% BCOR ist "Binding Correction", also wieviel Innenrand verloren geht
+% A4 hat 297mm x 210mm
+% wenn keine Marginalien, dann ist Breite 15cm vielleicht besser
+\areaset[1.5cm]{14cm}{25cm}
+ 
+%% Die folgende Zeile sorgt dafür, daß die Fußnoten eingerückt werden,
+%% und zwar um 2em (class scrbook).
+\deffootnote{2em}{2em}{\textsuperscript{\normalfont\thefootnotemark} }
+ 
+\usepackage[utf8x]{inputenc}  % Unterstützung für Unicode-Zeichen-Eingabe
+\usepackage[T1]{fontenc}      % Unterstützung für Europäische-Zeichen-Ausgabe
+\usepackage{ae}               % verbesserte Unterstützung für Umlaute
+\usepackage[german]{babel}    % deutsche Übersetzungen und Wortumbrüche
+\usepackage[scaled]{helvet}  % schönere Schriftart: Helvetica
+\usepackage{mathptmx}            % passende Mathe-Schriftart
+\usepackage{courier}             % passende Monospaced-Schriftart
+\usepackage{pgf}              % Unterstützung für Graphiken
+\usepackage{tikz}             % Unterstützung für Graphiken
+\usepackage[onehalfspacing]{setspace}
+\usepackage{acronym} 
+\usepackage{listings}
+\usepackage{color}
+\definecolor{Gray}{gray}{0.9}
+\definecolor{sun1}{rgb}{0.2,0.2,0.4}
+\definecolor{sun2}{rgb}{0.4,0.4,0.6}
+\definecolor{sun3}{rgb}{0.6,0.6,0.8}
+\definecolor{sun4}{rgb}{0.8,0.8,1}
+\definecolor{msblau}{rgb}{0.31,0.4,0.517}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+ 
+\usepackage[                
+   pdftex,                  % Ausgabe-Medium: PDF
+   colorlinks=true,         % farbige Links in der Bildschirm-Version?
+   pdfstartview=FitV,       % wie soll Acrobat starten?
+   linkcolor=blue,         % Farbe für Querverweise
+   citecolor=blue,         % Farbe für Zitierungen
+   urlcolor=blue,          % Farbe für Links
+   bookmarks=true
+   ]{hyperref}              % Paket für Links im PDF
+ 
+%%%% Informationen über den Text festlegen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Bachelorarbeit}
+\author{Marius Paus}
+\date{\today}
+ 
+%%% hier können noch viel viel mehr Einstellungen kommen
+%%%% hier beginnt der Inhalt %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\spacing{1.5}
+
+\makeindex
+
+\include{doc/gen_macro}
+\begin{document}
+
+\chapter{UR5 Roboter Update Software}
+\begin{enumerate}
+	\item Download and save the file using the link below.
+    \item Transfer the file to the root folder on a USB stick (FAT32).
+    \item Insert the USB stick into the robot. Consult the labels inside the controller box in order to locate the USB ports.
+    \item From the main screen on the PolyScope? Robot User Interface select "SETUP Robot"
+    \item From the setup robot screen, select "UPDATE robot".
+    \item Click the "Search..." button.
+    \item Select the update from the list in the top right hand corner.
+    \item Click the "Update..." button.
+    \item When asked if you are sure you want to install the update, click "yes".
+    \item The update process now begins. During the update process the robot will restart, install the updated files, and then finally shutdown. After this the update process is done, and the robot can be turned on again. 
+\end{enumerate}
+
+
+\chapter{UR5 Roboter Firmware Update}
+
+
+This page will show you how to update the firmware on your robot. By firmware we mean the program which controls the individual joints, and which is running on the microprocessor of each joint. It is sometimes required for new features of the robot to work, that the robot firmware need to be updated. The steps below will guide you through this. Read these steps carefully before continuing the actual firmware update.
+
+NOTE: You must be aware that updating robot firmware should only be performed if you in advance have been in contact with Universal Robots. 
+\section{Schritte zum updaten}
+\label{update_steps}
+
+\begin{enumerate}
+\item Make sure that you have installed the latest version of the Robot Software. Firmware is automatically copied to controller when installing the software update.
+\item Go to Expert Mode.
+\item Press "Low Level Control".
+\item Select the "Firmware" tab.
+\item Now you must choose to either update only a single joint, or all six joints. If you choose "Current joint", you will only update firmware on the currently selected joint (the one that appears blue in list at the top of the screen). If you want to update a different joint, simply press it and makes sure the line turns blue.
+\item Press "UPDATE Firmware".
+\item Answer either "OK" or "Cancel" to whether you are sure to perform the update or not.
+\item If you pressed the "OK" button, the update will from now on continue automatically.
+\item A popup box will appear on your screen, and it will block you from performing any other action until the update procedure has been finished. NOTE: It is strictly important that you do not remove power from the robot or in any other way interfere with the update process.
+\item During the process you may follow the steps in the text field in the middle of the screen. The progress bar will indicate that the update is in progress.
+\item When the update process finishes, another message will tell you whether the update step succeeded or failed.
+\item In case of success, you can then continue using the robot as desired. When you enter the initialization screen after performing the update, turn off the robot power and wait a few seconds before turning on robot power.
+\item If an error occurred during the update process, you can try to shut down the robot completely and restart this procedure.
+\item In case you were not successful in performing the firmware update, contact Universal Robots at +45 89 93 89 89. 
+\end{enumerate}
+\end{document}

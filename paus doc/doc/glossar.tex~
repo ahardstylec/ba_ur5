@@ -1,0 +1,94 @@
+ \chapter{Glossar}
+ \label{sec:Glossar_glo}
+
+\begin{acronym}[MOSFET]%% in [] längste zu erwartende Abkürzung
+%\setlength{\itemsep}{-\parsep}
+ \acro{API}{application programming interface}: Eine Progammierschnittstelle
+ zur Anbindung der Software an andere Software.
+ \acro{APP}{Application}: Software die dafür sorgt, dass eine gewisse Funktion
+ sichhergestellt ist und wie gewünscht abläuft.
+ \acro{CRUD}{Create-Read-Update-Delete}: Ein Programierparadigma, dass häufig im
+ Zusammenhang mit \ac{REST} erwähnt und eingesetzt wird. Die vier
+ Standartfunktionen in \ac{HTTP} (GET, POST, PUT, DELETE) werden serverseitig
+ durch ein Create, Update, Get und Delete implementiert.
+ \acro{Django-Framework}{}: Ein in Python geschriebenes Framework zur schnellen und einfachen Entwicklung von Webanwendungen. 
+ \acro{DRY}{Don't repea yourself}: DRY ist ein Programmierparadigma.
+ Es ermöglicht loose Koplung. Ziel ist es, nach Möglichkeit Code nur einmal zu
+ erzeugen und ihn dann immer wieder aufzurufen.
+ \acro{euSDB}{}: Eine Onlineplattform die den Austausch und die Archivierung von Sicherheitsdatenblättern ermöglicht.
+ \acro{GHS}{Globally Harmonized System of Classification, Labelling and
+ Packaging of Chemicals}: Ein von der UN entwickeltes und von der EU angepasstes
+ Klassifizierungs- und Kennzeichnungssystem für Chemikalien.
+ \acro{GNU}{GNU’s Not Unix}: Zu Deutsch: "`GNU ist Nicht Unix"'. Ein rekursives
+ Akronym. GNU\footnote{Informationen zum GNU-Projekt finden sie
+ \href{http://www.gnu.org/}{hier} auf der Projektseite} ist ein UNIX-ähnliches Betriebssystem.
+ Es wird unter der GNU \ac{GPL} vertrieben. Wenn von Software unter der GNU-Lizenz gesprochen wird,
+ ist die GNU-\ac{GPL} gemeint.
+ \acro{GPL}{General Public License}: Dies ist die am weitesten verbreitete
+ Softwarelizenz. Sie erlaubt es die Software zu ändern, kopieren, nutzen und zu
+ studieren. Man spricht auch von Freier Software.
+ %\acro{BfR}{Bundesinstitut für
+ % Risikobewertung}: Hierbei handelt es sich um eine staatliche Beh"orde die unter anderem wissenschaftliche Beratung bei Kontanimierungen jeglicher Art oder auch Produktsicherheit "ubernimmt.
+ \acro{HTML}{Hypertext Markup Language}: Bei HTML handelt es sich um eine
+ Auszeichnungssprache. Sie leitet sich von der Sprache XML ab. Sie wird im
+ Internet verwendet um Websites aufzubauen.
+ \acro{HTTP}{Hypertext Transfer Protokoll}: Hierbei handet es sich um ein
+ Protokoll zur Datenübertragung in Netzwerken. Man kennt es vor allem aus dem
+ Einsatz im Internet.
+ %\acro{ISI}{Informationssystem für Sicherheitsdatenblätter}: Das
+ % Informationssystem für Sicherheitsdatenblätter ist sowohl vom Verband der chemischen Industrie (VCI) als auch dem Institut für Arbeitsschutz der Deutschen Gesetzlichen Unfallversicherung (IFA) eingerichtet worden, um Behörden, Notrufinstitutionen und den gesetzlichen Unfallversicherungsträgern einen möglichst umfassenden und aktuellen Zugriff auf Sicherheitsdatenblätter zu chemischen Produkten zu ermöglichen.
+ \acro{JSON}{JavaScript Object Notation}: JSON ist eine kompaktes Dateiformat.
+ Die Besonderheit ist, dass es schon selbst ein JAVA-Script darstellt. Es hat
+ sich aufgrund seiner Kompaktheit zu einem immer wichtigeren
+ Daten-Austausch-Format entwickelt und wird von vielen Programmiersprachen
+ unterstützt. (Beispiel Anhang \ref{}
+ \acro{MTV}{Model-Template-View}: Bei diesem Prinzip baut eine View aus den
+ Daten der Modelle unter zur Hilfenahme von Templates die graphische Ausgabe.
+ (z.B. eine Webseite)
+ \acro{MVC}{Model-View-Controller}: MVC ist ein Muster der Softwareentwicklung.
+ Dabei steuert der Controler welche Daten aus den Modellen von der View zu einer
+ Ausgabe verarbeitet werden.
+ \acro{Node}{}: 
+ \acro{PDF}{Portable Document Format}: Ist ein plattformunabhängiges Dateiformat
+ zum Austausch von Dokumenten. Es wurde von der Firma Adobe
+ Systems\footnote{Mehr Informationen zu Adobe Systems finden Sie unter:
+ \url{http://www.adobe.com/}} entwickelt und 1993 veröffentlicht.
+  \acro{PHP}{PHP: Hypertext Preprocessor}: Ist eine Skriptsprache die zur
+  erstellung dynamischer Webseiten dient. Es prägte über viele Jahre das Web
+  maßgeblich und und ist ein weitverbreiteter Standard.
+   \acro{PSF}{Python Software Foundation}:
+  Die Python Software Foundation\footnote {Weiter Informationen zur Python Software Foundation finden sie hier: 
+ \url{http://www.python.org/psf/}} ist die offizielle Entwicklergruppe,
+die das Python-Projekt noch heute weiterentwickelt.
+ \acro{Replica}{}: Kopie eines Shards auf einem anderen Knoten. (S 28 / Kapitel 2.5.)
+ \acro{Repräsentationen}{}:
+ \acro{Ressourcen}{}: (S26 / 2.4.4)
+ \acro{REST}{Representational State Transfer}:
+ Ist ein Progammierparadigma der Webprogammierung. Dabei soll jede URL auch nur
+ eine Seite zurückgeben.
+ \acro{SDB}{Sicherheitsdatenblatt}: Jedes chemikalienherstellende Unternehmen
+ muss zu jeder Chemikalie und jedem Chemikaliengemisch ein
+ Sicherheitsdatenblatt erstellen. In diesem sind alle Gefahren und empfohlene
+ Schutzmaßnahmen zur Verwendung der Chemikalie aufgeführt.
+ \acro{Serialisierung}{}:
+ \acro{Shard}{}: Apache Lucene Instanz für elasticsearch (S 28 / Kapitel 2.5.)
+ \acro{SQL}{Structured Query Language}: SQL ist eine Datenbanksprache. Mit 
+ dieser können Befehle zum "andern der Daten oder Datenbankstruktur, aber auch
+ abfragen an Datenbanken übermittelt werden.
+ \acro{URI}{Uniform Resource Identifier}: URI sind eindeutige IDs, die im
+ Internet verwendet werden, um auf Ressourcen und/oder Services zu verweisen. (identifikation)
+ \acro{URL}{Uniform Resource Locator}:  Zu deutsch: einheitlicher
+ Quellenanzeiger. Im Internet nutzt man URLs zum Aufruf von Webseiten. Bsp.:
+ www.google.de (geographisch)
+ \acro{UTF}{UCS Transformation Format}: Die am meisten verbreitete
+ Codierung von Unicodezeichen. UCS steht dabei für Universal Character Set.
+ \acro{XML}{Extensible Markup Language}: XML ist
+ eine Auszeichnungssprache um Daten strukturiert, je nach Formatierung auch
+ hirachisch darzustellen. Sie bildet heute für viele Anwendungen die Basis zum
+ Austausch von Daten über das Internet. Verweis Anhang \ref{}
+ \acro{.py}{}: Pythonquellcodedatei
+ \acro{Sätze}{}: Sätze hrsp h= hazard / p= precaution / s= sicherheit / r= risiko
+ %\acro{BSD}{Berkeley Software Distribution}: Software dieser Lizenz wird frei
+ % vermarktet und darf ver"andert, verbreitet und kopiert werden.
+ %\acro{}{}:
+\end{acronym}

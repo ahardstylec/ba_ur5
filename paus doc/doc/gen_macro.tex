@@ -1,0 +1,45 @@
+\newcommand{\eruck}[1]{
+    \noindent\hspace*{#1}
+}
+\newcommand{\zab}[1]{
+    \vspace*{#1}
+}
+\newcommand{\fina}[1]{
+    {\em #1}
+}
+\newcommand{\finar}[1]{
+    {\fina{#1}\textsuperscript{\textregistered}}		
+}
+\newcommand{\sona}[1]{
+    {\em #1}
+}
+\newcommand{\code}[1]{
+    {\\ \eruck{20mm} \texttt{#1} \\}
+}
+
+% Formatierung Quellcode
+
+\lstset{
+    language=Python,
+	numbers=left,
+	backgroundcolor=\color{Gray},
+	basicstyle=\small,
+	showspaces=false,
+    basicstyle=\scriptsize\ttfamily,
+    keywordstyle=\bfseries\ttfamily\color{orange},
+    stringstyle=\color{blue}\ttfamily,
+    commentstyle=\color{middlegray}\ttfamily,
+    emph={square}, 
+    emphstyle=\color{blue}\texttt,
+    emph={[2]root,base},
+    emphstyle={[2]\color{yac}\texttt},
+    showstringspaces=false,
+    flexiblecolumns=false,
+    tabsize=2,
+    numbers=left,
+    numberstyle=\tiny,
+    numberblanklines=false,
+    stepnumber=1,
+    numbersep=10pt,
+    xleftmargin=15pt
+	}

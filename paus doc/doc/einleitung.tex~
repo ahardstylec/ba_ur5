@@ -1,0 +1,165 @@
+\chapter{Einleitung}
+\label{einleitung}
+
+\section{Fachliche Umgebung}
+\label{fachliche_domaene}
+
+Nationale Gesetze als auch internationale Richtlinien zwingen die Produzenten
+von Chemikalien, zu jeder produzierten Chemikalie ein
+\ac{SDB}\footnote{Die Richtlinien zur Erstellung eines \ac{SDB} finden Sie
+unter folgendem Link: \url{https://www.vci.de/downloads/123464-lf_sdb.pdf}} zu
+erstellen. Ein \ac{SDB} hat alle Informationen zu enthalten, die für
+den Umweltschutz, die Anlagensicherheit, die Transportsicherheit und den
+Arbeitsschutz eine zentrale Bedeutung haben (Siehe auch Tabelle
+\ref{tab:meinetabelle}). Wird eine Chemikalie weitergegeben, beispielsweise beim
+Verkauf oder Transport, muss das \ac{SDB} zu der Chemikalie mit übergeben
+werden.
+\\
+Alle am Handel mit Chemikalien teilnehmenden Betriebe, ganz gleich ob
+Hersteller, Spediteur oder Endabnehmer, sind dazu verpflichtet, die von ihm
+erstellten oder von anderen erhaltenen \ac{SDB} für mindestens zehn Jahre
+aufzubewahren und verfügbar zu halten. Die Informationen zu Gefahren und die
+dazugehörigen Sicherheitsanweisungen werden in standardisierten Sätzen
+übergeben. Ebenfalls sind die Gefahrenpiktogramme nach alter und neuer Norm
+enthalten.
+\begin{table}
+ \caption{Wichtige Informationen und deren Bedeutung in einem
+ Sicherheitsdatenblatt}
+  \begin{tabular}{|p{0.3\textwidth}|p{0.65\textwidth}|l|l|} \hline
+   \textbf{Bezeichnung} & \textbf{Bedeutung}\\ \hline \hline
+     GHS-Kennzeichnung & Die Einstufungsrichtlinien nach \ac{GHS}-Standard wurde 
+     von den Vereinten Nationen entwickelt und von der EU verfeinert. Zur Zeit
+     gibt es neun \ac{GHS}-Gefahreneinstufungen, GHS01 bis GHS09. Dabei wird zum
+     Beispiel zwischen brennbar, umweltgefährdend oder ätzend unterschieden. 
+     Jeder dieser Einstufungen ist ein eigenes Piktogramm zugeordnet. 
+     \\ 
+     \hline
+     EU-Kennzeichnung & Die EU-Kennzeichnung ist das Vorgängersystem der
+     GHS-Kennzeichnung zur Einstufung von Chemikalien (bis 1. Juni 2007). Die
+     EU-Kennzeichnung unterscheidet zehn verschiedene Gefahreneinstufungen. Auf
+     Grund der Verwendung über Jahrzehnte hinweg, sind die zu diesen
+     Einstufungen gehörenden Piktogramme sehr weit verbreitet und daher noch
+     immer von großer Bedeutung und sollten nicht in den \ac{SDB} weggelassen
+     werden.
+     \\
+     \hline 
+     Hazard-Kennzeichnung & Bei der Hazard-Kennzeichnung handelt es sich
+     ebenfalls um Piktogramme. Sie warnen nicht nur vor chemischen, sondern auch vor elektrischen oder
+     pysikalischen Risiken und Gefahren. Die Hazard-Kennzeichen sind ebenfalls von
+     der UN entwickelt worden und finden auch Verwendung in der
+     \ac{GHS}-Kennzeichnung. 
+     \\
+     \hline
+     H-Sätze & Die H-Sätze wurden zeitgleich mit der \ac{GHS}-Kennzeichnung in
+     der EU eingeführt. Die H-Sätze beschreiben Risiken und Gefährdungen, die von
+     Chemikalien ausgehen können. Das H steht für Hazard, deutsch Gefahr oder Risiko.
+     \\
+     \hline 
+     P-Sätze & Die P-Sätze gehören zu den H-Sätzen. Sie geben
+     Sicherheitshinweise zum Umgang mit Chemikalien. In der Regel gibt es zu
+     jedem H-Satz einen P-Satz. Auf diese Weise wird jede Gefährdung mit einer
+     Sicherheitsanweisung verknüpft. Das P steht für Precaution, deutsch Vorsicht.
+     \\
+     \hline 
+     R-Sätze & Die R-Sätze sind der Vorgänger der H-Sätze (bis 1. Juni
+     2007). Sie beschreiben ebenfalls Gefährdungen. R steht für Risiko.
+     \\
+     \hline 
+     S-Sätze & Die S-Sätze sind die Vorgänger der P-Sätze. Sie geben
+     Sicherheitshinweise im Umgang mit Chemikalien (Ähnlich wie bei den P- und
+     H-Sätzen). S steht für Sicherheit.
+     \\
+     \hline
+  \end{tabular}
+ \label{tab:meinetabelle}
+\end{table} 
+\\
+Da jeder Herrsteller verschiedene Versionen seiner \ac{SDB} zur Verfügung
+stellt, z.B. bei unterschiedlichen Verwendungszwecken der Chemikalie, müssen
+diese ebenfalls archiviert werden.
+
+\section{Motivation und Ziel des Projektes}
+\label{projektziel_motivation}
+
+Heute ist es weit verbreitet, die Sicherheitsdatenblätter in Papierform
+weiterzugeben und diese dann in gedruckter Form zu archivieren. Auf lange Sicht
+ist dies teuer und ineffizient. Auf Grund von Umstrukturierungen innerhalb von
+Betrieben, oder bei Verkauf einer Firma, kommt es häufiger vor, dass \ac{SDB}
+abhanden kommen bzw. nicht mehr auffindbar sind. Um dies zu verhindern,
+betreiben viele große Unternehmen inzwischen firmeninterne Datenbanken zur
+Verwaltung und Archivierung von \ac{SDB}. Leider erlauben diese Großunternehmen
+ihren Abnehmern und Handelspartnern nicht, oder nur gegen Zahlung großer
+Geldbeträge, auf diese Datenbanken zuzugreifen. Somit werden kleine und
+mittelständische Betriebe gezwungen entweder die Informationen aus \ac{SDB}
+händisch abzutippen oder in Papierform zu verwalten.
+\\
+Der Betreiber der Plattform \sona{euSDB} hat in seiner Freizeit
+durch jahrelange Heimarbeit inzwischen 440 000 Datensätze zu \ac{SDB}
+digitalisiert und archiviert. Diese Daten bietet er inzwischen über seine
+Onlineplattform \sona{euSDB} im Internet käuflich an.
+Allerdings standen die \ac{SDB} bisher nur als \ac{PDF}-Datei zum Herunterladen
+zur Verfügung. Zur automatischen Verarbeitung ist es jedoch sehr sinnvoll, die
+Daten nicht nur als \ac{PDF}-Datei, sondern auch als maschinenlesbare
+Datenpakete bereitzustellen. Auf diese Weise müssen die Informationen nicht
+mehr von Hand abgetippt werden, sondern können automatisiert verarbeitet werden.
+\sona{euSDB} ermöglicht es seinen Kunden langfristig Kosten zu
+sparen, indem es die Daten einmalig und zentral aus den \ac{SDB} extrahiert.
+Je mehr Kunden \sona{euSDB} hat, desto günstiger wird der Zugriff für jeden
+Einzelnen auf die \ac{SDB}.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/ausgabeformate.jpg}
+      \caption{Ein Sicherheitsdatenblatt bzw. die daraus extrahierten
+      Informationen können in den folgenden Datenformaten ausgegeben werden:
+      JSON, XML, HTML, PDF.}
+      \label{fig:ausgabeformate}
+\end{figure}
+\\
+Die Plattform \sona{euSDB} der Firma \fina{euSDB} ist langsam und über
+mehrere Jahre gewachsen. Der Entwickler ist kein Informatiker gewesen. Es ist
+geplant die Plattform professionell, kommerziell und gewinnbringend zu
+betreiben.
+Daher bedarf es einer grundsätzlichen Überholung und Überarbeitung bzw Neuentwicklung. Dabei
+legt der Betreiber auch großen Wert darauf, die Plattform wegen geringerer Fehleranfälligkeit und leichterer Wartbarkeit in einer anderen
+als der bisher verwendeten Programmiersprache zu implementieren. Ebenfalls gilt es,
+die Plattform um eine \ac{REST}-konforme \ac{API} zu erweitern.
+Diese \ac{API} soll neben \ac{HTML} und \ac{PDF} zukünftig auch die Ausgabeformate \ac{JSON} und \ac{XML}
+unterstützen (Siehe auch Abbildung \ref{fig:ausgabeformate}). 
+\\
+Aus diesen Überlegungen ergibt sich die nachfolgende Aufgabenstellung.
+
+\section{Aufgabenstellung}
+\label{aufgabenstellung}
+
+Es ist eine Online-Plattform in der Programmiersprache \sona{Python} mit Hilfe
+des \sona{Django}-Frameworks\footnote{Offiziellen Webseite von
+Django: \url{https://www.djangoproject.com/}} zu programmieren.
+Diese soll die gesamte Funktionalität der bestehenden Plattform \sona{euSDB} mit Suchfunktion, eine \ac{REST}-konforme \ac{API} und einen Administratorbereich
+enthalten.
+\\
+Die Funktionalität der bestehenden Online-Plattform umfasst eine Historisierung,
+eine Suchfunktion und eine Zugriffskontrolle (Siehe auch Graphik
+\ref{fig:funktionsumfang}). Als erstes ist dieser Funktionsumfang
+nachzuprogrammieren. Dabei ist darauf zu achten, dass der Quellcode auch für Personen, die nicht hauptberuflich in der Informatik tätig
+sind noch übersichtlich und nachvollziehbar bleibt. Ebenfalls ist darauf zu
+achten, dass die Plattform leicht wartbar ist, um Fehler schnell und
+einfach zu beheben.
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/funktionsumfang.jpg}
+      \caption{Übersicht über den Funktionsumfang der bestehenden Plattform
+      euSDB und die neu hinzugefügte REST-API und
+      Administrationsoberfläche (gelb)}
+      \label{fig:funktionsumfang}
+\end{figure}
+\\
+Die Neukonzeptionierung einer \ac{REST}-konforme \ac{API} ist ebenfalls durchzuführen.
+Sie soll es ermöglichen, die in \ac{SDB} enthaltenen Informationen zur
+automatischen Weiterverarbeitung bereitzustellen, aber auch für ausgewählte
+Nutzer eine Möglichkeit bieten \ac{SDB} der Datenbank
+hinzuzufügen, oder bestehende Datensätze zu aktualisieren.
+\\
+Der Administrationsbereich stellt ebenfalls eine Möglichkeit dar, Daten zu
+bearbeiten. Hier können im Gegensatz zur \ac{REST}-konforme \ac{API} nicht nur die
+\ac{SDB}-Datensätze bearbeitet werden, sondern auch die Nutzerdaten der
+Plattform \sona{euSDB}.

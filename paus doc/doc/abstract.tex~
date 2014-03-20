@@ -1,0 +1,25 @@
+\section*{Abstract}
+\label{abstract}
+
+Im Chemikalienhandel sind alle Teilnehmer der Lieferkette, also Hersteller,
+Spediteur und Endabnehmer, dazu verpflichtet, zu jeder weitergegebenen
+Chemikalie ein dazugehöriges Sicherheitsdatenblatt zu übergeben. Dieses
+muss von allen Beteiligten für mindestens zehn Jahre aufgehoben werden und auf
+Verlangen zur Verfügung gestellt werden.
+\\ 
+Zu Unterstützung dieses Zwecks wird eine Onlineplattform, \sona{euSDB}, bereitgestellt, die den Austausch und die Archivierung von Sicherheitsdatenblättern ermöglicht. Dabei spielt die Realisierung einer REST\footnote{Hier finden Sie Informationen zu der Abkürzung REST: \ref{sec:Glossar_glo}}-konformen Schnittstelle eine zentrale Rolle. Diese gewährleistet eine einfache und intuitive Nutzung der Plattform durch die geeignete Definition der Ressourcen und deren Repräsentationen, Vergabe von eindeutigen URI an diese, lose Kopplung von Server und Client, statuslose Kommunikation zwischen Server und Client, Verknüpfung der Repräsentationen der Ressourcen mittels Hypermedia bzw. Hypertext, und die Nutzung der HTTP-Standardmethoden PUT, GET, ...
+\\
+Die Suche nach Sicherheitsdatenblättern wurde mit dem auf Apache Lucene basierenden Volltextsuchsystem elasticsearch umgesetzt.
+\\
+Mittels einer Rechtevergabe und einer Benutzerverwaltung wird unerlaubter Zugriff verhindert. 
+\\
+Das Ganze wird mit dem \sona{Django}-Framework\footnote{Hier finden Sie die offizielle Webseite des Django-Frameworks: \url{}} realisiert. Dabei handelt es sich um ein in der Programmiersprache Python geschriebenes Webentwicklungsframework, welches der schnellen Webentwicklung auf Basis des \ac{MVC}-Designmusters dient. 
+\\
+Zur Realisierung wurde ein iteratives Vorgehensmodell verwendet, um die
+folgenden Phasen des Projektes umzusetzten: Analyse eines bestehenden Systems,
+Erstellen eines Lasten- und Pflichtenheftes, Konzeption und Realisierung der
+Plattform \sona{euSDB}.
+\\
+Das Ergebnis des Projektes ist eine Plattform, die sehr flexibel, erweiterbar
+und portierbar ist. Sie wird der Aufgabenstellung in fast allen Punkten gerecht
+und verfügt über einen Funktionsumfang, der den der alten Plattform übersteigt.

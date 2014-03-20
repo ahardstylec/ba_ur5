@@ -1,0 +1,164 @@
+\chapter{Fazit}
+
+\section{Ausblick}
+\label{sec:ausblick}
+
+Die Plattform \sona{euSDB} kann noch um viele Projekte und Funktionen erweitert
+werden. Zunächst gilt es die noch offenen Ziele aus Kapitel
+\ref{sec:Nicht_erreichte_ziele} zu erreichen.
+\\
+Es macht Sinn die \ac{REST}-\ac{API} in einer eigenen \ac{APP} auszulagern.
+Bisher ist sie in die Kern-\ac{APP} eingegliedert. Das Auslagern bietet den
+Vorteil, dass man leicht eine neue Version der \ac{API} hinzufügen kann, ohne
+das die bestehende \ac{API} ungültig wird. Für Nutzer der \ac{API} ist dies sehr
+wichtig, denn diese wollen nicht immer ihren Client neu programmieren, sobald es
+eine neue Version der \ac{API} gibt. Und damit der Client weiterhin nutzbar
+bleitbt ist es notwendig, parallel mehrere Versionen der \ac{API} zu betreiben.
+Dies kommt auch dem Prinzip der losen Kooplung zu entgegen und erlaubt eine
+schnelles Ein- und Ausbinden der \ac{API}
+\\
+Das wohl größte Projekt wird die Migration der Daten von dem alten auf das neue
+System. Dabei gilt es viele Probleme zu lösen. Leider sind die Daten nicht alle
+konsistent und einheitlich abgelegt. Es ist zu vermuten das die ca 440 000
+Datensätze nur teilweise automatisiert migriert und aufbereitet werden können.
+Bei vielen Details wird man um eine manuelle Bearbeitung und Prüfung nicht
+herumkommen.
+\\
+Listing \ref{lst:bsp_inkon} zeigt zum Beispiel den Inhalt eines Beispieldatensatzes der
+nicht konsistent ist und somit auf jeden Fall nachbearbeitet werden muss.
+\begin{lstlisting}[caption={
+    Beispieldaten, die aus formalen Kriterien nicht korrekt sind und einer
+    Überarbeitung bedürfen, bevor Sie in das neue System übernommen werden
+    können.}
+\label{lst:bsp_inkon},captionpos=t]
+S-Saetze:
+26/36/37/39
+\end{lstlisting}
+\\
+Denn die richtige Formatierung sieht wie folgt aus: S-Sätze: 26; 36/37; 39.
+Und zwar kommt die Notation wie folgt zu Stande. Einzelne S-Sätze werden durch
+ein Semikolon getrennt. Es gibt allerdings auch Kombinationen aus S-Sätzen. In
+diesem Fall werden diese Kombinationen durch das Trennen mittels eines
+Schrägstriches kenntlich gemacht. In dem Beispiel gibt es die Kombination aus 36
+und 37. Es gibt jedoch keine Kombination aus 26, 36, 37 und 39. Solche Fehler
+treten allerdings nicht regelmäßig auf, sodass man sie automatisch erkennen
+lassen könnte. Das Auftreten von Fehlern ist meistens willkürlich. Man kann
+keine Systemathik identifizieren, was eine automatische Erkennung und Behebung
+weiter erschwert.
+\\
+Zur Zeit stehen die \ac{SDB} über einen eigenen extra Link als \ac{PDF} zum
+herunterladen bereit. Schöner wäre es, wenn man die Möglichkeit erhält, sich
+das Sicherheitsdatenblatt über eine Parameterübergabe anzeigen zu lassen dabei
+wird daran gedacht, dass man entweder das Format "`pdf"' an die Ressource
+"`chemicals"' übergibt, oder über den \ac{HTTP}-Header diesen Aufruf auslöst.
+Dieser Aufrauf funtioniert nur auf die Ressource "`chemicals"'. Hier wird dann
+das \ac{PDF} aufgerufen und dem Kunden zum Download bereitgestellt.
+\\
+Aufgrund des strikt eingehaltenen Entwicklungsstils eines modularen Aufbaus, ist
+es den Umständen entsprechend leicht, die Plattform zu erweitern. Dabei ist es
+auch nicht zwingend Notwendig das bestehende System in allen Komponenten
+verstanden zu haben. Versteht man einzelne Komponenten nicht, oder weiß diese
+nicht zu nutzen, kann man Sie auch in der eigenen Erweiterung selber neu
+implementieren. Dies hat den Vorteil, dass man nicht nur den eigenen Quellcode
+verstanden hat, sondern auch den, dass man von den anderen Entwicklungen
+unabhängig bleibt.
+\\
+Folgeprojekte können sich auch aus nicht Serverentwicklungen ergeben. Zum
+Beispiel gibt es Interesse an einem Client-Dienst, der automatisch aus den
+\ac{SDB} Etiketen und Beschriftungen für Aufbewahrungsbehälter von Chemikalien
+erstellt. Das manuelle Erstellen solcher Eticketen ist sehr zeitintensiv und
+somit auch teuer. Der Etiketten-Client soll dabei mittels der \ac{REST}-\ac{API}
+auf die Datenbank zugreifen können, die benötigten Daten abrufen und dann ein
+Etickett zusammenstellen und zum ausdrucken bereit halten.
+\\
+Ein weiterer Client der entwickelt werden soll, sieht wie folgt aus: Jedes
+Unternehmen, das Chemikalien lagert, muss sehr genau Buchführen, wo sich die
+Chemikalien befinden. Ebenfalls muss er in dieser Übersicht alle
+Gefährdungshinweise und Arbeitsanweisungen auflisten. Bei letzteren
+Informationen kommt die Datenbank von \sona{euSDB} ins Spiel. Der zu
+entwickelnde Client soll zum einen die vom Kunden eingetragenen Lagerungsorte
+tabellarisch enthalten und diese Datensätze um die Datensätze aus der Datenbank
+erweitern.
+
+\section{Einordnung in die Themenfelder der Informatik}
+\label{sec:einordnung}
+
+Bei der Entwicklung der \sona{euSDB} handelt es sich um Webentwicklung. Dabei
+werden die aus dem Bachelor-Studium der Informatik bekannte Themen wie
+Datenbanken, Internetprotokolle und Webseiten-Design genutzt. Die Themenfelder
+wurden um einige Themen wie Volltextsuche und \ac{REST} erweitert. Die neuen
+Thematiken sind in den Grundlagen und der Umsetzung ausgiebig dargelegt.
+\\
+Prinzipiell geht es bei der Speicherung, Archivierung und Historisierung von
+\ac{SDB} um das Thema des "`Data-Warehousing"'. Dabei gilt es Daten und
+Informationen unterschiedlicher Quellen in einheitlicher Form in einer Datenbank
+zu verwalten.
+\\
+Das "`Data-Warehouse"' wurde als Webanwendung umgesetzt. Webanwendungen haben
+das Zeil im Internet oder einem Intranet zu Verfügung zu stehen und dort für
+eine möglichst große Kundschaft Daten und Informationen bereitzustellen.
+\\
+In diesem Zusammenhang wurde auf viele moderne Programierparadigmen wie
+Objektorientierung und lose Kopplung geachtet. Diese sind ebenfalls Inhalt des
+Bachelor-Studiums.
+
+\section{Zusammenfassung}
+\label{sec:Zusammenfassung}
+
+Die neue Plattform \sona{euSDB} stellt den gesammten Funktionsumfang der alten
+Plattform zur Verfügung. Es existiert eine Suchfunktion, eine
+Zugriffsverwaltung, Downloadbereich für \ac{SDB}, usw. Die Umsetzung der
+Plattform, also die Programmierung, orientiert sich streng an verschiedenen
+Programmierparadigmen, wie z.B. Objektorientierung, lose Kopplung.
+\\
+Das Projekt kann auf allen Unix und Windows versionen laufen. Es ist damit
+relativ betriebssystemunabhängig. Dem Betreiber von \sona{euSDB} wird dadurch
+freigestellt, auf welchem System er seinen Server laufen lässt.
+\\
+Dem Auftraggeber steht eine vollwertige Onlineplattform zur Verfügung, die an
+nur wenigen Punkten einer Überarbeitung bedarf, sodass sie in den Online-Betrieb
+gehen kann. Dabei geht es vor allem darum, irreguläre Abfragen abzufangen und zu
+verhindern, dass das System abstürzt.
+\\
+Durch die Möglichkeiten der Administration, die nicht mehr ausschließlich an der
+Datenbank über einen Datenbankmanager durchgeführt werden, wird für eine Bessere
+Datenintegrität gesorgt. Das System merkt direkt, wenn Fremdschlüssel gelöscht
+werden, obwohl sie noch gebrauch werden und verhindert in einem solchen Fall das
+löschen.
+\\
+Die Entwicklung der Plattform mit dem \sona{Django}-Framework hat dem Entwickler
+die Mächtigkeit und die vielen Möglichkeiten aufgezeigt, das Framework zu
+Verfügung stellt. Dabei bleibt es jedoch gut nachvollziebar und leicht zu
+erlernen. Auch mit nicht so starken Vorkenntnissen in Webentwicklung und
+\sona{Python} scheint es effektiv einsetzbar zu sein. Im Web werden viele
+Erweiterungen und \ac{APP} zur Verfügung gestellt. Diese lassen sich meistens
+leicht nachvollziehen und einfach in das bestehende System einbinden.
+\\
+Einen Nachteil hat das Framework jedoch. Man kann in der \sona{Python}-Umgebung
+Fehler erzeugen, die zu einem Absturz von \sona{Python} führen. Dann muss der
+Fehler behoben werden und erst dann kann der Server neugestartet werden. Dies
+kann zu längeren Ausfallzeiten auf dem Server führen, wenn man nicht sofort
+mitbekommt, dass der Server außer Betrieb ist. Es ist sehr wichtig, das System
+ausgiebig zu testen und jede Fehlerquelle ausgiebig zu sichern.
+\\
+Der Auftraggeber erhält mit der neuentwickelten Softwareplattform \sona{euSDB}
+ein ausgiebig getestete, ihn im Funktionsumfang nicht einschränkende und stabile
+Lösung. Sie gibt ihm die Möglichkeit, sie beliebig zu erweitern und um neue
+Funktionen zu erweitern. Auch die Cliententwicklung stellt neue
+Herausforderungen dar. Die Cliententwicklung ist auf Grund der strikt
+eingehaltenen losen Kopplung nicht an eine gewisse Programmiersprache gebunden.
+\sona{euSDB} stellt eine höchst flexible Plattform dar.
+\\
+Einige Teile des Projektes sind bisher noch sehr aufwendig gelöst. Auf Grund
+dessen, dass der Programmierer mit \sona{euSDB} das erste mal ein
+\sona{Django}-Projekt realisiert hat, wurden einige Komponenten erst während der
+Programmierung verstanden und nachvollzogen. Da aber einige Funktionen zu diesen
+Zeitpunkten realisiert waren, kam zu ineffizienten Programmierungen die in
+Überarbeitungen ebenfalls effektiver gelöst werden können.
+\\
+Der Programierer und die Firma \fina{innoQ} freuen sich auf weitere Projekte,
+die der Auftraggeber im Rahmen der Plattform \sona{euSDB} bereit hällt.
+Abschließend kann man sagen das das Projekt zwar noch nicht vollständig
+abgeschlossen ist, jedoch das bis dahin fertiggestellte sowohl aus Sicht des
+Auftraggebers als auch aus Sicht von \fina{innoQ} als positiv gewertet wird und
+somit auch von einem erfolgreichen Projektverlauf gesprochen wird.

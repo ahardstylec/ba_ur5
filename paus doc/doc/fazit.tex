@@ -1,0 +1,184 @@
+\chapter{Fazit}
+
+\section{Ausblick}
+\label{sec:ausblick}
+
+Die Plattform \sona{euSDB} kann noch um viele Projekte und Funktionen erweitert
+werden. Zunächst gilt es, die noch offenen Ziele aus Kapitel
+\ref{sec:Nicht_erreichte_ziele} zu erreichen.
+\\
+Es macht Sinn die \ac{REST}-konforme \ac{API} in einer eigenen \ac{APP} auszulagern.
+Bisher ist sie in die Kern-\ac{APP} eingegliedert. Das Auslagern bietet den
+Vorteil, dass man leicht eine neue Version der \ac{API} hinzufügen kann, ohne
+das die bestehende \ac{API} ungültig wird. Für Nutzer der \ac{API} ist dies sehr
+wichtig, denn diese haben nicht immer das Interesse ihren Client neu
+programmieren, sobald es eine neue Version der \ac{API} gibt. Damit der Client weiterhin nutzbar
+bleibt, ist es notwendig, parallel mehrere Versionen der \ac{API} zu betreiben.
+Dies kommt auch dem Prinzip der losen Kopplung entgegen und erlaubt
+schnelles Ein- und Ausbinden der \ac{API}.
+\\
+Das wohl größte Projekt wird die Migration der Daten von dem alten auf das neue
+System. Dabei gilt es viele Probleme zu lösen. Leider sind die Daten nicht alle
+konsistent und einheitlich abgelegt. Es ist zu vermuten das die ca. 440 000
+Datensätze nur teilweise automatisiert migriert und aufbereitet werden können.
+Bei vielen Details wird man um eine manuelle Bearbeitung und Prüfung nicht
+herumkommen.
+\\
+Die Regeln zur Notation von S-Sätzen sind folgende: 1. S-Sätze werden in der
+Zahlencodierung durch ein Semikolon getrennt. 2. Treten S-Sätze in festen
+Kombinationen auf, werden sie durch einen Schrägstrich getrennt.
+\begin{lstlisting}[caption={Beispieldaten, die aus formalen Gründen nicht korrekt sind und einer
+    Überarbeitung bedürfen, bevor sie in das neue System übernommen werden
+    können}
+, label=lst:bsp_inkon,captionpos=b]
+S-Saetze:
+26/36/37/39
+\end{lstlisting}
+\\
+Listing \ref{lst:bsp_inkon} zeigt die inkonsistente Darstellung der S-Sätze
+einer Chemikalie in der alten Datenbank. Die S-Sätze 26 und 39 sind einzeln,
+36/37 treten als feste Kombination auf. Die richtige Formatierung der S-Sätze
+sähe wie folgt aus: S-Sätze: 26; 36/37; 39.
+Tabelle \ref{tab:s_phrases} zeigt die ausformulierten S-Sätze. Diese
+inkonsistenten Daten müssen manuell überarbeitet werden.
+\\
+\begin{minipage}[h]
+ {\textwidth}
+ \centering %wenn tabelle mittig ausgerichtet sein soll
+  \begin{tabular}{|p{0.2\textwidth}|p{0.6\textwidth}|l|l|}
+   \hline
+   \textbf{S-Satz} & \textbf{Anweisung}\\ \hline \hline 
+     S 26 & Bei Berührung mit den Augen gründlich mit Wasser abspülen und Arzt
+     konsultieren.
+     \\ 
+     \hline       
+     S 36 & Bei der Arbeit geeignete Schutzkleidung tragen.
+     \\ 
+     \hline 
+     S 37 & Geeignete Schutzhandschuhe tragen.
+     \\ 
+     \hline 
+     S 39 & Schutzbrille/Gesichtsschutz tragen.
+     \\  
+     \hline 
+     S 36/37 & Bei der Arbeit geeignete Schutzhandschuhe und Schutzkleidung
+     tragen.
+     \\ 
+     \hline 
+  \end{tabular}
+ \captionof{table}{Mehrere S-Sätze und deren Sicherheitsanweisungen}
+ \label{tab:s_phrases}
+\end{minipage}
+\\
+\\
+Diese Fehler sind nicht immer gleichförmig und können daher nicht automatisiert
+erkannt werden. Das Auftreten von Fehlern ist willkürlich. Man kann keine
+Systemathik identifizieren, was eine automatische Erkennung und Behebung weiter
+erschwert.
+\\
+Die Fehler haben ihren Ursprung bei den Herstellern der Chemikalien. Einige
+geben ihre Daten in Form einer \sona{Excel}-Tabelle an den Betreiber von
+\sona{euSDB} weiter, damit dieser sie auf der Plattform veröffentlicht. Die
+Kontrolle der Daten auf Richtigkeit erfolgt dabei händisch und nicht
+automatisiert. Daher ist es immer wieder passiert, dass Datensätze in der
+falschen Notation in das System eingegeben wurden.
+\\
+Die Fehler konnten entstehen, da praktisch alle Daten als Text in einer einzigen
+Tabelle abgelegt wurden. Zwar gab es Vorgaben zur Notation von Daten, doch diese
+für jedes Textfeld einzeln zu prüfen, ist aus Zeitgründen nicht immer möglich
+gewesen.
+\\
+Zur Zeit stehen die \ac{SDB} über einen eigenen Link als \ac{PDF} zum
+Herunterladen bereit. Schöner wäre es, wenn man die Möglichkeit erhält, sich
+das \ac{SDB} über eine Parameterübergabe anzeigen zu lassen. Dabei
+wird daran gedacht, dass man entweder das Format "`pdf"' an die Ressource
+"`chemicals"' übergibt, oder über den \ac{HTTP}-Header diesen Aufruf auslöst.
+Dieser Aufruf funktioniert nur bei der Ressource "`chemicals"'. Hier wird
+dann das \ac{PDF} aufgerufen und dem Kunden zum Download bereitgestellt.
+\\
+Aufgrund des strikt eingehaltenen Entwicklungsstils eines modularen Aufbaus ist
+es leicht, die Plattform zu erweitern. Dabei ist es
+auch nicht zwingend notwendig, das bestehende System in allen Komponenten
+verstanden zu haben. Versteht man einzelne Komponenten nicht, oder weiß man
+diese nicht zu nutzen, kann man sie auch in der eigenen Erweiterung selbst neu
+implementieren. Dies hat die Vorteile, dass man den eigenen Quellcode
+verstanden hat und von den anderen Entwicklungen unabhängig bleibt.
+\\
+Folgeprojekte können sich auch aus Nicht-Serverentwicklungen ergeben. Z.B gibt
+es ein Interesse an einem Client-Dienst, der automatisch Etiketten und
+Beschriftungen für Aufbewahrungsbehälter von Chemikalien aus den \ac{SDB} erstellt. Das
+manuelle Erstellen solcher Etiketten ist sehr zeitintensiv und somit auch
+teuer.
+Der Etiketten-Client soll dabei mittels der \ac{REST}-konformen \ac{API} auf die
+Datenbank zugreifen können, die benötigten Daten abrufen und dann ein Etikett
+zusammenstellen und zum Ausdrucken bereithalten.
+\\
+Ein weiterer Client der entwickelt werden soll, sieht wie folgt aus: Jedes
+Unternehmen, das Chemikalien lagert, muss sehr genau buchführen, wo sich die
+Chemikalien befinden. Ebenfalls muss es in dieser Übersicht alle
+Gefährdungshinweise und Arbeitsanweisungen aufgelistet sein. Bei letzteren
+Informationen kommt die Datenbank von \sona{euSDB} ins Spiel. Der zu
+entwickelnde Client soll zum einen die vom Kunden eingetragenen Lagerungsorte
+tabellarisch enthalten und diese Datensätze um die Informationen aus der
+Datenbank erweitern.
+
+\section{Zusammenfassung}
+\label{sec:Zusammenfassung}
+
+Die neue Plattform \sona{euSDB} stellt den gesamten Funktionsumfang der alten
+Plattform zur Verfügung. Es existiert eine Suchfunktion, eine
+Zugriffsverwaltung, ein Downloadbereich für \ac{SDB}, usw.. Die Umsetzung der
+Plattform, also die Programmierung, orientiert sich streng an verschiedenen
+Programmierparadigmen, wie z.B. Objektorientierung und lose Kopplung.
+\\
+Das Projekt kann auf allen Unix- und Windows-Versionen laufen. Es ist damit
+relativ betriebssystemunabhängig. Dem Betreiber von \sona{euSDB} wird dadurch
+freigestellt, auf welchem System er seinen Server laufen lässt.
+\\
+Dem Auftraggeber steht eine vollwertige Onlineplattform zur Verfügung, die an
+nur wenigen Punkten einer Überarbeitung bedarf, sodass sie in den Online-Betrieb
+gehen kann. Dabei geht es vor allem darum, irreguläre Abfragen abzufangen und zu
+verhindern, dass das System abstürzt.
+\\
+Durch die Möglichkeiten der Administration, die nicht mehr ausschließlich an der
+Datenbank über einen Datenbankmanager durchgeführt werden, wird für eine Bessere
+Datenintegrität gesorgt. Das System merkt direkt, wenn Fremdschlüssel gelöscht
+werden, obwohl sie noch gebraucht werden und verhindert in einem solchen Fall
+das Löschen.
+\\
+Die Entwicklung der Plattform hat die Mächtigkeit und die vielen Möglichkeiten
+des \sona{Django}-Framework aufgezeigt. Dabei bleibt sie jedoch nachvollziehbar
+und leicht zu erlernen. Auch mit nicht so umfangreichen Vorkenntnissen in
+Webentwicklung und \sona{Python} scheint es effektiv einsetzbar zu sein. Im Web
+werden viele Erweiterungen und \ac{APP} zur Verfügung gestellt. Diese lassen
+sich leicht nachvollziehen und einfach in das bestehende System einbinden.
+\\
+Einen Nachteil des Frameworks ist es, dass sich Fehler erzeugen lassen, die die
+\sona{Python}-Umgebung abstürzen lassen. Solche Fehler müssen unbedingt behoben
+werden. Erst dann kann der Server neugestartet werden. Dies kann zu
+längeren Ausfallzeiten der Plattform führen, wenn man nicht sofort realisiert
+hat, dass der Server außer Betrieb ist. Es ist sehr wichtig, das System
+gründlich zu testen, damit möglichst keine Fehler auftreten.
+\\
+Der Auftraggeber erhält mit der neuentwickelten Softwareplattform \sona{euSDB}
+eine ausgiebig getestete, ihn im Funktionsumfang nicht einschränkende und
+stabile Lösung. Sie gibt ihm die Möglichkeit, sie fast beliebig um neue
+Funktionen zu erweitern. Auch die Cliententwicklung bietet neue Möglichkeiten.
+Auf Grund der strikt eingehaltenen losen Kopplung ist sie nicht an eine gewisse
+Programmiersprach gebunden. \sona{euSDB} stellt insofern
+eine höchst flexible Plattform dar.
+\\
+Einige Teile des Projektes sind bisher sehr aufwändig gelöst, da der
+Programmierer mit \sona{euSDB} das erste Mal ein \sona{Django}-System realisiert
+hat. Es fehlten ihm Kenntnisse und Erfahrungen in dieser Programmiersprache,
+sodass einige Komponenten erst während der Realisierung verstanden und nachvollzogen wurden.
+Die zu diesem Zeitpunkt bereits realisierten Funktionen können ineffizient sein
+und einer Überarbeitungen bedürfen, z.B. die
+\ac{REST}-konforme \ac{API} ist nicht in einer eigenen \ac{APP} untergebracht.
+\\
+Der Programierer und die Firma \fina{innoQ} freuen sich auf weitere Projekte,
+die der Auftraggeber im Rahmen der Plattform \sona{euSDB} vergibt.
+Abschließend kann man sagen, dass das Projekt zwar noch nicht vollständig
+abgeschlossen ist, jedoch das bis dahin fertiggestellte sowohl aus Sicht des
+Auftraggebers als auch aus Sicht von \fina{innoQ} als positiv gewertet wird und
+somit auch von einem erfolgreichen Projektverlauf gesprochen werden kann.
