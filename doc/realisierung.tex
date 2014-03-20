@@ -1,20 +1,13 @@
 \chapter{Realisierung}
 \label{chap:umsetzung}
 
-\section{TCP Server mit Datenbank zum dauerhaften speichern der Daten}
-\label{sec:tcp_datentank_sicherung_rel}
-
-Um mit Polyscope und URScript erhobene Daten zu Speichern wurde ein kleiner TCP Server geschrieben, der eine verbindung zulässt und Daten in einer Datenbank Speichert. Die Daten sind Objectorientiert, und werden von dem Server erstellt. 
-In Polyscope und URScript gibt es keine Objectorientierung, deshalb musss dort alles nacheinander angefragt werden. 
-
 \section{C-API}
 \label{sec:capi_rel}
 
-
-\subsection{gelöste Aufgabe}
+\subsection{Beispielanwendung}
 \label{sub:capi-problems_rel}
 
-Es konnte ein Programm erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Es konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist
+Es konnte eine Anwendung erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Es konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist. In Abbilgung \ref{bild_robot} ist zu sehen, wenn der 
 
 \subsection{Aufgetretene Probleme}
 \label{sub:capi-problems_rel}
@@ -71,6 +64,13 @@ Da das Programm mit dem Touch Panel ausgeführt werden kann, ist es möglich wä
 
 Kleine Programme in Polyscope sind sehr schnell geschrieben. Mit dem Touch Panel kann sehr schnell eine kleine Kontrollstruktur aufgebaut werden. Das Tablet hat jedoch große Nachteile. Wie in abbildung \ref{polyscope_program_tree} zu sehen ist der Bereich für den Programm Baum sehr klein. Wenn ein Programm nun 1000 Befehle enthällt, ist es nicht möglich ein Überblick zu halten. Auch ist es sehr aufwändig zu bestimmten Bereichen hinzuspringen, da das Touch Tablet nicht genau ist. Möglich ist es geschriebene Bereiche auf Scriptdateien zu verschieben, die dann im Polyscope Programm verwendet werden. 
 
+\subsection{TCP Server mit Datenbank zum dauerhaften speichern der Daten}
+\label{tcp_datentank_sicherung_rel}
+
+Um mit Polyscope und URScript erhobene Daten zu Speichern wurde ein kleiner TCP Server geschrieben, der eine verbindung zulässt und Daten in einer Datenbank Speichert. Die Daten sind Objectorientiert, und werden von dem Server erstellt. 
+In Polyscope und URScript gibt es keine Objectorientierung, deshalb musss dort alles nacheinander angefragt werden. 
+
+
 \section{URScript}
 \label{sec:ur_script_rel}
 
@@ -110,7 +110,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \subsection{Aufwand der Programmierung}
 \label{ur_script_aufwand}
 
-\section{Anwendung mit Eigener API}
+\section{Anwendung mit eigener API}
 \label{sec:script_hoerherer_schicht_rel}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 

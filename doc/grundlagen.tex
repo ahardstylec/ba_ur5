@@ -24,13 +24,20 @@ In so gut wie allen fällen sind Roboter in der Industrie in einem extra abgesic
 Damit Menschen im Arbeitsbereich vom Robotern Arbeiten dürfen müssen diese Roboter bestimmte Sicherheitsrichtlinien entsprechen.
 Der Roboter darf unter keinen Umständen eine Lebensbedrohliche gefahr darstellen. Die Norm ISO 10218
 
-\section{Ur5 Roboter}
+\section{UR5 Roboter}
 \label{sec:ur_robot_gru}
 
 Die Dänische Firma Universal Robots hat den leichten Ur5 und mittelgroßen Ur10 Roboter hergestellt mit erfüllbaren Normen um mit diesem Roboter zu kollaborieren. Man kann sich im laufenden Betrieb in der Nähe aufhalten um Wegpunkte zu Teachen oder auch gleichzeitig an einem Werkstück zu arbeiten. 
 
-\subsection{Eigenschaften}
+\subsection{Kinematik}
 \label{ur_eigenschaften_gru}
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/ur5_robot.png}
+      \caption[UR5 Roboter]{Abbildung zeigt den UR5 Roboter von universal Robots}
+      \label{fig:schnittstellen_schichten}
+\end{figure}
 
 Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca 85cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet. 
 Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
@@ -39,7 +46,7 @@ Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für d
 \\\\
 Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann ein Software Update der Polyscope Software gemacht werden.
 
-\subsection{System Aktualisieren}
+\subsection{Peripherie}
 \label{ur_update_gru}
 
 Zwei Arten von Updates sind hier zu unterscheiden. Zum einen kann das Linux System geupdatet werden. Auf normalem wege über den Packetmanager des Systems, oder wenn man das neuste Image von Universal Robots runterläd und dann das System neu aufspielt. Hier ist jedoch zu beachten, dass dabei alle Daten verloren gegangen werden. Deshalb sollte eine Datensicherung vorgenommen werden. Wie dies geschieht wird im darauf folgenden Unterkapitel beschrieben(\ref{ur_datensicherung_gru}).
@@ -60,7 +67,7 @@ Die Daten des Roboters sind abgelegt in root verzeichniss unter
 
 Es ist möglich die Dateien per USB Stick zu sichern oder über Programme wie ``SCP'' über das Netzwerk zu Kopieren.
 
-\section{Übersicht der Programmierschnittstellen}
+\section{Programmierschnittstellen vom UR5}
 \label{sec:programm_api_uebersicht_gru}
 
 Der Ur5 Roboter kann auf drei Ebenen angesprochen werden.\\
@@ -134,7 +141,7 @@ Die Client Anwendung muss nun dieses Packet parsen(Parser: Informationen zerlege
 Wie Die einzelnen Packete aussehen sind im Anhang mitgeliefert
 Für die Programmiersprache C wurde ein ein Parser dafür geschrieben.
 
-\subsection{Secondary und Primary Schnittselle}
+\subsection{Secondary und Primary Schnittstelle}
 \label{urcontrol_spi_gru}
 
 Das Secondary Interface ist eine TCP Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Rechner sendet.
@@ -174,13 +181,14 @@ Zum Abschluss wird die Function robotinterface\_send() aufgerufen die dafür sor
 und der Roboter wird angehalten.\\
 Wenn so etwas im UR-Kontroller passiert, kann der Anwender diese wieder abschalten wenn alles in Ordnung ist. Dies muss mit der C-API selbst geschrieben werden. Die API liefert hierfür auch funktionen. Das die richtigen Richtlinien aber auch eingehalten werden, muss von dem wechsel des Sicherheitsmodus in den normalen Modus eine Benutzerabfrage verlangt werden.
 
-\subsection{PTP Verfahren}
+\subsection{Bewegungsprofile}
 \label{ptp_capi_gru}
+
+PTP Verfahren 
 
 Um den Roboter bestimmten Wegpunkten abfahren zu lassen, muss man die Bewegungsprofile selbst berechnen und ǘber die C-API an den Roboter im 125Hz Takt übergeben. Das PTP Verfahren setzt dabei vorraus das die einzelnen Positionen der Gelenke bekannt sind. Der Wert ist angegeben in radiant. Die Zielposition
 
-\subsection{Linear Verfahren}
-\label{linear_capi_gru}
+Linear Verfahren
 
 Das Lineare Verfahren bedeutet eine Bewegung des Roboters von dem TCP Punkt aus. Sie verfährt Linear, bedeutet das die Orientierung 
 des TCP Punktes sich nicht ändert. Da in diesem Verfahren die Berechnung der Position des TCP Punktes verwendet wird, ist es nötig die Position des TCP im Raum zu kennen um eine Strecke zu einem Ziel Punkt abfahren zu können. Der Roboter kann aber nur Positionen die der Sechs Gelenke verarbeiten. Es muss also eine umrechnung stattfinden. Diese umrechung wird Inverse Kinematic genannt. Die Berechnung für die Ineverse Kinematic ist von einem anderen Projekt entnommen worden.
