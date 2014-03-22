@@ -1,10 +1,13 @@
 \select@language {german}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces Schichten der Software Schnittstellen}}{15}{figure.2.1}
-\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Schema des Datenpackets gesendet von der Secondary Schnittstelle}}{17}{figure.2.2}
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces UR5 Roboter}}{14}{figure.2.1}
+\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Schichten der Software Schnittstellen}}{16}{figure.2.2}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Schema des Datenpackets gesendet von der Secondary Schnittstelle}}{18}{figure.2.3}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Programm Baum in Polyscope}}{26}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Popup in Polyscipe}}{27}{figure.4.2}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

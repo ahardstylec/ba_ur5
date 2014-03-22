@@ -1,0 +1,5 @@
+def myProg():
+	popup("hello world","test", False, False)
+	set_digital_out(1, True)
+	movej([0.23,1.23,0.343,0.34.0.0,0.0],a=0.5,v=0.3)
+end

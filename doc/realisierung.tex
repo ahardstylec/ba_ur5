@@ -4,15 +4,90 @@
 \section{C-API}
 \label{sec:capi_rel}
 
+In folgendem Kapitel wird beschrieben wie die C-API genutzt werden konnte, um dem Roboter bestimmte Wegpunkte abzufahren.
+
 \subsection{Beispielanwendung}
 \label{sub:capi-problems_rel}
 
-Es konnte eine Anwendung erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Es konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist. In Abbilgung \ref{bild_robot} ist zu sehen, wenn der 
+Es konnte eine Anwendung erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Es konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist. 
+\\
+Bevor man Daten vom Roboter Abfragen kann, muss eine Verbindung zum Roboter hergestellt werden, diesem einen hochfahren und initialisieren lassen. Folgend werden diese Vorgänge beschrieben.\\
+Mit dem Befehl ``robotinterface\_open()'' kann die Verbindung zum Roboter hergestellt werden.
+\\
+Um sicher zu gehen das die Verbindung offen ist, wird in einer Schleife eine bestimmte Zeit, immer wieder abgefragt ob der Roboter verbunden ist. Falls dies nicht funktioniert, wird der Vorgang abgebrochen und das Program sollte beendet werden. Es kommt vor, dass der Roboter beim starten noch in einem Sicherheitsmodus ist. Wenn dies der Fall ist, muss der Modus abgestellt werden. Dies geht mit der Funktion ``robotinterface\_unlock\_security\_stop();''.
+\\
+Auch hier wird zur Sicherheit eine bestimmte Zeitschleife der Befehl wiederholt an den Roboter gesandt. Wenn der Roboter dennoch in dem Sicherheitsmodus ist, ist es möglich, dass der Notausschalter am Touch Panel aktiviert ist.
+Nachdem die Verbindung offen ist, muss der Roboter mit Strom versorgt werden. Mit dem Befehl ``robotinterface\_power\_on\_robot()'' kann das bewerkstelligt werden. Auch hier wird eine bestimmte Zeitschleife abgewartet, bis der Roboter hochgefahren ist. Abgefragt werden kann dies mit der Funktion ``robotinterface\_is\_power\_on\_robot()''.
+
+Nun wird der Roboter Initialisiert. Der Roboter geht nach dem Starten automatisch in den initialize Modus. Jeder einzelne Joint muss nun solang in eine Richtung bewegt werden, bis der Joint in den normalen Modus übergeht. Um die Gelenke zu bewegen, wird eine Geschwindigkeitsvorgabe an den Roboter gesandt.(siehe Listing \ref{lst:initialize_robot_lst})
+
+\begin{lstlisting}[language=C,caption={Initialisierung der einzelnen Gelenke}, label=lst:initialize_robot_lst,captionpos=b]
+puts("Initializing robot");
+/// Set zero velocity and acceleration as guard
+int j;
+for (j=0; j<6; ++j) {
+  pva_packet.velocity[j] = 0.0;
+  pva_packet.acceleration[j] = 0.0;
+}
+do {
+  ++i;
+  robotinterface_read_state_blocking();
+  int j;
+  for (j=0; j<6; ++j) {
+    // initialize_direction is 1 or -1. it determines in which direction die Joint is moving during the initialization
+    pva_packet.velocity[j] = ((robotinterface_get_joint_mode(j) == JOINT_INITIALISATION_MODE)) ? (initialize_direction)* 0.1 : 0.0;
+   }
+  robotinterface_command_velocity(pva_packet.velocity);
+  robotinterface_send();
+} while (robotinterface_get_robot_mode() == ROBOT_INITIALIZING_MODE && exit_flag == false);
+puts(" Done!");
+\end{lstlisting}
+
+Nachdem die Initialisierung abgeschlossen ist, muss wie in Listing \ref{lst:robot_control_loop} eine Schleife mit der vorgegebenen Struktur durchlaufen werden, bis das Programm beendet, oder die Verbindung zum Roboter geschlossen werden soll. Wenn dies nicht so gemacht wird, geht der Roboter automatisch in den Sicherheitsstop, da nicht innerhalb von 8 Millisekunden Nachrichten an den Roboter gesendet wurden.
+
+Innerhalb der beiden Befehlen ``robotinterface\_read\_state\_blocking()'' und ``robotinterface\_send()'' kann nun eine Interpolation berechnet werden und die Vorgaben für Position, Geschwindigkeit und Beschleunigung an den Roboter gesandt werden(siehe Listing \ref{lst:interpolate}).
+
+\begin{lstlisting}[language=C,caption={Interpolation eines Berechneten Weges}, label=lst:interpolate,captionpos=b]
+// loop through interpolation length  
+for(i=0; i < move_pva_packet.interpolations+1; i++){
+  robotinterface_read_state_blocking();
+
+  // abort interpolation if Robot is in securitystop mode
+  if(robotinterface_is_security_stopped()) {
+      robotinterface_get_actual_current(currents_actual);
+      robotinterface_command_empty_command();
+      robotinterface_send();
+      break;
+  }
+
+  // get current time of interpolation 
+  move_pva_packet.point_in_time= (double) i * T_IPO;
+
+  // interpolate with sinoide profile and write result in variable move_pva_packet
+  interpolation_sin_ptp(&move_pva_packet);
+
+  // write the triple to robot
+  robotinterface_command_position_velocity_acceleration(move_pva_packet.pva.position,
+                                                        move_pva_packet.pva.velocity,
+                                                        move_pva_packet.pva.acceleration);
+  // send command to robot
+  robotinterface_send();
+}
+\end{lstlisting}
 
 \subsection{Aufgetretene Probleme}
 \label{sub:capi-problems_rel}
 
-Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstop. Die Abweichung der Stromstärke wird zu groß. Dies kann Analysiert werden, wenn man sich den Durchschnitt der Soll und Ist Werte der Stromstärke ansieht. Die Abweichung ist besonders beim 2. Gelenk hoch, da dieser am meisten Gewicht tragen muss und dort die Erdanziehung am meisten wirkt. Deswegen wird angenommen, dass der Regeler nicht die Dynamik der Gravitation mitrechnet. Dies kann man auch beobachten, wenn man in den Roboter immer die aktuellen Ist werte mit übergibt. Der Roboter sakt zusammen und nur ein Notaus kann vor Schädigungen schützen.
+Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstop. Die Abweichung der Stromstärke wird zu groß. Dies kann Analysiert werden, wenn man sich den Durchschnitt der Soll und Ist Werte der Stromstärke ansieht.(liehe Abbildung \ref{average_of_target_and_actual})
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.5\textwidth]{pic/average_of_target_and_actual.png}
+      \caption[Soll und Ist Werte der Stromstärke]{Abbildung zeigt die Soll und Ist Werte der Stromstärke, bis zum Sicherheitsstop des Roboters}
+      \label{fig:average_of_target_and_actual}
+\end{figure}
+
+Die Abweichung ist besonders beim 2. Gelenk hoch, da dieser am meisten Gewicht tragen muss und dort die Erdanziehung am meisten wirkt. Deswegen wird angenommen, dass der Regeler die Dynamik der Gravitation nicht mitrechnet, oder falsch berechnet. Dies kann man auch beobachten, wenn man dem Roboter in einer Schleife immer die aktuellen Ist Werte mit übergibt. Der Roboter kann nicht die Aktuelle Position halten.
 
 \section{Polyscope}
 \label{sec:Polyscope_rel}
@@ -39,13 +114,13 @@ Eine andere möglichkeit ein Programm unter Polyscope zu programmieren gibt es n
 \subsection{Benutzer Interaktion}
 \label{user_interaktion_polyscope_rel}
 
-Die möglichkeiten zur Interaktion mit dem Benutzer sind sehr begrenzt. Die Software und die URScript sprache lassen es zu, dass auf dem Touch Tablet Popup Nachrichten auftauchen. Wenn man mit dem Benutzer Interagieren will, gibt mehrere Arten dieser Popups.
-Als Nachricht, ja/nein Fragen, oder Text abfragen, bei denen der Benutzer mit Text anworten soll. In Abbildung \ref{polyscope_popup} 
+Die möglichkeiten zur Interaktion mit dem Benutzer sind sehr begrenzt. Die Software und die URScript Sprache lassen es zu, dass auf dem Touch Tablet Popup Nachrichten auftauchen. Wenn man mit dem Benutzer Interagieren will, gibt mehrere Arten dieser Popups.
+Als Nachricht, ja/nein Fragen, oder Text abfragen. Der Benutzer kann dann mit einen Text oder wählen zweier ja/nein buttons anworten. In Abbildung \ref{polyscope_popup} 
 ist als Beispiel eine Nachricht und eine Ja/Nein Popup zu sehen.
 
 \begin{figure}[ht]
   \centering
-    \includegraphics[width=0.5\textwidth]{pic/popup_question.png}
+    \includegraphics[width=0.8\textwidth]{pic/popup_question.png}
       \caption[Popup in Polyscipe]{Abbildung zeigt Zwei verschiedene Arten von Popups in Polyscope}
       \label{fig:polyscope_popup}
 \end{figure}
@@ -80,7 +155,8 @@ Das Manual von Univeral Robots umfasst alle nötigen Funktionen um Komplexe Aufg
 \subsection{Laden des Scripts auf den Controller}
 \label{load_script_rel}
 
-Das Script kann nicht direkt auf dem Rechner über die Polyscope Software ausgeführt werden. Um ein selbst geschriebenes Programm in URScript auszuführen ist es nötig sich mit dem Secondary Interface des URControllers \ref{urcontrol_spi_gru} per TCP zu verbinden und dann die Einzelnen Zeilen der Script Datei an den Controller zu senden.
+Das Script kann nicht direkt auf dem Rechner über die Polyscope Software ausgeführt werden. Um ein selbst geschriebenes Programm in URScript auszuführen ist es nötig sich mit dem Sec
+ondary Interface des URControllers \ref{urcontrol_spi_gru} per TCP zu verbinden und dann die Einzelnen Zeilen der Script Datei an den Controller zu senden.
 \\\\
 Es ist möglich einzelne Befehle oder ein großes Program auszuführen. Um einzelne Befehle auszuführen, werden diese nacheinander versendet.
 Ein ganzes Programm wird versendet, indem wie in Listing \ref{urscipt_program_lst} gezeigt eine Funktion die ganzen Befehle umschließt. Der Controller führt diese Funktion aus, sobald diese mit dem ``end'' abgeschlossen ist.
@@ -96,7 +172,7 @@ end
 \subsection{Programmierung}
 \label{programmierung_ur_script_rel}
 
-Programmiert werden, kann das Script mit allen vorhandenen Textverarbeitungsprogrammen. Vorteilhaft, ist es wenn das Programm Syntaxhighlighting für Python beherscht. Da URScript sehr stark an Python angelehnt ist, hilft dies ein wenig den überblick zu behalten.
+Programmiert werden kann das Script mit allen vorhandenen Textverarbeitungsprogrammen. Vorteilhaft ist es, wenn das Programm \ac{Syntax Highlighting} für Python beherscht. Da URScript sehr stark an Python angelehnt ist, hilft dies ein wenig den Überblick zu behalten.
 
 \subsection{Test und Fehlersuche im Programm}
 \label{ur_script_debuggen}

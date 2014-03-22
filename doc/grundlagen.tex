@@ -12,8 +12,8 @@ Hier wird auch eine Unterteilung vorgenommen die unterschiedliche Richtlinien er
 
 \begin{itemize}
 \item Sicherhaltshalt, wenn der Mensch den Kollaborationsraum betritt.
-\item Dauerhafte Überwachung des abstands zwichen Mensch und Roboter, der mit reduzierter geschwindigkeit arbeitet.
-\item Verminderte Geschwindigeit. Führung des Roboters durch den Mensch. Sensoren erfassen die kräfte, die vom Menschen ausgeführt werden und übertragen sie auf den Roboter.
+\item Dauerhafte Überwachung des Abstands zwichen Mensch und Roboter, der mit reduzierter Geschwindigkeit arbeitet.
+\item Verminderte Geschwindigeit. Führung des Roboters durch den Mensch. Sensoren erfassen die Kräfte, die vom Menschen ausgeführt werden und übertragen sie auf den Roboter.
 \item Beschränkung der im Roboter ausgeführten Energie. Überwachung des Roboters auf Kollision und sofortigem Stop
 \end{itemize}
 
@@ -22,12 +22,13 @@ Hier wird auch eine Unterteilung vorgenommen die unterschiedliche Richtlinien er
 
 In so gut wie allen fällen sind Roboter in der Industrie in einem extra abgesicherten Bereich umzäunt, damit kein Arbeiter sich verletzen kann. Diese Robote sind umhaust. Es ist nicht möglich in einem gemeinsamen Arbeitsbereich zu kollaborieren. 
 Damit Menschen im Arbeitsbereich vom Robotern Arbeiten dürfen müssen diese Roboter bestimmte Sicherheitsrichtlinien entsprechen.
-Der Roboter darf unter keinen Umständen eine Lebensbedrohliche gefahr darstellen. Die Norm ISO 10218
+Der Roboter darf unter keinen Umständen eine Lebensbedrohliche gefahr darstellen. Die Norm \ac{ISO} 10218
 
 \section{UR5 Roboter}
 \label{sec:ur_robot_gru}
 
-Die Dänische Firma Universal Robots hat den leichten Ur5 und mittelgroßen Ur10 Roboter hergestellt mit erfüllbaren Normen um mit diesem Roboter zu kollaborieren. Man kann sich im laufenden Betrieb in der Nähe aufhalten um Wegpunkte zu Teachen oder auch gleichzeitig an einem Werkstück zu arbeiten. 
+Die Dänische Firma Universal Robots hat den leichten UR5 und mittelgroßen UR10 Roboter hergestellt mit den erfüllbaren Normen, um mit diesem Roboter zu kollaborieren. Man kann sich im laufenden Betrieb in der Nähe aufhalten um Wegpunkte zu Teachen oder auch gleichzeitig an einem Werkstück zu arbeiten. 
+Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
 
 \subsection{Kinematik}
 \label{ur_eigenschaften_gru}
@@ -42,7 +43,7 @@ Die Dänische Firma Universal Robots hat den leichten Ur5 und mittelgroßen Ur10
 Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca 85cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet. 
 Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
 \\\\
-Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. bei Start wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den URController. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner Herstellt.
+Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. bei Start wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den \ref{URControl}. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner Herstellt.
 \\\\
 Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann ein Software Update der Polyscope Software gemacht werden.
 
@@ -104,12 +105,11 @@ Kann der Mensch das Programm Intuitiv bedienen? Wichtig hierbei ist, dass der Me
 Beim Entwickeln von Programmen ist es wichtig, dass der Entwickler Fehler im Programm entdeckt um diese schnell zu beheben.
 Je Größer und Komplexer das Programm wird, desto schwieriger wird es Fehler zu entdecken.
 
-
 \section{URControl}
 \label{sec:ur_control_gru}
 
 Der URController eine Server Anwendung die auf dem Rechner des Roboters läuft. 
-Dieser Controller dient als Schnittstelle von der Roboter Hardware und Software die den Roboter ansteuern wollen.
+Dieser Controller dient als Schnittstelle von der Roboter Hardware und der Software die den Roboter ansteuern wollen.
 
 \subsection{Konfiguration des URControllers}
 \label{urcontrol_rci_gru}
@@ -144,7 +144,7 @@ Für die Programmiersprache C wurde ein ein Parser dafür geschrieben.
 \subsection{Secondary und Primary Schnittstelle}
 \label{urcontrol_spi_gru}
 
-Das Secondary Interface ist eine TCP Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Rechner sendet.
+Das Secondary Interface ist eine \ac{TCP/IP} Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Rechner sendet.
 Die Nachrichten beinhalten Informationen wie z.B. den Roboter Status, die Positionen der einzelenen Joints.
 Die volle Beschreibung welche Informationen gesendet werden ist im anhang zu finden.
 
@@ -161,30 +161,41 @@ Diese Befehle können URScript befehle sein. Ein ganzes Programm aus URScript be
 \subsection{Polyscope}
 \label{urcontrol_polyscope_gru}
 
-Polyscope ist eine Anwendung die auf dem Roboter-Rechner läuft. Die Anwendung verbindet sich per TCP/IP auf den UR Controller und sendet URScript befehler an den Roboter um diesen zu steuern.
-Diese Anwendung wird auf dem Tablet angezeigt. Hierrüber kann man per Touch eingabe ein neues .URP Programm erstellen. Dieses Programm wird zur Laufzeit in ein .script umgewandelt.
+Polyscope ist eine Anwendung die auf dem Roboter-Rechner läuft. Die Anwendung verbindet sich per \ac{TCP/IP} auf den URControl(\ref{sec:ur_control_gru}) und sendet URScript befehler an den Roboter um diesen zu steuern.
+Diese Anwendung wird auf dem Tablet angezeigt. Hierrüber kann man per Touch eingabe ein neues \ac{URP} Programm erstellen. Dieses Programm wird zur Laufzeit in ein Script umgewandelt. Die Polyscope Software schickt nun in Schritten die einzelnen Scriptbefehle an den URControl, der diese ausführt. Im Programmbaum kann eingesehen werden an welchem Schritt das Programm sich befindet.
 
 \section{C-API}
 \label{sec:rest_prinzip_gru}
 
-Die C-API ist von dem Hersteller UR eine zur Verfügung gestellte C Library mit einer Header Datei, die etwaige Funktionen der Library erklärt. Die Header Datei enthält nicht alle Funktionen, somit sind nicht alle zugänglich. Die C-API erlaubt es einen eigenen Controller für den Roboter zu entwickeln. Der für den Roboter zur Verfügung gestellte Controller mit der Polyscope Software können aber nicht gleichzeitig laufen. Es schließen sich also die URScriptsprache und ein eigener Controller zunächst aus. Es könnte ein eigener Controller gebaut werden der die Befehle in URScript selbst interpretiert und diese wie bei dem URController ausführt. So könnte man die vorhandene Sprache nehmen und diese sogar erweitern.
+Die C-\ac{API} ist von dem Hersteller \ac{UR} eine zur Verfügung gestellte C \ac{Library} mit einer Header Datei, die etwaige Funktionen der Library erklärt. Die Header Datei enthält nicht alle Funktionen, somit sind nicht alle zugänglich. Die C-\ac{API} erlaubt es einen eigenen Controller für den Roboter zu entwickeln. Der für den Roboter zur Verfügung gestellte Controller mit der Polyscope Software und eine anwendung die, die C-\ac{API} benutzt, kann aber nicht gleichzeitig laufen. Es schließen sich also die Programmiersprache URScript  und ein eigener Controller zunächst aus. Es könnte ein eigener Controller entwickelt werden, der die Befehle in URScript selbst interpretiert und diese wie bei dem URControll ausführt. So könnte man die vorhandene Sprache nehmen und diese sogar erweitern.
 
 \subsection{Kontrollstruktur}
 \label{capi_control_loop_gru}	
 
-Die C-API ermöglicht es eine Verbindung zum Roboter zu öffnen und über eigene Funktionen Befehle abzuschicken. Dies erfolgt in einem streng festgelegten Muster. Dieses Muster ist in Abbildung ... TODO !! abilbundsref zu sehen. 
-die Funktion robotinterface\_read\_state\_blocking() startet den Bereich in dem Datenabfragen an den Roboter gestellt werden können. Daten wie zb. Temperatur der Motoren, der Stand der Gelenke, die Geschwindigkeit der Gelenke, etc. in der Dokumentation beiliegend zu dieser Arbeit sind alle Daten noch einmal aufgelistet. Nachdem die Daten abgefragt werden, kann mit C-API Functionen Position, Geschwindigkeit und Beschleunigungswerte übermittelt werden, die der Roboter durch seinen Regler auszuführen versucht.\\
+Die C-\ac{API} ermöglicht es eine Verbindung zum Roboter zu öffnen und über eigene Funktionen Befehle abzuschicken. Dies erfolgt in einem streng festgelegten Muster.
+
+\begin{lstlisting}[language=C,caption={Beispiel der Kontroll Struktur}, label=lst:robot_control_loop,captionpos=b]
+  while(!endcondition) { // At ROBOT_CONTROLLER_FREQUENCY times per second
+    robotinterface_read_robot_state_blocking();
+    robotinterface_get_actual_positions(&positions);
+     // >>> various calculations <<<
+    robotinterface_command_position_velocity_acceleration( xxx, yyy, zzz);
+    robotinterface_send_robot_command();
+  }
+\end{lstlisting}
+
+die Funktion robotinterface\_read\_state\_blocking() startet den Bereich in dem Datenabfragen an den Roboter gestellt werden können. Daten wie zb. Temperatur der Motoren, der Stand der Gelenke, die Geschwindigkeit der Gelenke, etc. in der Dokumentation beiliegend zu dieser Arbeit sind alle Daten noch einmal aufgelistet. Nachdem die Daten abgefragt wurden, kann mit C-\ac{API} Functionen Position, Geschwindigkeit und Beschleunigungswerte übermittelt werden, die der Roboter durch seinen Regler auszuführen versucht.\\
 Es können jedoch keine Wegpunkte festgelegt werden, die dann automatisch vom Roboter angefahren werden. Dies muss der Entwickler selbst 
-berechnen. Es gibt mehrere Verfahren, in dieser Arbeit sind PTP-Verfahren(sieht Kapitel \ref{ptp_capi_gru}) und Linear Verfarhen(siehe Kapitel \ref{linear_capi_gru}) getestet worden. In der beiliegenden Dokumentation ist aufgeführt wie man dies möglicherweise berwerkstelligen könnte.
+berechnen. Es gibt mehrere Verfahren, in dieser Arbeit sind \ac{PTP}-Verfahren und Linear Verfarhen(siehe Kapitel \ref{bewegungsprofile_gru}) getestet worden. In der beiliegenden Dokumentation ist aufgeführt wie man dies möglicherweise berwerkstelligen könnte.
 \\\\
-Zum Abschluss wird die Function robotinterface\_send() aufgerufen die dafür sorgt, dass der Acht millisekundentakt eingehalten wird und die Befehle an den Roboter weiterleitet. Falls die Acht Millisekunden überschritten werden, wird der Roboter in einen Sicherheitsmodus gesetzt
+Zum Abschluss wird die Function robotinterface\_send() aufgerufen die dafür sorgt, dass der Acht Millisekundentakt eingehalten wird und die Befehle an den Roboter weiterleitet. Falls die Acht Millisekunden überschritten werden, wird der Roboter in einen Sicherheitsmodus gesetzt
 und der Roboter wird angehalten.\\
-Wenn so etwas im UR-Kontroller passiert, kann der Anwender diese wieder abschalten wenn alles in Ordnung ist. Dies muss mit der C-API selbst geschrieben werden. Die API liefert hierfür auch funktionen. Das die richtigen Richtlinien aber auch eingehalten werden, muss von dem wechsel des Sicherheitsmodus in den normalen Modus eine Benutzerabfrage verlangt werden.
+Wenn so etwas im UR-Kontroller passiert, kann der Anwender diese wieder abschalten wenn alles in Ordnung ist. Dies muss mit der C-\ac{API} selbst geschrieben werden. Die C-\ac{API} liefert hierfür auch Funktionen. Das die richtigen Richtlinien aber auch eingehalten werden, muss von dem Wechsel des Sicherheitsmodus in den normalen Modus eine Benutzerabfrage verlangt werden.
 
 \subsection{Bewegungsprofile}
-\label{ptp_capi_gru}
+\label{bewegungsprofile_gru}
 
-PTP Verfahren 
+\ac{PTP} Verfahren 
 
 Um den Roboter bestimmten Wegpunkten abfahren zu lassen, muss man die Bewegungsprofile selbst berechnen und ǘber die C-API an den Roboter im 125Hz Takt übergeben. Das PTP Verfahren setzt dabei vorraus das die einzelnen Positionen der Gelenke bekannt sind. Der Wert ist angegeben in radiant. Die Zielposition
 

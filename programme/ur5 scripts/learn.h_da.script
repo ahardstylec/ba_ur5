@@ -1,0 +1,104 @@
+def myProg():
+  set_analog_inputrange(0, 0)
+  set_analog_inputrange(1, 0)
+  set_analog_inputrange(2, 1)
+  set_analog_inputrange(3, 0)
+  set_analog_outputdomain(0, 0)
+  set_analog_outputdomain(1, 0)
+  set_tool_voltage(24)
+  set_runstate_outputs([])
+  set_payload(0.1)
+  set_gravity([0.0, 0.0, 9.82])
+  global richtung=False
+  global a_max = d2r(40)
+  global v_max = d2r(60)
+  global blue_deg = [d2r(79.34), d2r(-130.29), d2r(-108.28), d2r(-31.43), d2r(-90.0), d2r(-1.02)]
+
+  def rotate_axis(a, b):
+    rotationPos=p[0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    a= d2r(a)
+    if b == 1:
+      rotationPos = p[0.0, 0.0, 0.0, a, 0.0, 0.0]
+    elif b == 2:
+      rotationPos = p[0.0, 0.0, 0.0, 0.0, a, 0.0]
+    elif b == 3:
+      rotationPos = p[0.0, 0.0, 0.0, 0.0, 0.0, a]
+    end
+    movel(pose_add(get_actual_tcp_pose(), rotationPos), a=0.5, v=0.1)
+  end
+
+  def move_toy():
+    schleife_1 = 4
+    while schleife_1 > 0:
+      while digital_in[1] == False:
+        sync()
+      end
+      r = d2r(71.299)
+      pos = get_actual_joint_positions()
+      pos= [pos[0], pos[1], pos[2], pos[3], pos[4], pos[5]+r]
+      movej(pos, a=a_max, v=v_max)
+      schleife_1=schleife_1-1
+    end
+  end
+
+  def justify_height():
+    global justieren = request_boolean_from_primary_client("roboter justieren?")
+    varmsg("justieren", justieren)
+    while (justieren ==  True ):
+      global richtung = request_boolean_from_primary_client("hoch ~> ja ; runter ~> nein")
+      varmsg("richtung", richtung)
+      # wait until button 1 is pressed
+      while digital_in[1] == False:
+        sync()
+      end
+      justify_handler= run justify()
+      while digital_in[1] == True:
+        sync()
+      end
+      kill justify_handler
+      blue_deg= get_actual_joint_positions()
+      justieren = request_boolean_from_primary_client("roboter erneut justieren?")
+      varmsg("justieren", justieren)
+    end
+  end
+
+  def spieler_erst():
+    neu = request_boolean_from_primary_client("Neuen Spieler erstellen?")
+    name = request_string_from_primary_client("Name des Spielers?")
+    if neu == True:
+      socket_send_string("new_patient")
+    socket_send_string(name)
+
+  thread justify():
+    if direction  ==  True:
+      move_z=0.5
+    else:
+      move_z=-0.5
+    end
+    movel(pose_add(get_actual_tcp_pose(), p[0.0,0.0, move_z, 0.0,0.0,0.0]), a=0.1, v=0.15)
+  end
+
+  start_var = request_boolean_from_primary_client("program starten?")
+  varmsg("start_var", start_var)
+  data_server = socket_connect("141.100.101.48", 8000)
+
+  if start_var == True:
+    movej(blue_deg, a=a_max, v=v_max)
+    global p_name = request_string_from_primary_client("name des patienten?")
+    varmsg("p_name", p_name)
+    justify_height()
+    # global red_deg = get_inverse_kin(pose_add(get_actual_tcp_pose(), p[0.0,0.0,0.0, d2r(-40),0.0,0.0]))
+    while start_var == True:
+      movej(blue_deg, a=a_max, v=v_max)
+      popup("Wenn Wuerfel entleet ist, kann losgelegt werden(Mit Button 1 den Wuerfel drehen.)", "Nachricht", False, False)
+      move_toy()
+      movej(red_deg, a=a_max, v=v_max)
+      rotate_axis(-40, 1)
+      move_toy()
+      start_var = request_boolean_from_primary_client("erneut beginnen?")
+      varmsg("start_var", start_var)
+    end
+  end
+  popup("programm wird beendet", "Nachricht", False, False)
+  socket_close()
+end

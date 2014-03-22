@@ -1,4 +1,4 @@
-\chapter{Konzept}
+\chapter{Evaluierungskonzept}
 \label{konzept_kon}
 
 \section{Anwendungsbeispiel}
@@ -19,12 +19,12 @@ Daten der Anwender sind z.B Name, Alter, bestimmte Positionen im RoboterProgramm
 \label{sec:save_data_polyscope_kon}
 
 In der Polyscope Software oder in einem URScript Programm, können Daten die von den Benutzern erstellt oder erhoben werden nicht persistent
-gespeichert werden. Hierzu muss eine Zweite Anwendung Entwickelt werden, auf die sich das URScript oder URP Programm verbindet und die Daten zum persistenten speichern versendet.
+gespeichert werden. Hierzu muss eine zweite Anwendung Entwickelt werden, auf die sich das URScript oder URP Programm verbindet und die Daten zum persistenten speichern versendet.
 \\
 In Polyscope und URScript muss sehr aufwendig mit den vorhandenen Script Befehlen eine Socket Verbindung aufgebaut werden.
-Damit diese Zwei Programme miteinander Kommunizieren können muss ein gemeinsames Protokoll mit bestimmten Befehlen festgelegt werden.
+Damit diese Zwei Programme miteinander Kommunizieren können muss ein gemeinsames Protokoll mit bestimmten Befehlen festgelegt werden. Es ist möglich Text, Zahlen oder Dezimalzahlen zu versenden und zu empfangen. Es kann nur eins dieser drei Typen versendet, von dem aber beliebig viele. 
 
 \subsection{Speichern über Eigene API}
 \label{save_data_own_api_kon}
 
-Mit der Eigenen API muss keine zweite Software entwickelt werden, da die API auf einem Client Rechner läuft und dort die Daten persistent gespeichert werden können. Es muss im Anwendungsprogramm eine verbindung zu einer Datenbank aufgebaut werden und dort können die Daten gespeichert werden.
+Mit der Eigenen API muss keine zweite Software entwickelt werden, da die API auf einem Client Rechner läuft und dort die Daten persistent gespeichert werden können. Es muss im Anwendungsprogramm eine Verbindung zu einer Datenbank aufgebaut werden und dort können die Daten gespeichert werden.

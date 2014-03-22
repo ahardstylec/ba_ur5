@@ -6,61 +6,54 @@
 \BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 6
 \BOOKMARK [1][-]{section.2.1}{Roboter-Mensch-Kollaboration}{chapter.2}% 7
 \BOOKMARK [2][-]{subsection.2.1.1}{Richtlinien}{section.2.1}% 8
-\BOOKMARK [1][-]{section.2.2}{Ur5 Roboter}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.2.1}{Eigenschaften}{section.2.2}% 10
-\BOOKMARK [2][-]{subsection.2.2.2}{System Aktualisieren}{section.2.2}% 11
+\BOOKMARK [1][-]{section.2.2}{UR5 Roboter}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.1}{Kinematik}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.2}{Peripherie}{section.2.2}% 11
 \BOOKMARK [2][-]{subsection.2.2.3}{Datensicherung}{section.2.2}% 12
-\BOOKMARK [1][-]{section.2.3}{\334bersicht der Programmierschnittstellen}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Programmierschnittstellen vom UR5}{chapter.2}% 13
 \BOOKMARK [1][-]{section.2.4}{Kriterien f\374r die Bewertung der Schnittstellen}{chapter.2}% 14
 \BOOKMARK [1][-]{section.2.5}{URControl}{chapter.2}% 15
 \BOOKMARK [2][-]{subsection.2.5.1}{Konfiguration des URControllers}{section.2.5}% 16
 \BOOKMARK [2][-]{subsection.2.5.2}{Echtzeit Schnittstelle}{section.2.5}% 17
-\BOOKMARK [2][-]{subsection.2.5.3}{Secondary und Primary Schnittselle}{section.2.5}% 18
+\BOOKMARK [2][-]{subsection.2.5.3}{Secondary und Primary Schnittstelle}{section.2.5}% 18
 \BOOKMARK [2][-]{subsection.2.5.4}{Polyscope}{section.2.5}% 19
 \BOOKMARK [1][-]{section.2.6}{C-API}{chapter.2}% 20
 \BOOKMARK [2][-]{subsection.2.6.1}{Kontrollstruktur}{section.2.6}% 21
-\BOOKMARK [2][-]{subsection.2.6.2}{PTP Verfahren}{section.2.6}% 22
-\BOOKMARK [2][-]{subsection.2.6.3}{Linear Verfahren}{section.2.6}% 23
-\BOOKMARK [0][-]{chapter.3}{Konzept}{}% 24
-\BOOKMARK [1][-]{section.3.1}{Anwendungsbeispiel}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.2}{Speichern der Anwendungsdaten}{chapter.3}% 26
-\BOOKMARK [2][-]{subsection.3.2.1}{Speichern \374ber Polyscope und URScript}{section.3.2}% 27
-\BOOKMARK [2][-]{subsection.3.2.2}{Speichern \374ber Eigene API}{section.3.2}% 28
-\BOOKMARK [0][-]{chapter.4}{Realisierung}{}% 29
-\BOOKMARK [1][-]{section.4.1}{TCP Server mit Datenbank zum dauerhaften speichern der Daten}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.2}{C-API}{chapter.4}% 31
-\BOOKMARK [2][-]{subsection.4.2.1}{gel\366ste Aufgabe}{section.4.2}% 32
-\BOOKMARK [2][-]{subsection.4.2.2}{Aufgetretene Probleme}{section.4.2}% 33
-\BOOKMARK [1][-]{section.4.3}{Polyscope}{chapter.4}% 34
-\BOOKMARK [2][-]{subsection.4.3.1}{Programmierung}{section.4.3}% 35
-\BOOKMARK [2][-]{subsection.4.3.2}{Benutzer Interaktion}{section.4.3}% 36
-\BOOKMARK [2][-]{subsection.4.3.3}{Test und Fehlersuche im Programm}{section.4.3}% 37
-\BOOKMARK [2][-]{subsection.4.3.4}{Aufwand der Programmierung}{section.4.3}% 38
-\BOOKMARK [1][-]{section.4.4}{URScript}{chapter.4}% 39
-\BOOKMARK [2][-]{subsection.4.4.1}{Laden des Scripts auf den Controller}{section.4.4}% 40
-\BOOKMARK [2][-]{subsection.4.4.2}{Programmierung}{section.4.4}% 41
-\BOOKMARK [2][-]{subsection.4.4.3}{Test und Fehlersuche im Programm}{section.4.4}% 42
-\BOOKMARK [2][-]{subsection.4.4.4}{Benutzer Interaktion}{section.4.4}% 43
-\BOOKMARK [2][-]{subsection.4.4.5}{Aufwand der Programmierung}{section.4.4}% 44
-\BOOKMARK [1][-]{section.4.5}{Anwendung mit Eigener API}{chapter.4}% 45
-\BOOKMARK [2][-]{subsection.4.5.1}{Adapter zur Secondary Schnittstelle}{section.4.5}% 46
-\BOOKMARK [2][-]{subsection.4.5.2}{Programmierung mit Adapter}{section.4.5}% 47
-\BOOKMARK [2][-]{subsection.4.5.3}{Benutzer Interaktion}{section.4.5}% 48
-\BOOKMARK [2][-]{subsection.4.5.4}{Test und Fehlersuche im Programm}{section.4.5}% 49
-\BOOKMARK [2][-]{subsection.4.5.5}{Aufwand der Programmierung}{section.4.5}% 50
-\BOOKMARK [0][-]{chapter.5}{Ergebnis}{}% 51
-\BOOKMARK [1][-]{section.5.1}{Vergleich der Schnittstellen}{chapter.5}% 52
-\BOOKMARK [1][-]{section.5.2}{Nicht erreichte Ziele}{chapter.5}% 53
-\BOOKMARK [2][-]{subsection.5.2.1}{C-API}{section.5.2}% 54
-\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 55
-\BOOKMARK [1][-]{section.6.1}{Ausblick}{chapter.6}% 56
-\BOOKMARK [1][-]{section.6.2}{Zusammenfassung}{chapter.6}% 57
-\BOOKMARK [2][-]{subsection.6.2.1}{C-API}{section.6.2}% 58
-\BOOKMARK [2][-]{subsection.6.2.2}{UR-Script}{section.6.2}% 59
-\BOOKMARK [2][-]{subsection.6.2.3}{Polyscope}{section.6.2}% 60
-\BOOKMARK [2][-]{subsection.6.2.4}{Eigene API}{section.6.2}% 61
-\BOOKMARK [2][-]{subsection.6.2.5}{Grobe Empfehlung, welche Schnittstelle, bei welchem Anwendungsfall verwendet werden soll}{section.6.2}% 62
-\BOOKMARK [0][-]{appendix*.7}{Literaturverzeichnis}{}% 63
-\BOOKMARK [0][-]{appendix.B}{Glossar}{}% 64
-\BOOKMARK [0][-]{appendix.C}{Quellcode}{}% 65
-\BOOKMARK [1][-]{section.C.1}{Speichern der daten \374ber TCP in der Datenbank}{appendix.C}% 66
+\BOOKMARK [2][-]{subsection.2.6.2}{Bewegungsprofile}{section.2.6}% 22
+\BOOKMARK [0][-]{chapter.3}{Evaluierungskonzept}{}% 23
+\BOOKMARK [1][-]{section.3.1}{Anwendungsbeispiel}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.2}{Speichern der Anwendungsdaten}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.2.1}{Speichern \374ber Polyscope und URScript}{section.3.2}% 26
+\BOOKMARK [2][-]{subsection.3.2.2}{Speichern \374ber Eigene API}{section.3.2}% 27
+\BOOKMARK [0][-]{chapter.4}{Realisierung}{}% 28
+\BOOKMARK [1][-]{section.4.1}{C-API}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.1.1}{Beispielanwendung}{section.4.1}% 30
+\BOOKMARK [2][-]{subsection.4.1.2}{Aufgetretene Probleme}{section.4.1}% 31
+\BOOKMARK [1][-]{section.4.2}{Polyscope}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.2.1}{Programmierung}{section.4.2}% 33
+\BOOKMARK [2][-]{subsection.4.2.2}{Benutzer Interaktion}{section.4.2}% 34
+\BOOKMARK [2][-]{subsection.4.2.3}{Test und Fehlersuche im Programm}{section.4.2}% 35
+\BOOKMARK [2][-]{subsection.4.2.4}{Aufwand der Programmierung}{section.4.2}% 36
+\BOOKMARK [2][-]{subsection.4.2.5}{TCP Server mit Datenbank zum dauerhaften speichern der Daten}{section.4.2}% 37
+\BOOKMARK [1][-]{section.4.3}{URScript}{chapter.4}% 38
+\BOOKMARK [2][-]{subsection.4.3.1}{Laden des Scripts auf den Controller}{section.4.3}% 39
+\BOOKMARK [2][-]{subsection.4.3.2}{Programmierung}{section.4.3}% 40
+\BOOKMARK [2][-]{subsection.4.3.3}{Test und Fehlersuche im Programm}{section.4.3}% 41
+\BOOKMARK [2][-]{subsection.4.3.4}{Benutzer Interaktion}{section.4.3}% 42
+\BOOKMARK [2][-]{subsection.4.3.5}{Aufwand der Programmierung}{section.4.3}% 43
+\BOOKMARK [1][-]{section.4.4}{Anwendung mit eigener API}{chapter.4}% 44
+\BOOKMARK [2][-]{subsection.4.4.1}{Adapter zur Secondary Schnittstelle}{section.4.4}% 45
+\BOOKMARK [2][-]{subsection.4.4.2}{Programmierung mit Adapter}{section.4.4}% 46
+\BOOKMARK [2][-]{subsection.4.4.3}{Benutzer Interaktion}{section.4.4}% 47
+\BOOKMARK [2][-]{subsection.4.4.4}{Test und Fehlersuche im Programm}{section.4.4}% 48
+\BOOKMARK [2][-]{subsection.4.4.5}{Aufwand der Programmierung}{section.4.4}% 49
+\BOOKMARK [0][-]{chapter.5}{Ergebnis}{}% 50
+\BOOKMARK [1][-]{section.5.1}{Vergleich der Schnittstellen}{chapter.5}% 51
+\BOOKMARK [1][-]{section.5.2}{Nicht erreichte Ziele}{chapter.5}% 52
+\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 53
+\BOOKMARK [1][-]{section.6.1}{Zusammenfassung}{chapter.6}% 54
+\BOOKMARK [1][-]{section.6.2}{Ausblick}{chapter.6}% 55
+\BOOKMARK [0][-]{appendix*.15}{Literaturverzeichnis}{}% 56
+\BOOKMARK [0][-]{appendix.B}{Glossar}{}% 57
+\BOOKMARK [0][-]{appendix.C}{Quellcode}{}% 58
+\BOOKMARK [1][-]{section.C.1}{Speichern der Daten \374ber TCP in der Datenbank}{appendix.C}% 59

@@ -1,0 +1,56 @@
+# def main():
+#   global start_var = False
+#   global start_var = request_boolean_from_primary_client("program starten?")
+#   varmsg("start_var", start_var)
+#   global angle=40
+
+#   def rotate_axis_x(a):
+#     actual_forward = get_actual_tcp_pose()
+#     if( a == 1 ):
+#       movel(pose_add(actual_forward, p[0.0, 0.0, 0.0, d2r(angle), 0.0, 0.0]), a=0.5, v=0.1, t=0, r=0)
+#     elif( a == 2 ):
+#       movel(pose_add(actual_forward, p[0.0, 0.0, 0.0, 0.0, d2r(angle), 0.0]), a=0.5, v=0.1, t=0, r=0)
+#     elif( a == 0 ):
+#       movel(pose_add(actual_forward, p[0.0, 0.0, 0.0, 0.0, 0.0, d2r(angle)]), a=0.5, v=0.1, t=0, r=0)
+#     end
+#   end
+
+#   def move_start():
+#     movej(blue_deg, a=a_max, v=v_max)
+#   end
+
+#   if start_var == True:
+#     global a_max = d2r(20)
+#     global v_max = d2r(20)
+#     blue_deg = [d2r(79.34), d2r(-130.29), d2r(-108.28), d2r(-31.43), d2r(-90.0), d2r(-1.02)]
+#     move_start()
+#     actual_forward = get_actual_tcp_pose()
+#     rotate_axis_x(1)
+#     move_start()  
+#     angle=angle*-1.0
+#     rotate_axis_x(1)
+#     move_start()
+#     angle=angle*-1.0
+#     rotate_axis_x(1)
+#     move_start()
+#     angle=angle*-1.0
+#     rotate_axis_x(1)
+#     move_start()
+#   end
+# end
+def move_down():
+    set_digital_out(0, True)
+    set_digital_out(1, True)
+    thread move():
+        movel(pose_add(get_actual_tcp_pose(), p[0.0,0.0,{}, 0.0,0.0,0.0]), a=0.1, v=0.15)
+    end
+
+    move_handler= run move()
+
+    while get_digital_out(1) == True:
+        sync()
+    end
+    kill move_handler
+    set_digital_out(1, False)
+    set_digital_out(0, False)
+end
