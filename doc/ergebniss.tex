@@ -1,13 +1,70 @@
 \chapter{Ergebnis}
 \label{sec:ErreichteErgebnisse}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Im Folgenden Kapitel werden die Schnittstellen werden gegenübergestellt und verglichen. desweiterem werden die nicht erreichten Ziele erörtert.
 
-\section{Vergleich der Schnittstellen}
+\section{Zusammenfassung der Kriterien für die Schnittstellen}
 \label{sec:vgl_schnittstellen}
 
-TODO !! Tabellen vergleich
+\begin{minipage}[h]
+ {\textwidth}
+ %\centering %wenn tabelle mittig ausgerichtet sein soll
+  \begin{tabular}{|p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|}
+   \hline
+   	\textbf{Kriterium} & \textbf{C-API} & \textbf{Polyscipe} \\ \hline \hline 
+      Programmierbarkeit & Wegen unterste Ebene Schwer zu Realisieren. & Leichter einstieg zum Programmieren dieses Roboters. Für einfache Programme die beste möglichkeit den Roboter am schnellsten einzusetzen.
+     \\ 
+     \hline 
+     Benutzerinteraktion &  Es ist möglich ein Übersichtliches Interface zu entwickeln, mit dem der Benutzer den Roboter steuern könnte. & 
+     Keine Komplexen Menüs möglich. Nur einfachste Popup Nachrichten sind möglich um mit dem Benutzer zu interagieren.
+     \\ 
+     \hline  
+     Debuggen\&Test & Es können Tests geschrieben werden, die aber alle nur mit Simulation des Roboters laufen & Keine eigenen Tests möglich. Getestet wird immer Live an Roboter. In der Simulation fehlen wichtige komponenten wie zb. Digitale Ein und Ausgänge. Fehler im Programm werden aber angezeigt.
+     \\ 
+     \hline 
+     Aufwand & Sehr großer Aufwand von nöten. Es muss alles selbst Entwickelt werden. Ein eigener Controller der als Verbindung vom Programm zum Roboter dient und die Berechnungen der Bewegungsprofile selbst ausführt. & Je Komplexer das Programm wird, desto schwieriger wird das Verständniss und der Aufwand steigt für jede gewollte interaktion mit dem Nutzer.
+     \\ 
+     \hline 
+  \end{tabular}
+ \captionof{table}{Zusammenfassung der Evaluierungskriterien für C-API und Polyscope}
+ \label{tab:vgl_interfaces}
+\end{minipage}
+
+\begin{minipage}[h]
+ {\textwidth}
+ %\centering %wenn tabelle mittig ausgerichtet sein soll
+  \begin{tabular}{|p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|}
+   \hline
+   	\textbf{Kriterium} & \textbf{URScript} & \textbf{Eigener Adapter}\\ \hline \hline 
+
+     Programmierung & Nicht zu 100\% vollständige aber verständnissvolle Dokumentation ermöglicht es einen schnellen Einstieg. Entwicklerwerkzeuge und \ac{Syntax Highlighting} erleichtern die Übersicht und Vereinfachen die Programmierung & Eine Etablierte Programmiersprache erleichtert das Programmieren deutlich. Vorhandene \ac{Software Bibliotheken} erleichtern das Programmieren.
+     \\ 
+     \hline 
+	 Benutzerinteraktion & Die möglichkeiten bleiben wie bei Polyscope mit Popups beschränkt & Viele möglichkeiten. Es können \ac{GUI}'s erstellt werden, die komplexe Formulare und Menüs bieten. Ergmöglicht die Beste interaktion mit dem Roboter
+     \\ 
+     \hline 
+     Debuggen\&Test & Mit gegebenen Mitteln sind automatische Tests nicht möglich. Es kann nur wie mit Polyscope Live getestet werden. Bei Fehler in der Syntax gibt es kein Feedback des Controllers & Automatische Test sind möglich. Fehler werden leicht gefunden, da die Etablierten Programmiersprachen den Programmcode nach Syntaxfehlern durchsuchen und anzeigen.
+     \\ 
+     \hline 
+     Aufwand & Aufwand hällt sich für kleinere Anwendungen im Rahmen. Je Komplexer das Programm wird, desto schwerer und aufwändiger macht es einen diese Scriptsprache. & Anfangs ein Großer Aufwand von nöten. Nachdem aber der Eigene Adapter zum URController geschrieben ist, ist es leicht gute und sichere Programme zu schreiben.
+     \\ 
+     \hline 
+  \end{tabular}
+ \captionof{table}{Zusammenfassung der Evaluierungskriterien für C-API und Polyscope}
+ \label{tab:vgl_interfaces}
+\end{minipage}
+
+\section{Vergleich der Schnittstellen}
+
+Die C-API ist eine sehr Hardware nahe Schnittstelle zum Roboter. Der Aufwand der Betrieben werden muss ist sehr hoch. Diese Schnittstelle sollte nur in seltenen Fällen eingesetzt werden. Nur Spezielle Anwendungen die zur Laufzeit anpassungen an Bewegungssteuerung geben sollten diese Schnittstelle nutzen.
+\\\\
+Die Polyscope Software ist sehr gut geeignet für wenige komplexe Anwendungen, die keine bzw. kaum Benutzerinteraktion erfordern. Für eine Kollaboration die auf Interaktion angewiesen ist, ist diese Schnittstelle nicht zu empfehlen. Diese Schnittstelle kann nur sehr aufwändig auf persistente Daten zugreifen und speichern.
+\\\\
+URScript bietet in sachen Benutzerinteraktion nur die gleichen möglichkeiten, wie die Polyscope Software(siehe \ref{ur_script_user_interaction}). Es ist Übersichtlicher und verständlicher gegenüber Polyscope Anwendungen zu entwickeln, jedoch bietet die eigens entwickelte Scriptsprache nur wenig möglichkeiten, wirklich komplexe Anwendungen zu entwickeln.
+\\\\
+Der Eigene Adapter zum URController vereint die Vorteile einer etablierten Programmiersprache, nämlich vorhandene Entwicklerwerkzeuge und \ac{Software Bibliotheken} zu nutzen. Der Roboter wird über URScriptbefehle gesteuert wird, deshalb muss nicht tief in die Robotersteuerung eingreifen werden wie bei der C-API. Wenn viel Benutzerinteraktion von nöten ist, ist diese Schnittstelle zu empfehlen.
 
 \section{Nicht erreichte Ziele}
 \label{sec:Nicht_erreichte_ziele}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Mit der C-API konnte keine Anwendung geschrieben werden, die für die Evaluierungskriterien vollständige Daten liefern.

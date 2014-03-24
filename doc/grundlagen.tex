@@ -117,7 +117,7 @@ Dieser Controller dient als Schnittstelle von der Roboter Hardware und der Softw
 Den URController kann man bevor er gestartet wird in einer Konfigurationsdatei konfigurieren.
 Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der Ur5 oder Ur10 Serie gehören. Folgend ist ein ausschnitt der Konfigurationsdatei zu sehen
 \\
-\begin{lstlisting}
+\begin{lstlisting}[caption={Ausschnitt aus der Datei urcontrol.conf zur vorkonfigurierung des UR5 Roboters}, label=lst:ur5_conf ,captionpos=b]
 [Config]
 # masterboard_version, 0 = Zero-series, 1 = One-series, 
 # 3 = Pause function enabled, 4 = first cb2 version, 5 = ur10 support added
@@ -137,7 +137,7 @@ Die Echtzeit Schnittstelle ist eine TCP Schnittstelle, die im 125Hz Takt Nachric
 
 TODO !! listing echtzeit schnittstelle
 
-Die Client Anwendung muss nun dieses Packet parsen(Parser: Informationen zerlegen und entsprechend interpretieren.)
+Die Client Anwendung muss nun dieses Packet \ac{parsen}
 Wie Die einzelnen Packete aussehen sind im Anhang mitgeliefert
 Für die Programmiersprache C wurde ein ein Parser dafür geschrieben.
 
@@ -148,7 +148,7 @@ Das Secondary Interface ist eine \ac{TCP/IP} Schnittstelle, die in einem 60Hz Ta
 Die Nachrichten beinhalten Informationen wie z.B. den Roboter Status, die Positionen der einzelenen Joints.
 Die volle Beschreibung welche Informationen gesendet werden ist im anhang zu finden.
 
-Zusätzlich, kann die Secondary Schnittstelle befehle von Verbundenen Rechnern empfangen. 
+Zusätzlich, kann die Secondary Schnittstelle Befehle von Verbundenen Rechnern empfangen. 
 Diese Befehle können URScript befehle sein. Ein ganzes Programm aus URScript befehlen oder spezielle zugelassene Befehle die den Roboter Status verändern.
 
 \begin{figure}[ht]

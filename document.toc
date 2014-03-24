@@ -30,31 +30,32 @@
 \contentsline {section}{\numberline {4.1}C-API}{23}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Beispielanwendung}{23}{subsection.4.1.1}
 \contentsline {subsection}{\numberline {4.1.2}Aufgetretene Probleme}{25}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Polyscope}{25}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Programmierung}{25}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Benutzer Interaktion}{26}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Test und Fehlersuche im Programm}{27}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.2}Polyscope}{26}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Programmierung}{26}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Benutzer Interaktion}{27}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Test und Fehlersuche im Programm}{28}{subsection.4.2.3}
 \contentsline {subsection}{\numberline {4.2.4}Aufwand der Programmierung}{28}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{28}{subsection.4.2.5}
-\contentsline {section}{\numberline {4.3}URScript}{28}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Laden des Scripts auf den Controller}{28}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Programmierung}{29}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{29}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Benutzer Interaktion}{29}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.2.5}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{29}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}URScript}{29}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Laden des Scripts auf den Controller}{29}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Programmierung}{30}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{30}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Benutzer Interaktion}{30}{subsection.4.3.4}
 \contentsline {subsection}{\numberline {4.3.5}Aufwand der Programmierung}{30}{subsection.4.3.5}
-\contentsline {section}{\numberline {4.4}Anwendung mit eigener API}{30}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Adapter zur Secondary Schnittstelle}{30}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Programmierung mit Adapter}{30}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Benutzer Interaktion}{31}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Test und Fehlersuche im Programm}{31}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{31}{subsection.4.4.5}
-\contentsline {chapter}{\numberline {5}Ergebnis}{32}{chapter.5}
-\contentsline {section}{\numberline {5.1}Vergleich der Schnittstellen}{32}{section.5.1}
-\contentsline {section}{\numberline {5.2}Nicht erreichte Ziele}{32}{section.5.2}
-\contentsline {chapter}{\numberline {6}Fazit}{33}{chapter.6}
-\contentsline {section}{\numberline {6.1}Zusammenfassung}{33}{section.6.1}
-\contentsline {section}{\numberline {6.2}Ausblick}{33}{section.6.2}
-\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{34}{appendix*.15}
-\contentsline {chapter}{\numberline {B}Glossar}{35}{appendix.B}
-\contentsline {chapter}{\numberline {C}Quellcode}{36}{appendix.C}
-\contentsline {section}{\numberline {C.1}Speichern der Daten \IeC {\"u}ber TCP in der Datenbank}{36}{section.C.1}
+\contentsline {section}{\numberline {4.4}Anwendung mit Adapter zu URScript}{31}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Adapter zur Secondary Schnittstelle}{31}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Programmierung mit Adapter}{32}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Benutzer Interaktion}{32}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Test und Fehlersuche im Programm}{32}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{33}{subsection.4.4.5}
+\contentsline {chapter}{\numberline {5}Ergebnis}{34}{chapter.5}
+\contentsline {section}{\numberline {5.1}Zusammenfassung der Kriterien f\IeC {\"u}r die Schnittstellen}{36}{section.5.1}
+\contentsline {section}{\numberline {5.2}Vergleich der Schnittstellen}{38}{section.5.2}
+\contentsline {section}{\numberline {5.3}Nicht erreichte Ziele}{38}{section.5.3}
+\contentsline {chapter}{\numberline {6}Fazit}{39}{chapter.6}
+\contentsline {section}{\numberline {6.1}Zusammenfassung}{39}{section.6.1}
+\contentsline {section}{\numberline {6.2}Ausblick}{39}{section.6.2}
+\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{40}{appendix*.21}
+\contentsline {chapter}{\numberline {B}Glossar}{41}{appendix.B}
+\contentsline {chapter}{\numberline {C}Quellcode}{43}{appendix.C}
+\contentsline {section}{\numberline {C.1}Speichern der Daten \IeC {\"u}ber TCP in der Datenbank}{43}{section.C.1}

@@ -9,8 +9,8 @@ In folgendem Kapitel wird beschrieben wie die C-API genutzt werden konnte, um de
 \subsection{Beispielanwendung}
 \label{sub:capi-problems_rel}
 
-Es konnte eine Anwendung erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Es konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist. 
-\\
+Es konnte eine Anwendung erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Desweiteren konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist. 
+\\\\
 Bevor man Daten vom Roboter Abfragen kann, muss eine Verbindung zum Roboter hergestellt werden, diesem einen hochfahren und initialisieren lassen. Folgend werden diese Vorgänge beschrieben.\\
 Mit dem Befehl ``robotinterface\_open()'' kann die Verbindung zum Roboter hergestellt werden.
 \\
@@ -78,27 +78,28 @@ for(i=0; i < move_pva_packet.interpolations+1; i++){
 \subsection{Aufgetretene Probleme}
 \label{sub:capi-problems_rel}
 
-Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstop. Die Abweichung der Stromstärke wird zu groß. Dies kann Analysiert werden, wenn man sich den Durchschnitt der Soll und Ist Werte der Stromstärke ansieht.(liehe Abbildung \ref{average_of_target_and_actual})
 
-\begin{figure}[ht]
+Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstop. Die Abweichung der Position wird zu groß. Dies kann Analysiert werden, wenn man sich den Durchschnitt der Soll und Ist Werte der Position ansieht(siehe Abbildung \ref{fig:position_join1}).
+
+\begin{figure}[H]
   \centering
-    \includegraphics[width=0.5\textwidth]{pic/average_of_target_and_actual.png}
-      \caption[Soll und Ist Werte der Stromstärke]{Abbildung zeigt die Soll und Ist Werte der Stromstärke, bis zum Sicherheitsstop des Roboters}
-      \label{fig:average_of_target_and_actual}
+    \includegraphics[width=0.8\textwidth]{pic/joint1_position_capi.png}
+      \caption[Soll und Ist Werte der Position]{Abbildung zeigt die Soll und Ist Werte der Position, bis zum Sicherheitsstop des Roboters}
+      \label{fig:position_join1}
 \end{figure}
 
-Die Abweichung ist besonders beim 2. Gelenk hoch, da dieser am meisten Gewicht tragen muss und dort die Erdanziehung am meisten wirkt. Deswegen wird angenommen, dass der Regeler die Dynamik der Gravitation nicht mitrechnet, oder falsch berechnet. Dies kann man auch beobachten, wenn man dem Roboter in einer Schleife immer die aktuellen Ist Werte mit übergibt. Der Roboter kann nicht die Aktuelle Position halten.
+Die Abweichung ist besonders beim 2. Gelenk hoch, da dieser am meisten Gewicht tragen muss und dort die Erdanziehung am meisten wirkt. Deswegen wird angenommen, dass der Regeler die Dynamik der Gravitation falsch berechnet.
 
 \section{Polyscope}
 \label{sec:Polyscope_rel}
 
 \subsection{Programmierung}
-\label{programmierung_polyscope_rel}
+\label{sub:programmierung_polyscope_rel}
 
 Die Programmierung findet meist nur auf dem Touch Tablet statt. Ein neues Programm fängt mit einem leeren Ereigniss Baum an. Es kann per touch eingabe alle möglichen Funktionen, die die Script Sprache bietet dem Baum Hinzugefügt werden. Wenn das Programm abläuft, werden von der Wurzel an die Befehle abgearbeitet.
-Wie in Abbildung \ref{programm_in_polyscope} zu sehen ist, ist die Ansicht des Programmbaumes sehr unübersichtlich.
+Wie in Abbildung \ref{fig:programm_in_polyscope} zu sehen ist, ist die Ansicht des Programmbaumes sehr unübersichtlich.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{pic/polyscope_program_tree.png}
       \caption[Programm Baum in Polyscope]{Ein Ausschnitt aus einem Programm Baum in Polyscope}
@@ -118,7 +119,7 @@ Die möglichkeiten zur Interaktion mit dem Benutzer sind sehr begrenzt. Die Soft
 Als Nachricht, ja/nein Fragen, oder Text abfragen. Der Benutzer kann dann mit einen Text oder wählen zweier ja/nein buttons anworten. In Abbildung \ref{polyscope_popup} 
 ist als Beispiel eine Nachricht und eine Ja/Nein Popup zu sehen.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{pic/popup_question.png}
       \caption[Popup in Polyscipe]{Abbildung zeigt Zwei verschiedene Arten von Popups in Polyscope}
@@ -142,15 +143,15 @@ Kleine Programme in Polyscope sind sehr schnell geschrieben. Mit dem Touch Panel
 \subsection{TCP Server mit Datenbank zum dauerhaften speichern der Daten}
 \label{tcp_datentank_sicherung_rel}
 
-Um mit Polyscope und URScript erhobene Daten zu Speichern wurde ein kleiner TCP Server geschrieben, der eine verbindung zulässt und Daten in einer Datenbank Speichert. Die Daten sind Objectorientiert, und werden von dem Server erstellt. 
+Um mit Polyscope und URScript erhobene Daten zu Speichern wurde ein kleiner TCP Server geschrieben, der eine Verbindung zulässt und Daten in einer Datenbank Speichert. Die Daten sind Objectorientiert, und werden von dem Server erstellt. 
 In Polyscope und URScript gibt es keine Objectorientierung, deshalb musss dort alles nacheinander angefragt werden. 
-
 
 \section{URScript}
 \label{sec:ur_script_rel}
 
 Die URScriptsprache ist sehr stark an Python gelent. Es wird auf Einrückung des Textes geachtet.
 Das Manual von Univeral Robots umfasst alle nötigen Funktionen um Komplexe Aufgaben zu Erfüllen.
+Um Daten Persistent zu speichern, muss wie in Polyscope eine socket verbindung zu einer Zweiten Anwendung aufgebaut werden, die die Daten speichert(siehe \ref{tcp_datentank_sicherung_rel})
 
 \subsection{Laden des Scripts auf den Controller}
 \label{load_script_rel}
@@ -177,35 +178,87 @@ Programmiert werden kann das Script mit allen vorhandenen Textverarbeitungsprogr
 \subsection{Test und Fehlersuche im Programm}
 \label{ur_script_debuggen}
 
-Nach dem senden des Programms an den URController ist die einzigste möglichkeit zu sehen ob das Programm fehler enthällt, wenn der Controller kein ``Programm läuft'' Bit setzt. Man erhällt keine Nachrichten was nicht in Ordnung ist, falls das Scriptprogramm nicht abläuft.
+Nach dem senden des Programms an den URController, ist die einzigste möglichkeit zu sehen ob das Programm Fehler enthällt, wenn der Controller kein ``Programm läuft'' Bit setzt. Man erhällt keine Nachrichten was nicht in Ordnung ist, falls das Scriptprogramm nicht abläuft. Um fehler auszuschließen muss also der Bereich Isoliert werden
 
 \subsection{Benutzer Interaktion}
 \label{ur_script_user_interaction}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Das Manual für URScript nennt nur die \ac{Popup} Funktion um dem Anwender eine Nachricht zu geben. Andere möglichkeiten zur Interaktion ist im Manual nicht angegeben. Jedoch Bietet Polyscope auch über verschiedene \ac{Popup} Arten möglichkeiten zur Interaktion. Diese \ac{Popup}s gibt es auch für URScript. Die Befehle können aus dem von Polyscope erzeugtem URScriptcode von \ac{URP} Programmen eingesehen werden. Somit bestehen genau die gleichen möglichkeiten wie bei Polyscope.
 
 \subsection{Aufwand der Programmierung}
 \label{ur_script_aufwand}
 
-\section{Anwendung mit eigener API}
+Im Gegensatz zur Polyscope Software, kann mit einem Textverarbeitungsprogramm sehr schnell mit guter Übersicht ein größeres Komplexes Programm erstellt werden. Es können auch leicht Kommentare eingefügt werden und der Code ist im späteren Fall leichter Verständlich für neue Programmierer. Da schwer Fehler zu entdecken sind und deswegen häufig das Programm Manuell getestet werden muss, ist dennoch bei großen Anwendungen ein größerer Zeitlicher Aufwandt von nöten.
+
+\section{Anwendung mit Adapter zu URScript}
 \label{sec:script_hoerherer_schicht_rel}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Das Secondary Interface(siehe \ref{urcontrol_spi_gru}) kann benutzt werden um einzelne Scriptbefehle an den Roboter zu senden. Auf diesem Prinzip aufbauend, kann ein Adapter für jede Programmiersprache entwickelt werden, der Befehle an den Roboter sendet. Dadurch kann nun ein Anwendungsprogramm in dieser Sprache mit all seinen Vorteilen Entwickelt werden. Im folgenden Kapitel wird dies anhand einer Beispielanwendung in Python beschrieben und analysiert.
 
 \subsection{Adapter zur Secondary Schnittstelle}
 \label{beschreibung_script_hoeher_schicht}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Die Scriptbefehle zur Secondary Schnittstelle, werden als text übergeben. Der Adapter, wird in Form einer Klasse geschrieben, die die einzelnen Script Befehle in Funktionen mitliefert(siehe Listing \ref{lst:secondary_interface_scriptfunctions}).
+
+\begin{lstlisting}[caption={Ausschnitt zeigt Funktionen die Scriptbefehle in der Adapter Klasse umgesetzt}, label=lst:urscipt_program_lst ,captionpos=b] 
+
+# moveJ moves the Robot with joint coordinates
+# positions should include the target joint positions
+def movej(self, positions=None, a_max=None, v_max=None):
+    if positions is None:
+        positions= self.get_joint_positions()
+    if a_max is None:
+        a_max=math.radians(40)
+    if v_max is None:
+        v_max=math.radians(60)
+    message="""movej(%s,a=%f,v=%f)
+    """%(positions,a_max,v_max)
+    print message
+    self.start_program(message)
+
+# movel moves the Robot Linear in kartesian coordinates
+# positions should contain the target tcp positions
+def movel(self, positions=None, a_max=None, v_max=None):
+    if positions is None:
+        positions= self.get_tcp_positions()
+    if a_max is None:
+        a_max=math.radians(40)
+    if v_max is None:
+        v_max=math.radians(60)
+    message="""movel(p%s,a=%f,v=%f)
+    """%(positions, a_max, v_max)
+    print message
+    self.start_program(message)
+\end{lstlisting}
+
+ Diese Klasse Verbindet sich mit der Sc
+Der Aufwand für ein Programm ist mit einer Eigenen API anfangs deutlich höher als die URScriptsprache direkt zu nutzen. Es muss erst ein Adapter geschrieben und getestet werden, bevor die eigentliche Anwendung geschrieben werden kann. 
+Nach dieser Hürde, ist es aber sehnittstelle und Arbeitet nacheinander eine Queue ab, die Befehle an die Schnittstelle beinhaltet.
+In einer Anwendung kann nun diese Klasse benutzt werden um den Roboter zu steuern.
 
 \subsection{Programmierung mit Adapter}
 \label{programmierung_mit_hoerherer_schicht}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Sobald der Adapter in einer etablierten Programmierspracche programmiert ist, und Fehler in diesem so gut wie ausgeschlossen sind, kann nun mit normalen Softwareentwicklungstechniken leicht ein Programm geschrieben werden. In dieser Arbeit wurde Python gewählt. Python bietet viele Bibliotheken und Design Patterns die das Programmieren vereinfacht. Es können Entwicklungswerkzeuge benutzt werden um einen leichten Überblick über das Programm zu behalten.
 
 \subsection{Benutzer Interaktion}
 \label{user_interaktion_mit_hoerherer_schicht}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Eine etablierte Programmiersprache bietet natürlich auch alle möglichen Bibliotheken und möglichkeiten ein Interaktives und leicht verständliches Interface zu erstellen. Es ist möglich übersichtliche Formulare zu erstellen mit denen Informationen vom Anwender zu erfassen. Abbildung \ref{fig:hda_urcontrol_gui} zeigt ein Interface, mit dem der Roboter primitiv in aĺle Richtungen gesteuert werden kann. Für eine Umsetzung von allen möglichkeiten wurde wegen Zeitmangels verzichtet.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/hda_urcontrol_gui.png}
+      \caption[Selbsterstelltes GUI zur Steuerung des UR5 Roboters]{Startfenster des selbst erstellten GUI's zur Steuerung des UR5 Roboters. Es ist möglich den Roboter in alle Richtungen Linear zu bewegen.}
+      \label{fig:hda_urcontrol_gui}
+\end{figure}
 
 \subsection{Test und Fehlersuche im Programm}
 \label{debuggen_mit_hoeherer schicht}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Nach Ausschluss der Fehler in dem Adapter, kann in der Programmiersprache vorhandene Unittest oder andere automatische Tests für das Programm verwendet werden. Die Schnittstelle zum Roboter wird hier durch einen sogenannten \ac{Mock} erstetzt. Dadurch kann auch offline getestet werden. Fehler werden in den etablierten Programmiersprachen so leichten gefunden und lokalisiert. \ac{Interpreter} Programmiersprachen analysieren den Softwarecode auf Fehler in der Syntax, bevor sie ihn ausführen. Auch Sprachen die keine \ac{Interpreter} benutzen und den Softwarecode Kompilieren, testen den Code auf Syntaxfehler und zeigen Fehler frühzeitig an.
 
 \subsection{Aufwand der Programmierung}
 \label{eigene_api_aufwand}
+
+Der Aufwand für ein Programm ist mit einer Eigenen API anfangs deutlich höher, gegenüber den anderen Methoden. Es muss erst ein Adapter geschrieben und getestet werden, bevor die eigentliche Anwendung geschrieben werden kann. 
+Nach dieser Hürde, ist es aber sehr leicht Programme zu erstellen die auf den Adapter zugreifen um den Roboter zu steuern.
