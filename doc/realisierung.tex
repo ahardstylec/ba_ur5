@@ -75,12 +75,16 @@ for(i=0; i < move_pva_packet.interpolations+1; i++){
 }
 \end{lstlisting}
 
+\subsection{Interpolation}
+\label{sub:interpolation_rel}
+
+Um die Koordinaten im Raum des \acs{TCP} zu berechnen muss die Inverse Kindematik des Roboters bekannt sein. 
+
 \subsection{Aufgetretene Probleme}
 \label{sub:capi-problems_rel}
 
-
 Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstop. Die Abweichung der Position wird zu groß. Dies kann Analysiert werden, wenn man sich den Durchschnitt der Soll und Ist Werte der Position ansieht(siehe Abbildung \ref{fig:position_join1}).
-
+\\
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{pic/joint1_position_capi.png}
@@ -193,7 +197,7 @@ Im Gegensatz zur Polyscope Software, kann mit einem Textverarbeitungsprogramm se
 \section{Anwendung mit Adapter zu URScript}
 \label{sec:script_hoerherer_schicht_rel}
 
-Das Secondary Interface(siehe \ref{urcontrol_spi_gru}) kann benutzt werden um einzelne Scriptbefehle an den Roboter zu senden. Auf diesem Prinzip aufbauend, kann ein Adapter für jede Programmiersprache entwickelt werden, der Befehle an den Roboter sendet. Dadurch kann nun ein Anwendungsprogramm in dieser Sprache mit all seinen Vorteilen Entwickelt werden. Im folgenden Kapitel wird dies anhand einer Beispielanwendung in Python beschrieben und analysiert.
+Im folgenden Kapitel wird das Anwendungsbeispiel in Python entwickelt. Um zu zeigen, wie die Benutzerinteraktion mit einem Eigenen Adapter gestaltet werden kann, wurde hierfür die \ac{Software Bibliothek} ``TKinter'', mit der man sehr schnell eine GUI entwickeln kann. Die Interaktion erfolgt durch Buttons, die dann über den Adapter Befehle an den Roboter sendet.
 
 \subsection{Adapter zur Secondary Schnittstelle}
 \label{beschreibung_script_hoeher_schicht}
@@ -230,10 +234,31 @@ def movel(self, positions=None, a_max=None, v_max=None):
     self.start_program(message)
 \end{lstlisting}
 
- Diese Klasse Verbindet sich mit der Sc
-Der Aufwand für ein Programm ist mit einer Eigenen API anfangs deutlich höher als die URScriptsprache direkt zu nutzen. Es muss erst ein Adapter geschrieben und getestet werden, bevor die eigentliche Anwendung geschrieben werden kann. 
-Nach dieser Hürde, ist es aber sehnittstelle und Arbeitet nacheinander eine Queue ab, die Befehle an die Schnittstelle beinhaltet.
+Diese Klasse öffnet zwei Verbindungen zur Secondary Schnittstelle. Eine zum empfangen der Datenpackete und eine zum senden der URScript Befehle. Der Adapter besitzt eine \ac{Queue} um die Befehle, nacheinander zur Secondary Schnittstelle zu senden. Da Befehle eventuell viel Zeit benötigen, um ausgeführt zu werden, wird gewartet bis der Befehl abgearbeitet oder abgebrochen wurde. Erst dann wird in der Queue der nächste Befehl an die Schnittstelle gesendet.
+
+\begin{lstlisting}[caption={Ausschnitt zeigt die Abarbeitung der Queue}, label=lst:adapter_queue ,captionpos=b] 
+while self.__run_flag:
+    DequePrograms.lock.acquire()
+    if(len(self.s_interface.program_queue) > 0):
+        # print("message queue contains messsages %d" % len(self.s_interface.program_queue))
+        message=self.s_interface.program_queue.popleft()
+    else:
+        message=None
+    DequePrograms.lock.release()
+    if(message is not None):
+        SecondSendInterface.send_lock.acquire()
+        self.s_interface.send_messages_queue.append(message)
+        SecondSendInterface.send_lock.release()
+
+        //blocks the thread until URScript finishes
+        self.s_interface.block_program()
+    time.sleep(0.2)
+return 0
+\end{lstlisting}
+
+Schnittstelle und Arbeitet nacheinander eine Queue ab, die Befehle an die Schnittstelle beinhaltet.
 In einer Anwendung kann nun diese Klasse benutzt werden um den Roboter zu steuern.
+Der Aufwand für ein Programm ist mit einer Eigenen API anfangs deutlich höher als die URScriptsprache direkt zu nutzen. Es muss erst ein Adapter geschrieben und getestet werden, bevor die eigentliche Anwendung geschrieben werden kann. 
 
 \subsection{Programmierung mit Adapter}
 \label{programmierung_mit_hoerherer_schicht}
@@ -245,7 +270,7 @@ Sobald der Adapter in einer etablierten Programmierspracche programmiert ist, un
 
 Eine etablierte Programmiersprache bietet natürlich auch alle möglichen Bibliotheken und möglichkeiten ein Interaktives und leicht verständliches Interface zu erstellen. Es ist möglich übersichtliche Formulare zu erstellen mit denen Informationen vom Anwender zu erfassen. Abbildung \ref{fig:hda_urcontrol_gui} zeigt ein Interface, mit dem der Roboter primitiv in aĺle Richtungen gesteuert werden kann. Für eine Umsetzung von allen möglichkeiten wurde wegen Zeitmangels verzichtet.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{pic/hda_urcontrol_gui.png}
       \caption[Selbsterstelltes GUI zur Steuerung des UR5 Roboters]{Startfenster des selbst erstellten GUI's zur Steuerung des UR5 Roboters. Es ist möglich den Roboter in alle Richtungen Linear zu bewegen.}
