@@ -6,25 +6,31 @@
 
 Das Anwendungsbeispiel ist ein Kinderspiel. Dieses Spiel soll die motorischen Fähigkeiten bei Kindern verbessern.
 Gegeben ist ein Kugel mit löschern aus Verschiedenen Formen(Kreis, Oval, Viereck, Trapez, etc.). Zu diesen Formen existieren die Entsprechenden Klötzchen, die entsprechend Groß sind un die Form der Löscher besitzen. Die Aufgabe des Spiel ist es alle Klötzchen in die entsprechende Form zu drücken, bis alle in der Kugel sind.
-\\
-Die Kugel wird an den Kopf des Roboterarms befestigt. Es soll eine Anwendung entwickelt werden, die für den entsprechenden Spieler die Höhe des Roboters einstellt. Der Spieler soll die möglichkeit haben diese Start Position zu verstellen und für sich zu speichern. Bei einem bestimmten Knopf druck soll der Roboter das Loch für die jeweils nächste Form so ausrichten, damit der Mensch das Klötzchen nurnoch einwerfen braucht.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.6\textwidth]{pic/ur5_robot.png}
+      \caption[Kinder Geschicklichkeitsspiel]{Kinderspiel zur Evaluierung der Software Schnittstellen}
+      \label{fig:kinderspiel}
+\end{figure}
+
+Die Kugel wird an den Kopf des Roboterarms befestigt. Es soll eine Anwendung entwickelt werden, die für den entsprechenden Spieler die Höhe des Roboters einstellt. Der Spieler soll die Möglichkeit haben, die Startposition zu verstellen und für sich zu speichern. Bei einem bestimmten Knopf druck soll der Roboter das Loch für die jeweils nächste Form so ausrichten, damit der Mensch das Klötzchen nur noch einwerfen braucht.
 
 \section{Speichern der Anwendungsdaten}
 \label{sec:save_of_data_kon}
 
-Um Auf bestimmte Menschen zugeschnittene Bewegungsabläufe zu machen muss der Roboter Daten über den Anwender kennen. Diese sollten persistent gespeichert werden, damit bei einem wechsel des Anwenders die Daten nicht verloren gehen.
-Daten der Anwender sind z.B Name, Alter, bestimmte Positionen im RoboterProgramm, etc.
-
-\subsection{Speichern über Polyscope und URScript}
+Um auf bestimmte Menschen zugeschnittene Bewegungsabläufe zu machen muss der Roboter Daten über den Anwender kennen. Diese sollten persistent gespeichert werden, damit bei einem Wechsel des Anwenders die Daten nicht verloren gehen.
+Daten der Anwender sind z.B. Name, Alter, bestimmte Positionen im Roboter Programm, etc.
+\\\\
+\textbf{Speichern über Polyscope und URScript}
 \label{sec:save_data_polyscope_kon}
-
+\\\\
 In der Polyscope Software oder in einem URScript Programm, können Daten die von den Benutzern erstellt oder erhoben werden nicht persistent
-gespeichert werden. Hierzu muss eine zweite Anwendung Entwickelt werden, auf die sich das URScript oder URP Programm verbindet und die Daten zum persistenten speichern versendet.
-\\
+gespeichert werden. Hierzu muss eine zweite Anwendung entwickelt werden, auf die sich das URScript oder \ac{URP} Programm verbindet und die Daten zum persistenten speichern versendet.
 In Polyscope und URScript muss sehr aufwendig mit den vorhandenen Script Befehlen eine Socket Verbindung aufgebaut werden.
-Damit diese Zwei Programme miteinander Kommunizieren können muss ein gemeinsames Protokoll mit bestimmten Befehlen festgelegt werden. Es ist möglich Text, Zahlen oder Dezimalzahlen zu versenden und zu empfangen. Es kann nur eins dieser drei Typen versendet, von dem aber beliebig viele. 
-
-\subsection{Speichern über Eigene API}
+Damit diese zwei Programme miteinander Kommunizieren können muss ein gemeinsames Protokoll mit bestimmten Befehlen festgelegt werden. Es ist möglich Text, Zahlen oder Dezimalzahlen zu versenden und zu empfangen. Es kann nur eins dieser drei Typen versendet, von dem aber beliebig viele. 
+\\\\
+\textbf{Speichern über Eigene API}
 \label{save_data_own_api_kon}
-
+\\\\
 Mit der Eigenen API muss keine zweite Software entwickelt werden, da die API auf einem Client Rechner läuft und dort die Daten persistent gespeichert werden können. Es muss im Anwendungsprogramm eine Verbindung zu einer Datenbank aufgebaut werden und dort können die Daten gespeichert werden.

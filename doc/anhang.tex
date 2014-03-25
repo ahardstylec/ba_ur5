@@ -1,455 +1,145 @@
 \chapter{Quellcode}
 \label{quellcode}
 
+\section{Bewegungsprofile geloggt über die Echtzeitschnittstelle \& geplottet in Matlab}
+\label{sec:profile_polyscope_rci}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/joint3_current_polyscope.png}
+      \caption[Stromstärke wärend der Bewegung des 3. Gelenks]{}
+      \label{fig:acceleration_profile_rci}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/joint5_position_polyscope.png}
+      \caption[Position der Soll und Ist Werte für das 5. Gelenk]{}
+      \label{fig:position_joint5_rci}
+\end{figure}
+
+\section{Bewegungsprofile geloggt in der C-\ac{API}}
+\label{sec:profiles_with_capi}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\textwidth]{pic/joint1_position_capi.png}
+      \caption[Soll und Ist Werte der Position des 2.Gelenks]{}
+      \label{fig:joint_1_position_capi}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=1\textwidth]{pic/joint5_position_capi.png}
+      \caption[Position der Soll und Ist Werte für das 5. Gelenk]{}
+      \label{fig:position_joint5_capi}
+\end{figure}
+
 \section{Speichern der Daten über TCP in der Datenbank}
 \label{save_data_tcp_code_gru}
 
-% \begin{lstlisting}[
-%     caption={JSON-Dokument der Repräsentation eines Users},
-%     label=lst:format_ii_gru,
-%     captionpos=t]
-% {
-%     "name": "Max Mustermann",
-%     "E-Mail": "max.mustermann@bsp.de"
-% }
-% \end{lstlisting}
+\begin{lstlisting}
+#!/usr/bin/env python2.7
+
+from my_utils import connection, Player, get_ip
+import socket
+import signal
+import sys
+import os
+
+class SaveDataInterface():
+    def __init__(self, interface="localhost"):
+        self.__run_flag=False
+        self.interface = interface
+        self.socket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        ip = get_ip(interface)
+        if ip is None:
+            ip="127.0.0.1"
+        else:
+            ip = get_ip(interface)
+        port = 8000
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        try:
+            self.socket.bind((ip, port))
+            print "server is listen on %s:%d" %(ip, port)
+            self.socket.listen(1)
+        except socket.error, e:
+            print(e[0])
+            self.socket.close()
+            self.socket=None
+
+    def run(self):
+        self.__run_flag=True
+        # print("starting send interface waiting for queue")
+        while self.__run_flag:
+            if self.socket is not None:
+                conn, addr = self.socket.accept()
+                conn.settimeout(2)
+                print "client connected: {0}".format(addr)
+                player=None
+                while self.__run_flag:
+                    msg = self.read_from_socket(conn)
+                    if msg is not None:
+                        if msg == "new_patient":
+                            # print("wait for new patient name")
+                            name = self.read_from_socket(conn)
+                            player = connection.Player()
+                            player.name = name.rstrip()
+                            player.save()
+                        elif msg == "load_patient":
+                            print("wait for patient name")
+                            name = self.read_from_socket(conn)
+                            player = connection.Player.find_one({'name': name.rstrip()})
+                            if player is not None:
+                                print("send %s"%"1".encode('ascii'))
+                                print("positions %s"%("(%s)"%player.start_pos[1:-1]).encode('ascii'))
+                                conn.send("(1)".encode('ascii'))
+                                conn.send(("(%s)"%player.start_pos[1:-1]).encode('ascii'))
+                            else:
+                                conn.send("(0)".encode('ascii'))
+                        elif msg == "set_patient_data":
+                            # print("wait for player data")
+                            start_position = self.read_from_socket(conn)
+                            player.start_pos=start_position.rstrip()
+                        else:
+                            print("recieved unknown command")
+                    else:   
+                        break
+                conn.close()
+
+        self.socket.close()
+        return 0
+
+    # This Function reads from the Socket conn the next msg checks for errors
+    def read_from_socket(self, conn):
+        msg = None
+        while self.__run_flag:
+            try:
+                msg = conn.recv(1024)
+            except socket.timeout, e:
+                err = e.args[0]
+                # this next if/else is a bit redundant, but illustrates how the
+                # timeout exception is setup
+                if err == 'timed out':
+                    # print 'recv timed out, retry later'
+                    continue
+                else:
+                    print e
+                    msg=None
+            except socket.error, e:
+                print e
+                msg=None
+            else:
+                if len(msg) == 0:
+                    msg=None
+                    break
+                else:
+                    print msg
+                    break
+        return msg
+
+
+sdi = SaveDataInterface(interface="eth0")
 
-% \section{User-Daten als XML-Dokument}
-% \label{format_iii_gru}
-
-% \begin{lstlisting}[
-%     caption={XML-Dokument der Repräsentation eines Users}
-%     \label{lst:format_iii_gru},
-%     captionpos=t]
-% <?xml version="1.0" encoding="utf-8"?>
-% <root>
-%     <name>Max Mustermann</name>
-%     <E-Mail>max.mustermann@bsp.de</E-Mail>
-% </root>
-% \end{lstlisting}
-
-% \section{Die Datei settings.py}
-% \label{settings}
-
-% \begin{lstlisting}[caption={Quellcode der globalen Einstellungen im Projekt
-% euSDB}\label{lst:settings_py},captionpos=t]
-% import os
-% SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-
-% DEBUG = True
-% TEMPLATE_DEBUG = DEBUG
-
-% ADMINS = (
-%     ('marius', 'mail@pausmarius.de'),
-% )
-
-% DEFAULT_FILE_STORAGE = 'db_file_storage.storage.DatabaseFileStorage'
-
-% MANAGERS = ADMINS
-
-% DATABASES = {
-%     'default': {
-%         'ENGINE': 'django.db.backends.mysql',
-%         'NAME': 'euSDB',
-%         'USER': 'eusdb',
-%         'PASSWORD': 'xxx',
-%         'HOST': '',
-%         'PORT': '',
-%     }
-% }
-
-% HAYSTACK_CONNECTIONS = {
-%     'default': {
-%         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-%         'URL': 'http://127.0.0.1:9200/',
-%         'INDEX_NAME': 'sdb',
-%     },
-% }
-
-% HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
-% ALLOWED_HOSTS = []
-
-% TIME_ZONE = 'Europe/Berlin'
-
-% LANGUAGE_CODE = 'de'
-
-% SITE_ID = 1
-
-% USE_I18N = True
-
-% USE_L10N = True
-
-% USE_TZ = True
-
-% MEDIA_ROOT = ''
-
-% MEDIA_URL = ''
-
-% STATIC_ROOT = ''
-
-% STATIC_URL = '/static/'
-
-% STATICFILES_DIRS = (
-%     os.path.join(SITE_ROOT, '..', 'static'),    
-% )
-
-% STATICFILES_FINDERS = (
-%     'django.contrib.staticfiles.finders.FileSystemFinder',
-%     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-% )
-
-% SECRET_KEY = ')x^+9zw#b@gp0*ig1eq9790!*0g2jt#rwy0zq4y5uixef1j$eu'
-
-% TEMPLATE_LOADERS = (
-%     'django.template.loaders.filesystem.Loader',
-%     'django.template.loaders.app_directories.Loader',
-% )
-
-% MIDDLEWARE_CLASSES = (
-%     'django.middleware.common.CommonMiddleware',
-%     'django.contrib.sessions.middleware.SessionMiddleware',
-%     'django.middleware.csrf.CsrfViewMiddleware',
-%     'django.contrib.auth.middleware.AuthenticationMiddleware',
-%     'django.contrib.messages.middleware.MessageMiddleware',
-% )
-
-% ROOT_URLCONF = 'euSDB.urls'
-
-% WSGI_APPLICATION = 'euSDB.wsgi.application'
-
-% TEMPLATE_DIRS = (
-%     os.path.join(SITE_ROOT, '..', 'templates'),
-%     os.path.join(SITE_ROOT, 'templates'),
-% )
-
-% INSTALLED_APPS = (
-%     'django.contrib.auth',
-%     'django.contrib.contenttypes',
-%     'django.contrib.sessions',
-%     'django.contrib.sites',
-%     'django.contrib.messages',
-%     'django.contrib.staticfiles',
-%     'django.contrib.admin',
-%     'django.contrib.admindocs',
-%     'chemicals',
-%     'userauth',
-%     'rest_framework',
-% )
-
-
-% LOGIN_URL = '/benutzer/anmelden/'
-% LOGOUT_URL = '/benutzer/abmelden/'
-% LOGIN_REDIRECT_URL = '/'
-
-% LOGGING = {
-%     'version': 1,
-%     'disable_existing_loggers': False,
-%     'filters': {
-%         'require_debug_false': {
-%             '()': 'django.utils.log.RequireDebugFalse'
-%         }
-%     },
-%     'handlers': {
-%         'mail_admins': {
-%             'level': 'ERROR',
-%             'filters': ['require_debug_false'],
-%             'class': 'django.utils.log.AdminEmailHandler'
-%         }
-%     },
-%     'loggers': {
-%         'django.request': {
-%             'handlers': ['mail_admins'],
-%             'level': 'ERROR',
-%             'propagate': True,
-%         },
-%     }
-% }
-
-% REST_FRAMEWORK = {
-%     'DEFAULT_MODEL_SERIALIZER_CLASS':
-%         'rest_framework.serializers.HyperlinkedModelSerializer',
-%     'DEFAULT_RENDERER_CLASSES': (
-%         'rest_framework.renderers.TemplateHTMLRenderer',
-%         'rest_framework.renderers.UnicodeJSONRenderer',
-%         'rest_framework.renderers.XMLRenderer',
-%         'rest_framework.renderers.BrowsableAPIRenderer',
-%     ),
-%     'DEFAULT_AUTHENTICATION_CLASSES': (
-%         'rest_framework.authentication.BasicAuthentication',
-%         'rest_framework.authentication.SessionAuthentication',
-%     ),
-
-%     'PAGINATE_BY': 2,
-%     'PAGINATE_BY_PARAM': 'page_size',
-%     'MAX_PAGINATE_BY': 100
-% }    
-%  \end{lstlisting}
- 
-% \section{Die models-Klassen der chemicals-APP}
-% \label{model_py}
-
-% \begin{lstlisting}[
-%     caption={Inhalt der gesamten models-Klasse der chemicals-APP}
-%     \label{lst:model_py},
-%     captionpos=t]
-% # encoding: utf-8
-% from django.db import models
-% from django.utils.timezone import now
-
-% class CompanyData(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     name = models.CharField(u'Name', max_length=255, default='-')
-%     slug_company = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'Hersteller'
-%         verbose_name_plural = u'Hersteller'
-
-%     def __unicode__(self):
-%         return self.slug_company
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(CompanyData, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             CompanyData.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class Hazard(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     hazard_symbol_text = models.CharField(u'Hazard_symbol_text', 
-%         max_length=255, default='-')    
-%     slug_hazard = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'Hazard Symbol'
-%         verbose_name_plural = u'Hazard Symbole'
-
-%     def __unicode__(self):
-%         return self.hazard_symbol_text
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(Hazard, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             Hazard.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class Ghs(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False) 
-%     ghs_indicator_danger_text = models.CharField(u'Ghs_indicator_danger_text', 
-%         max_length=255, default='-')    
-%     slug_ghs = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'GHS Gefahren Kennung'
-%         verbose_name_plural = u'GHS Gefahren Kennungen'
-
-%     def __unicode__(self):
-%         return self.ghs_indicator_danger_text
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(Ghs, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             Ghs.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class Eu(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     eu_indicator_danger = models.CharField(u'Eu_indicator_danger', 
-%         max_length=255)
-%     eu_indicator_danger_text_de = models.CharField(
-%         u'Eu_indicator_danger_text_de', max_length=255, default='-')
-%     slug_eu = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'EU Gefahren Kennung'
-%         verbose_name_plural = u'EU Gefahren Kennungen'
-
-%     def __unicode__(self):
-%         return self.eu_indicator_danger_text_de
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(Eu, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             Eu.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class P_phrase(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     p_phrase = models.CharField(u'P_phrase', max_length=255)
-%     p_phrase_text_de = models.CharField(u'P_phrase_text_de', 
-%         max_length=255, default='-')
-%     slug_p_phrase = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'P-Satz'
-%         verbose_name_plural = u'P-Saetze'
-
-%     def __unicode__(self):
-%         return self.p_phrase_text_de
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(P_phrase, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             P_phrase.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class S_phrase(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     s_phrase = models.CharField(u'S_phrase', max_length=255)
-%     s_phrase_text_de = models.CharField(u'S_phrase_text_de', 
-%         max_length=255, default='-')
-%     slug_s_phrase = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'S-Satz'
-%         verbose_name_plural = u'S-Saetze'
-
-%     def __unicode__(self):
-%         return self.s_phrase_text_de
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(S_phrase, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             S_phrase.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class R_phrase(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     r_phrase = models.CharField(u'R_phrase', max_length=255)
-%     r_phrase_text_de = models.CharField(u'R_phrase_text_de', 
-%         max_length=255, default='-')
-%     slug_r_phrase = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'R-Satz'
-%         verbose_name_plural = u'R-Saetze'
-
-%     def __unicode__(self):
-%         return self.r_phrase_text_de
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(R_phrase, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             R_phrase.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class H_phrase(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     h_phrase = models.CharField(u'H_phrase', max_length=255)
-%     h_phrase_text_de = models.CharField(u'H_phrase_text_de', 
-%         max_length=255, default='-')
-%     slug_h_phrase = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'H-Satz'
-%         verbose_name_plural = u'H-Saetze'
-
-%     def __unicode__(self):
-%         return self.h_phrase_text_de
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(H_phrase, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             H_phrase.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-
-% class Chemical(models.Model):
-%     id = models.AutoField(u'id', primary_key=True, editable=False)
-%     name = models.CharField(u'Name', max_length=255, default='')
-%     company = models.ForeignKey(CompanyData, 
-%         verbose_name=u'Hersteller-Firma', related_name='chemicals')
-%     hazard = models.ManyToManyField(Hazard, verbose_name=u'Hazard Symbol')
-%     ghs = models.ManyToManyField(Ghs, verbose_name=u'GHS Gefahren Kennung')
-%     eu = models.ManyToManyField(Eu, verbose_name=u'EU Gefahren Kennung')
-%     p_phrase = models.ManyToManyField(P_phrase, verbose_name=u'P-Satz')
-%     s_phrase = models.ManyToManyField(S_phrase, verbose_name=u'S-Satz')
-%     r_phrase = models.ManyToManyField(R_phrase, verbose_name=u'R-Satz')
-%     h_phrase = models.ManyToManyField(H_phrase, verbose_name=u'H-Satz')    
-%     slug_chemical = models.SlugField(unique=True)
-%     previous_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Vorgaenger_von')
-%     replacement_data = models.OneToOneField('self', blank=True, 
-%         null=True, related_name='Nachfolger_von', editable=False)
-%     last_update = models.DateTimeField(editable=False)
-
-%     class Meta:
-%         verbose_name = u'Chemikalie'
-%         verbose_name_plural = u'Chemikalien'
-
-%     def __unicode__(self):
-%         return self.slug_chemical
-
-%     def save(self, *args, **kwargs):
-%         if not self.id:
-%             self.created = now()
-%         self.last_update = now()
-%         super(Chemical, self).save(*args, **kwargs)
-%         if self.previous_data:
-%             Chemical.objects.filter(pk=self.previous_data.id).
-%                 update(replacement_data=self)
-% \end{lstlisting}
+sdi.run()
+\end{lstlisting}

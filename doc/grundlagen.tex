@@ -43,21 +43,20 @@ Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
 Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca. 85 cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet.
 Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
 \\\\
-Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. Beim starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den \ref{URControl}. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner Herstellt.
+Um den Rechner anzusprechen existiert bei Lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. Beim Starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den \ref{URController}. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner herstellt.
 \\\\
-Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann ein Software Update der Polyscope Software gemacht werden.
+Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann die Polyscope Software aktualisiert werden.
 
 \subsection{Peripherie}
 \label{sub:ur_update_gru}
 
-Zwei Arten von Updates sind hier zu unterscheiden. Zum einen kann das Linux System geupdatet werden. Auf normalem wege über den Packetmanager des Systems, oder wenn man das neuste Image von Universal Robots runterläd und dann das System neu aufspielt. Hier ist jedoch zu beachten, dass dabei alle Daten verloren gegangen werden. Deshalb sollte eine Datensicherung vorgenommen werden. Wie dies geschieht wird im darauf folgenden Unterkapitel beschrieben(\ref{ur_datensicherung_gru}).
+Zwei Arten von Updates sind hier zu unterscheiden. Zum einen kann das Linux System aktualisiert werden. Dies ist über dem Paketmanager des Systems möglich, oder wenn man das neuste Image von Universal Robots herunterlädt, und dann das System neu aufspielt. Hier ist jedoch zu beachten, dass dabei alle Daten verloren gegangen werden. Deshalb sollte eine Datensicherung vorgenommen werden. Wie dies geschieht wird im darauf folgenden Unterkapitel beschrieben(\ref{ur_datensicherung_gru}).
 \\\\
-Updates für dem Roboter müssen allerdings manuell gemacht werden. Hierfür müssen die aktuellen Updates von der Homepage von Universal Robots runtergeladen werden. Die Update-Datei muss mit der dateiendung .urup auf einen USB Stick mit einem FAT32 Dateisystem abgelegt werden.\\\\
-Nachdem der USB Stick an das Linuy System angeschlossen ist, kann von der Polyscope Software das Update ausgeführt werden. Einstellungen->Updates.\\
+Updates für den Roboter müssen allerdings manuell gemacht werden. Hierfür müssen die aktuellen Updates von der Homepage von Universal Robots heruntergeladen werden. Die Update-Datei muss mit der Dateiendung ``.urup'' auf einen USB-Stick mit einem FAT-32 Dateisystem abgelegt werden.\\\\
+Nachdem der USB-Stick an das Linux System angeschlossen ist, kann von der Polyscope Software das Update ausgeführt werden. Einstellungen->Updates.\\
 Im Administrativen Modus können nach dem Update die Firmware's der einzelnen Gelenkcontroller geupdatet werden. Die werden im Update mitgeliefert. Die einzelnen Schritte sind in den Dokumentationen beiliegend auf der CD zu finden.
 
-\subsection{Datensicherung}
-\label{sub:ur_datensicherung_gru}
+\textbf{Datensicherung}
 
 Die Daten des Roboters sind abgelegt in root verzeichniss unter 
 
@@ -66,7 +65,7 @@ Die Daten des Roboters sind abgelegt in root verzeichniss unter
 /programs   		#alle geschriebenen Programme unter Polyscope
 \end{lstlisting}
 
-Es ist möglich die Dateien per USB Stick zu sichern oder über Programme wie ``SCP'' über das Netzwerk zu Kopieren.
+Es ist möglich die Dateien per USB-Stick zu sichern oder über Programme wie ``\ac{SCP}'' über das Netzwerk zu Kopieren.
 
 \section{Programmierschnittstellen vom UR5}
 \label{sec:programm_api_uebersicht_gru}
@@ -79,7 +78,7 @@ Der Ur5 Roboter kann auf drei Ebenen angesprochen werden.\\
 \item C-Api
 \end{itemize}
 
-In dieser Arbeit wird versucht über alle Ebenen den Roboten Roboter anzusprechen. 
+In dieser Arbeit wird versucht über alle Ebenen den Roboter Roboter anzusprechen.
 Es wird außerdem aufbauend auf URScript ein eigener Adapter entwickelt, um eine neue Möglichkeit zu untersuchen, um den Roboter anzusteuern.
 Der Adapter wird für die Programmiersprache Python entwickelt. Gründe hierfür werden im Kapitel für diese Schnittstelle erörtert(siehe \ref{sec:urscript_adapter})
 
@@ -103,11 +102,11 @@ Die Schnittstellen werden wie folgt bewertet:
 \item Aufwendung
 \end{itemize}
 
-Wie schwer ist es ein Programm für die einzelnen Schnittsellen zu entwickeln.
-Kann der Mensch das Programm Intuitiv bedienen? Wichtig hierbei ist, dass der Mensch mit dem Roboter Kommunizieren kann. Dies geschieht am besten, wenn der Mensch nicht Kryptisch was eingeben muss. Der Mensch braucht Anwenderfreundliche Programme.
+Wie schwer ist es ein Programm für die einzelnen Schnittstellen zu entwickeln.
+Kann der Mensch das Programm intuitiv bedienen? Wichtig hierbei ist, dass der Mensch mit dem Roboter Kommunizieren kann. Dies geschieht am besten, wenn der Mensch nicht kryptisch was eingeben muss. Der Mensch braucht Anwenderfreundliche Programme.
 \\\\
 Beim Entwickeln von Programmen ist es wichtig, dass der Entwickler Fehler im Programm entdeckt um diese schnell zu beheben.
-Je Größer und Komplexer das Programm wird, desto schwieriger wird es Fehler zu entdecken.
+Je größer und komplexer das Programm wird, desto schwieriger wird es Fehler zu entdecken.
 
 \section{URControl}
 \label{sec:ur_control_gru}
@@ -118,8 +117,13 @@ Dieser Controller dient als Schnittstelle von der Roboter Hardware und der Softw
 \subsection{Konfiguration des URControllers}
 \label{urcontrol_rci_gru}
 
-Den URController kann man bevor er gestartet wird in einer Konfigurationsdatei konfigurieren.
-Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der Ur5 oder Ur10 Serie gehören. Folgend ist ein ausschnitt der Konfigurationsdatei zu sehen
+Den URController kann man Konfigurieren. Die Konfigurationsdatei ist abgelegt im Folgenden Verzeichniss:
+\begin{lstlisting}
+\root\.urcontrol\urcontrol.conf
+\end{lstlisting}
+
+Beim Starten des Controllers wird diese Konfigurationsdatei eingelesen.
+Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der UR5 oder UR10 Serie gehören. Folgend ist ein ausschnitt der Konfigurationsdatei zu sehen
 \\
 \begin{lstlisting}[caption={Ausschnitt aus der Datei urcontrol.conf zur vorkonfigurierung des UR5 Roboters}, label=lst:ur5_conf ,captionpos=b]
 [Config]
@@ -137,7 +141,7 @@ robot_sub_type = 1
 \subsection{Echtzeit Schnittstelle}
 \label{urcontrol_rci_gru}
 
-Die Echtzeit Schnittstelle ist eine \acs{TCP/IP} Schnittstelle, die im 125Hz Takt Datenpackete an die verbundenen Clients sendet. Diese Schnittstelle kann keine Daten von den Clients empfangen. Wenn man diese Datenpackete auslesen will, muss man die einzelnen Datentypen in dem Packet \acs{parsen}. Eine Besonderheit ist noch, dass die Byte-Reihenfolge der Datenpackete im \acs{Big-Endian Format} über das Netwerk übertragen werden. Da der Unix Rechner und der Client Rechner die Byte-Reihenfolge \acs{Little-Endian Format} benutzen, muss diese für die einzelnen Datentypen umgewandelt werden. Hierfür wurde in C ein Struct geschrieben und eine Funktion die das Datenpacket für das Struct in die richtige Byte Reihenfolge umwandelt.
+Die Echtzeit Schnittstelle ist eine \acs{TCP/IP} Schnittstelle, die im 125Hz Takt Datenpakete an die verbundenen Clients sendet. Diese Schnittstelle kann keine Daten von den Clients empfangen. Wenn man diese Datenpakete auslesen will, muss man die einzelnen Datentypen in dem Packet \acs{parsen}. Eine Besonderheit ist noch, dass die Byte-Reihenfolge der Datenpakete im \acs{Big-Endian Format} über das Netzwerk übertragen werden. Da der Unix Rechner und der Client Rechner die Byte-Reihenfolge \acs{Little-Endian Format} benutzen, muss diese für die einzelnen Datentypen umgewandelt werden. Hierfür wurde in C ein Struct geschrieben und eine Funktion die das Datenpaket für das Struct in die richtige Byte Reihenfolge umwandelt.
 
 \begin{lstlisting}[caption={Umwandlung der Byte-Order für Packet über die Echtzeit-Schnittstellen }, label=lst:rci_parse ,captionpos=b]
 struct ur5_data_rci * parse_ur5_realtime_ci(struct ur5_realtime_ci *ur5_rci, char *buf){
@@ -155,35 +159,35 @@ struct ur5_data_rci * parse_ur5_realtime_ci(struct ur5_realtime_ci *ur5_rci, cha
 }
 \end{lstlisting}
 
-In der Dokumentation beiliegend in der CD ist eine komplette Beschreibung, wie die Schnittstelle angesprochen wird und wie die Daten benutzt werden, um den Roboter zu analysieren. Im anhang ab \ref{TODO ref zum anhang} sind Beispiele von Bewegungsprofilen, die von der Echtzeit Schnittstelle ausgelesen wurden, um zu erfahren wie der URController im gegensatz zu der Software mit der C-API die Bewegungsprofile berechnet.
+In der Dokumentation beiliegend in der CD ist eine komplette Beschreibung, wie die Schnittstelle angesprochen wird und wie die Daten benutzt werden, um den Roboter zu analysieren. Im Anhang(\ref{sec:profile_polyscope_rci}) sind Beispiele von Bewegungsprofilen, die von der Echtzeit Schnittstelle ausgelesen wurden, um zu erfahren wie der URController im Gegensatz zu der Software mit der C-\ac{API} die Bewegungsprofile berechnet.
 
 \subsection{Secondary und Primary Schnittstelle}
 \label{urcontrol_spi_gru}
 
-Das Secondary Interface ist eine \acs{TCP/IP} Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Clients sendet.
-Die Nachrichten beinhalten Informationen wie z.B. den Roboter Status oder die Positionen der einzelenen Joints.
-Die komplette Beschreibung welche Informationen gesendet werden sind im Anhang(siehe \ref{TODO ref zu anhang Secondary Interface}).
+Die Secondary Schnittstelle ist eine \acs{TCP/IP} Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Clients sendet.
+Die Nachrichten beinhalten Informationen wie z. B. den Roboter Status oder die Positionen der einzelnen Joints.
+Die komplette Beschreibung welche Informationen gesendet werden sind beiliegend in der CD enthalten.
 
-Zusätzlich, kann die Secondary Schnittstelle Befehle von Verbundenen Rechnern empfangen. 
+Zusätzlich, kann die Secondary Schnittstelle Befehle von Verbundenen Rechnern empfangen.
 Diese Befehle können URScript Befehle sein. Ein ganzes Programm in URScript geschrieben oder spezielle zugelassene Befehle die den Roboter Status verändern.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{pic/secondary_datapackage_scheme.png}
-      \caption[Schema des Datenpackets gesendet von der Secondary Schnittstelle]{Grobe Darstellung wie das Nachrichten Packet gesendet von der Secondary/Primary Schnittstelle.}
+      \caption[Schema des Datenpakets gesendet von der Secondary Schnittstelle]{Grobe Darstellung wie die Datenpakete gesendet von der Secondary/Primary Schnittstelle.}
       \label{fig:datascheme_of_secondary_interface}
 \end{figure}
 
 \subsection{Polyscope}
 \label{urcontrol_polyscope_gru}
 
-Polyscope ist eine Anwendung die auf dem Roboter-Rechner läuft. Die Anwendung verbindet sich per \acs{TCP/IP} auf den URControl(\ref{sec:ur_control_gru}) und sendet URScript befehler an den Roboter um diesen zu steuern.
-Diese Anwendung wird auf dem Tablet angezeigt. Hierrüber kann man per Touch eingabe ein neues \acs{URP} Programm erstellen. Dieses Programm wird zur Laufzeit in ein Script umgewandelt. Die Polyscope Software schickt nun in Schritten die einzelnen Scriptbefehle an den URControl, der diese ausführt. Im Programmbaum kann eingesehen werden an welchem Schritt das Programm sich befindet.
+Polyscope ist eine Anwendung die auf dem Roboter-Rechner läuft. Die Anwendung verbindet sich per \acs{TCP/IP} auf den URController(\ref{sec:ur_control_gru}) und sendet URScript Befehle an den Roboter um diesen zu steuern.
+Diese Anwendung wird auf dem Tablet angezeigt. Hierüber kann man per Toucheingabe ein neues \acs{URP} Programm erstellen. Dieses Programm wird zur Laufzeit in ein Script umgewandelt. Die Polyscope Software schickt nun in Schritten die einzelnen Script befehle an den URControl, der diese ausführt. Im Programmbaum kann eingesehen werden an welchem Schritt das Programm sich befindet.
 
 \section{C-API}
 \label{sec:rest_prinzip_gru}
 
-Die C-\ac{API} ist von dem Hersteller \acs{UR} eine zur Verfügung gestellte C \acs{Library} mit einer Header Datei, die etwaige Funktionen der Library erklärt. Die Header Datei enthält nicht alle Funktionen, somit sind nicht alle zugänglich. Die C-\acs{API} erlaubt es einen eigenen Controller für den Roboter zu entwickeln. Der für den Roboter zur Verfügung gestellte Controller mit der Polyscope Software und eine anwendung die, die C-\acs{API} benutzt, kann aber nicht gleichzeitig laufen. Es schließen sich also die Programmiersprache URScript  und ein eigener Controller zunächst aus. Es könnte ein eigener Controller entwickelt werden, der die Befehle in URScript selbst interpretiert und diese wie bei dem URControll ausführt. So könnte man die vorhandene Sprache nehmen und diese sogar erweitern.
+Die C-\ac{API} ist von dem Hersteller \acs{UR} eine zur Verfügung gestellte C \acs{Library} mit einer Header Datei, die etwaige Funktionen der Library erklärt. Die Header Datei enthält nicht alle Funktionen, somit sind nicht alle zugänglich. Die C-\acs{API} erlaubt es einen eigenen Controller für den Roboter zu entwickeln. Der für den Roboter zur Verfügung gestellte Controller mit der Polyscope Software und eine Anwendung die, die C-\acs{API} benutzt, kann aber nicht gleichzeitig laufen. Es schließen sich also die Programmiersprache URScript und ein eigener Controller zunächst aus. Es könnte ein eigener Controller entwickelt werden, der die Befehle in URScript selbst interpretiert und diese wie bei dem URController ausführt. So könnte man die vorhandene Sprache nehmen und diese sogar erweitern.
 
 \subsection{Kontrollstruktur}
 \label{capi_control_loop_gru}	
@@ -200,32 +204,44 @@ Die C-\acs{API} ermöglicht es eine Verbindung zum Roboter zu öffnen und über 
   }
 \end{lstlisting}
 
-die Funktion robotinterface\_read\_state\_blocking() startet den Bereich in dem Datenabfragen an den Roboter gestellt werden können. Daten wie zb. Temperatur der Motoren, der Stand der Gelenke, die Geschwindigkeit der Gelenke, etc. in der Dokumentation beiliegend zu dieser Arbeit sind alle Daten noch einmal aufgelistet. Nachdem die Daten abgefragt wurden, kann mit C-\acs{API} Functionen Position, Geschwindigkeit und Beschleunigungswerte übermittelt werden, die der Roboter durch seinen Regler auszuführen versucht.\\
+Die Funktion \sona{robotinterface\_read\_state\_blocking()} startet den Bereich in dem Datenabfragen an den Roboter gestellt werden können. Daten wie z. B. Temperatur der Motoren, der Stand der Gelenke, die Geschwindigkeit der Gelenke, etc. in der Dokumentation beiliegend zu dieser Arbeit sind alle Daten noch einmal aufgelistet. Nachdem die Daten abgefragt wurden, kann mit C-\acs{API} Funktionen Position, Geschwindigkeit und Beschleunigungswerte übermittelt werden, die der Roboter durch seinen Regler auszuführen versucht.\\
 Es können jedoch keine Wegpunkte festgelegt werden, die dann automatisch vom Roboter angefahren werden. Dies muss der Entwickler selbst 
-berechnen. Es gibt mehrere Verfahren, in dieser Arbeit sind \ac{PTP}-Verfahren und Linear Verfarhen(siehe Kapitel \ref{bewegungsprofile_gru}) getestet worden. In der beiliegenden Dokumentation ist aufgeführt wie man dies möglicherweise berwerkstelligen könnte.
+berechnen. 
+Es gibt mehrere Verfahren, in dieser Arbeit sind \ac{PTP}-Verfahren und Linear Verfarhen(siehe Kapitel \ref{bewegungsprofile_gru}) getestet worden. In der beiliegenden Dokumentation ist aufgeführt wie man dies möglicherweise berwerkstelligen könnte.
 \\\\
-Zum Abschluss wird die Function robotinterface\_send() aufgerufen die dafür sorgt, dass der Acht Millisekundentakt eingehalten wird und die Befehle an den Roboter weiterleitet. Falls die Acht Millisekunden überschritten werden, wird der Roboter in einen Sicherheitsmodus gesetzt
-und der Roboter wird angehalten.\\
+Zum Abschluss wird die Funktion \sona{robotinterface\_send()} aufgerufen die dafür sorgt, dass der Acht Millisekundentakt eingehalten wird und die Befehle an den Roboter weiterleitet. Falls die Acht Millisekunden überschritten werden, wird der Roboter in einen Sicherheitsmodus gesetzt und der Roboter wird angehalten.
+\\
 Wenn so etwas im URController passiert, kann der Anwender diese wieder abschalten wenn alles in Ordnung ist. Dies muss mit der C-\acs{API} selbst geschrieben werden. Die C-\acs{API} liefert hierfür auch Funktionen. Das die richtigen Richtlinien aber auch eingehalten werden, muss von dem Wechsel des Sicherheitsmodus in den normalen Modus eine Benutzerabfrage verlangt werden.
 
 \subsection{Bewegungsprofile}
 \label{sub:bewegungsprofile_gru}
 
-\acs{PTP} Verfahren 
+In der Robotik gibt es mehrere Verfahren wie man den Roboter zwischen 2 Punkten bewegen kann. 
 
+\begin{itemize}
+\item \acf{PTP}
+\item Linear
+\item Circular
+\item ???
+\end{itemize}
+
+Für die C-\ac{API} wurde das \ac{PTP} und das Linear Verfahren umgesetzt. Die Informationen für die Berechungen sind entnommen aus der Lektüre \sona{Industrieroboter von Wolfgang Weber}\cite{WW-2013}.
+
+\textbf{\acs{PTP} Verfahren}
+\\\\
 Um den Roboter bestimmten Wegpunkten abfahren zu lassen, muss man die Bewegungsprofile selbst berechnen und ǘber die C-API an den Roboter im 125Hz Takt übergeben. Das \ac{PTP} Verfahren setzt dabei vorraus das die einzelnen Positionen der Gelenke bekannt sind. Der Wert ist angegeben in radiant. Die Zielposition
-
-Linear Verfahren
-
-Das Lineare Verfahren bedeutet eine Bewegung des Roboters von dem \ac{TCP} Punkt aus. Die Bewegung des Roboters wird so berechnet, dass der \acs{TCP} sich Linear zum Zielpunkt bewegt.(siehe Abbildung \ref{abbildung_linear})
-Um die Berechnung durchzuführen muss die die Position des \acs{TCP} im Raum(Karthesische Koordinaten) bekannt sein, um eine Strecke zu einem Zielpunkt abfahren zu können. Der UR5 Roboter kann aber nur Positionen in Achs-Ebene verarbeiten. Deswegen muss zuerst eine Berechnung von Achs-Ebene in Karthesische Koordinaten und nach der Berechnung der Strecke wieder zurück auf Achs-Ebene erfolgen.
+\\\\
+\textbf{Linear Verfahren}
+\\\\
+Das Lineare Verfahren bedeutet eine Bewegung des Roboters von dem \ac{TCP} Punkt aus. Die Bewegung des Roboters wird so berechnet, dass der \acs{TCP} sich linear zum Zielpunkt bewegt(siehe Abbildung \ref{abbildung_linear}).
+Um die Berechnung durchzuführen muss die die Position des \acs{TCP} im Raum(Kartesische Koordinaten) bekannt sein, um eine Strecke zu einem Zielpunkt abfahren zu können. Der UR5 Roboter kann aber nur Positionen in Achs-Ebene verarbeiten. Deswegen muss zuerst eine Berechnung von Achs-Ebene in Kartesische Koordinaten und nach der Berechnung der Strecke wieder zurück auf Achs-Ebene erfolgen.
 
 \section{Eigene Adapter Schnittstelle aufbauend auf URScript}
 \label{sec:urscript_adapter}
 
-Das Secondary Interface(\ref{urcontrol_spi_gru}) kann benutzt werden um einzelne Scriptbefehle an den Roboter zu senden. Auf diesem Prinzip aufbauend, kann ein Adapter für jede Programmiersprache entwickelt werden, der die Befehle an den Roboter sendet. Dadurch kann nun ein Anwendungsprogramm in dieser Sprache mit all seinen Vorteilen Entwickelt werden.
+Die Secondary Schnittstelle(\ref{urcontrol_spi_gru}) kann benutzt werden um einzelne Script befehle an den Roboter zu senden. Auf diesem Prinzip aufbauend, kann ein Adapter für jede Programmiersprache entwickelt werden, der die Befehle an den Roboter sendet. Dadurch kann nun ein Anwendungsprogramm in dieser Sprache mit all seinen Vorteilen entwickelt werden.
 
-In dieser Arbeit wurde dafür Python gewählt. Gründe hierfür sind
+In dieser Arbeit wurde dafür Python gewählt. Gründe hierfür sind:
 
 \begin{itemize}
 \item Weit verbreitete Programmiersprache
@@ -235,4 +251,4 @@ In dieser Arbeit wurde dafür Python gewählt. Gründe hierfür sind
 \end{itemize}
 
 Da aufbauend auf dieser Arbeit eventuell mit dem Roboter weitergearbeitet wird, wurde eine Sprache genommen die weit verbreitet ist. Python ist eine Sprache die nicht so Hardware nah ist, dass man sich um Speicherbelegung kümmern muss, aber den Code schnell ausführt.
-Für den UR5 wurde eine \ac{ROS} Schnittstelle entwickelt, bei dem schon die Packete der Secondary Schnittstelle geparsed(\acl{parsen}) werden. Das Projekt ist öffentlich, so konnte dieser Code Abschnitt in die Arbeit übernommen werden.
+Für den UR5 wurde eine \ac{ROS} Schnittstelle entwickelt, bei dem schon die Pakete der Secondary Schnittstelle geparsed(\acl{parsen}) werden. Das Projekt ist öffentlich, so konnte dieser Code Abschnitt in die Arbeit übernommen werden.

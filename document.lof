@@ -3,14 +3,19 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces UR5 Roboter}}{13}{figure.2.1}
 \contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Schichten der Software Schnittstellen}}{16}{figure.2.2}
-\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Schema des Datenpackets gesendet von der Secondary Schnittstelle}}{19}{figure.2.3}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Schema des Datenpakets gesendet von der Secondary Schnittstelle}}{19}{figure.2.3}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Kinder Geschicklichkeitsspiel}}{23}{figure.3.1}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Soll und Ist Werte der Position}}{28}{figure.4.1}
 \contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Programm Baum in Polyscope}}{29}{figure.4.2}
 \contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Popup in Polyscipe}}{30}{figure.4.3}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Selbsterstelltes GUI zur Steuerung des UR5 Roboters}}{35}{figure.4.4}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Selbsterstelltes GUI zur Steuerung des UR5 Roboters}}{36}{figure.4.4}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax C.1}{\ignorespaces Stromst\IeC {\"a}rke w\IeC {\"a}rend der Bewegung des 3. Gelenks}}{45}{figure.C.1}
+\contentsline {figure}{\numberline {\relax C.2}{\ignorespaces Position der Soll und Ist Werte f\IeC {\"u}r das 5. Gelenk}}{46}{figure.C.2}
+\contentsline {figure}{\numberline {\relax C.3}{\ignorespaces Soll und Ist Werte der Position des 2.Gelenks}}{47}{figure.C.3}
+\contentsline {figure}{\numberline {\relax C.4}{\ignorespaces Position der Soll und Ist Werte f\IeC {\"u}r das 5. Gelenk}}{48}{figure.C.4}
