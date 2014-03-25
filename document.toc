@@ -9,53 +9,53 @@
 \contentsline {subsection}{\numberline {2.1.1}Richtlinien}{12}{subsection.2.1.1}
 \contentsline {section}{\numberline {2.2}UR5 Roboter}{13}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Kinematik}{13}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Peripherie}{13}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.2}Peripherie}{14}{subsection.2.2.2}
 \contentsline {subsection}{\numberline {2.2.3}Datensicherung}{15}{subsection.2.2.3}
 \contentsline {section}{\numberline {2.3}Programmierschnittstellen vom UR5}{15}{section.2.3}
 \contentsline {section}{\numberline {2.4}Kriterien f\IeC {\"u}r die Bewertung der Schnittstellen}{15}{section.2.4}
 \contentsline {section}{\numberline {2.5}URControl}{16}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Konfiguration des URControllers}{17}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.1}Konfiguration des URControllers}{16}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}Echtzeit Schnittstelle}{17}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Secondary und Primary Schnittstelle}{17}{subsection.2.5.3}
-\contentsline {subsection}{\numberline {2.5.4}Polyscope}{18}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.3}Secondary und Primary Schnittstelle}{18}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Polyscope}{19}{subsection.2.5.4}
 \contentsline {section}{\numberline {2.6}C-API}{19}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Kontrollstruktur}{19}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Bewegungsprofile}{20}{subsection.2.6.2}
-\contentsline {chapter}{\numberline {3}Evaluierungskonzept}{21}{chapter.3}
-\contentsline {section}{\numberline {3.1}Anwendungsbeispiel}{21}{section.3.1}
-\contentsline {section}{\numberline {3.2}Speichern der Anwendungsdaten}{21}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Speichern \IeC {\"u}ber Polyscope und URScript}{21}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Speichern \IeC {\"u}ber Eigene API}{22}{subsection.3.2.2}
-\contentsline {chapter}{\numberline {4}Realisierung}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}C-API}{23}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Beispielanwendung}{23}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Aufgetretene Probleme}{25}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Polyscope}{26}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Programmierung}{26}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Benutzer Interaktion}{27}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Test und Fehlersuche im Programm}{28}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Aufwand der Programmierung}{28}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{29}{subsection.4.2.5}
-\contentsline {section}{\numberline {4.3}URScript}{29}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Laden des Scripts auf den Controller}{29}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Programmierung}{30}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{30}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Benutzer Interaktion}{30}{subsection.4.3.4}
-\contentsline {subsection}{\numberline {4.3.5}Aufwand der Programmierung}{30}{subsection.4.3.5}
-\contentsline {section}{\numberline {4.4}Anwendung mit Adapter zu URScript}{31}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Adapter zur Secondary Schnittstelle}{31}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Programmierung mit Adapter}{32}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Benutzer Interaktion}{32}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Test und Fehlersuche im Programm}{32}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{33}{subsection.4.4.5}
-\contentsline {chapter}{\numberline {5}Ergebnis}{34}{chapter.5}
-\contentsline {section}{\numberline {5.1}Zusammenfassung der Kriterien f\IeC {\"u}r die Schnittstellen}{36}{section.5.1}
-\contentsline {section}{\numberline {5.2}Vergleich der Schnittstellen}{38}{section.5.2}
-\contentsline {section}{\numberline {5.3}Nicht erreichte Ziele}{38}{section.5.3}
-\contentsline {chapter}{\numberline {6}Fazit}{39}{chapter.6}
-\contentsline {section}{\numberline {6.1}Zusammenfassung}{39}{section.6.1}
-\contentsline {section}{\numberline {6.2}Ausblick}{39}{section.6.2}
-\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{40}{appendix*.21}
-\contentsline {chapter}{\numberline {B}Glossar}{41}{appendix.B}
-\contentsline {chapter}{\numberline {C}Quellcode}{43}{appendix.C}
-\contentsline {section}{\numberline {C.1}Speichern der Daten \IeC {\"u}ber TCP in der Datenbank}{43}{section.C.1}
+\contentsline {subsection}{\numberline {2.6.1}Kontrollstruktur}{20}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Bewegungsprofile}{21}{subsection.2.6.2}
+\contentsline {chapter}{\numberline {3}Evaluierungskonzept}{22}{chapter.3}
+\contentsline {section}{\numberline {3.1}Anwendungsbeispiel}{22}{section.3.1}
+\contentsline {section}{\numberline {3.2}Speichern der Anwendungsdaten}{22}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Speichern \IeC {\"u}ber Polyscope und URScript}{22}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Speichern \IeC {\"u}ber Eigene API}{23}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Realisierung}{24}{chapter.4}
+\contentsline {section}{\numberline {4.1}C-API}{24}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Beispielanwendung}{24}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Aufgetretene Probleme}{26}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Polyscope}{27}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Programmierung}{27}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Benutzer Interaktion}{28}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Test und Fehlersuche im Programm}{29}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Aufwand der Programmierung}{29}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{30}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}URScript}{30}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Laden des Scripts auf den Controller}{30}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Programmierung}{31}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{31}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Benutzer Interaktion}{31}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Aufwand der Programmierung}{31}{subsection.4.3.5}
+\contentsline {section}{\numberline {4.4}Anwendung mit Adapter zu URScript}{32}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Adapter zur Secondary Schnittstelle}{32}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Programmierung mit Adapter}{33}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Benutzer Interaktion}{33}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Test und Fehlersuche im Programm}{33}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{34}{subsection.4.4.5}
+\contentsline {chapter}{\numberline {5}Ergebnis}{35}{chapter.5}
+\contentsline {section}{\numberline {5.1}Zusammenfassung der Kriterien f\IeC {\"u}r die Schnittstellen}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Vergleich der Schnittstellen}{39}{section.5.2}
+\contentsline {section}{\numberline {5.3}Nicht erreichte Ziele}{39}{section.5.3}
+\contentsline {chapter}{\numberline {6}Fazit}{40}{chapter.6}
+\contentsline {section}{\numberline {6.1}Zusammenfassung}{40}{section.6.1}
+\contentsline {section}{\numberline {6.2}Ausblick}{40}{section.6.2}
+\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{41}{appendix*.23}
+\contentsline {chapter}{\numberline {B}Glossar}{42}{appendix.B}
+\contentsline {chapter}{\numberline {C}Quellcode}{44}{appendix.C}
+\contentsline {section}{\numberline {C.1}Speichern der Daten \IeC {\"u}ber TCP in der Datenbank}{44}{section.C.1}

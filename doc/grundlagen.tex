@@ -35,7 +35,7 @@ Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
 
 \begin{figure}[ht]
   \centering
-    \includegraphics[width=0.8\textwidth]{pic/ur5_robot.png}
+    \includegraphics[width=0.6\textwidth]{pic/ur5_robot.png}
       \caption[UR5 Roboter]{Abbildung zeigt den UR5 Roboter von universal Robots}
       \label{fig:schnittstellen_schichten}
 \end{figure}
@@ -43,7 +43,7 @@ Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
 Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca 85cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet. 
 Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
 \\\\
-Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. bei Start wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den \ref{URControl}. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner Herstellt.
+Um den Rechner anzusprechen existiert bei lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. Beim starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den \ref{URControl}. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner Herstellt.
 \\\\
 Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann ein Software Update der Polyscope Software gemacht werden.
 
@@ -109,7 +109,7 @@ Je Größer und Komplexer das Programm wird, desto schwieriger wird es Fehler zu
 \label{sec:ur_control_gru}
 
 Der URController eine Server Anwendung die auf dem Rechner des Roboters läuft. 
-Dieser Controller dient als Schnittstelle von der Roboter Hardware und der Software die den Roboter ansteuern wollen.
+Dieser Controller dient als Schnittstelle von der Roboter Hardware und der Software die den Roboter ansteuern wollen. 
 
 \subsection{Konfiguration des URControllers}
 \label{urcontrol_rci_gru}
@@ -133,25 +133,37 @@ robot_sub_type = 1
 \subsection{Echtzeit Schnittstelle}
 \label{urcontrol_rci_gru}
 
-Die Echtzeit Schnittstelle ist eine TCP Schnittstelle, die im 125Hz Takt Nachrichten an die Clients sendet. Diese Schnittstelle empfängt keine Daten von den Clients. Diese Nachrichten müssen von den Clients analysiert und zerlegt werden. Die Daten werden in einer bestimmten form gesendet
+Die Echtzeit Schnittstelle ist eine \ac{TCP/IP} Schnittstelle, die im 125Hz Takt Datenpackete an die verbundenen Clients sendet. Diese Schnittstelle kann keine Daten von den Clients empfangen. Wenn man diese Datenpackete auslesen will, muss man die einzelnen Datentypen in dem Packet \ac{parsen}. Eine Besonderheit ist noch, dass die Byte-Reihenfolge der Datenpackete im \ac{Big-Endian Format} über das Netwerk übertragen werden. Da der Unix Rechner und der Client Rechner die Byte-Reihenfolge \ac{Little-Endian Format} benutzen, muss diese für die einzelnen Datentypen umgewandelt werden. Hierfür wurde in C ein Struct geschrieben und eine Funktion die das Datenpacket für das Struct in die richtige Byte Reihenfolge umwandelt.
 
-TODO !! listing echtzeit schnittstelle
+\begin{lstlisting}[caption={Umwandlung der Byte-Order für Packet über die Echtzeit-Schnittstellen }, label=lst:rci_parse ,captionpos=b]
+struct ur5_data_rci * parse_ur5_realtime_ci(struct ur5_realtime_ci *ur5_rci, char *buf){
+    // ur5_rci points to the struct that will contain the data of the package
+    // buf is the recieved Package from the Real Time Interface
+    ur5_rci = (struct ur5_realtime_ci*) buf;
 
-Die Client Anwendung muss nun dieses Packet \ac{parsen}
-Wie Die einzelnen Packete aussehen sind im Anhang mitgeliefert
-Für die Programmiersprache C wurde ein ein Parser dafür geschrieben.
+    // the first 4 Byte are the message length of the package. the rest of the packages are 8 Bytes long so we can just iterate over all variables in the package 
+    ur5_rci->length = ntohl(ur5_rci->length);
+    int i;
+    for (i = 0; (i < (sizeof(ur5_rci->data_union.data_packed)/sizeof(double))); i++){
+        ur5_rci->data_union.data_packed[i] = htobe64(ur5_rci->data_union.data_packed[i]);
+    }
+    return &ur5_rci->data_union.data;
+}
+\end{lstlisting}
+
+In der Dokumentation beiliegend in der CD ist eine komplette Beschreibung, wie die Schnittstelle angesprochen wird und wie die Daten benutzt werden, um den Roboter zu analysieren. Im anhang ab \ref{TODO ref zum anhang} sind Beispiele von Bewegungsprofilen, die von der Echtzeit Schnittstelle ausgelesen wurden, um zu erfahren wie der URController im gegensatz zu der Software mit der C-API die Bewegungsprofile berechnet.
 
 \subsection{Secondary und Primary Schnittstelle}
 \label{urcontrol_spi_gru}
 
-Das Secondary Interface ist eine \ac{TCP/IP} Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Rechner sendet.
-Die Nachrichten beinhalten Informationen wie z.B. den Roboter Status, die Positionen der einzelenen Joints.
-Die volle Beschreibung welche Informationen gesendet werden ist im anhang zu finden.
+Das Secondary Interface ist eine \ac{TCP/IP} Schnittstelle, die in einem 60Hz Takt Nachrichten über den Roboter an Verbundene Clients sendet.
+Die Nachrichten beinhalten Informationen wie z.B. den Roboter Status oder die Positionen der einzelenen Joints.
+Die komplette Beschreibung welche Informationen gesendet werden sind im Anhang(siehe \ref{TODO ref zu anhang Secondary Interface}).
 
 Zusätzlich, kann die Secondary Schnittstelle Befehle von Verbundenen Rechnern empfangen. 
-Diese Befehle können URScript befehle sein. Ein ganzes Programm aus URScript befehlen oder spezielle zugelassene Befehle die den Roboter Status verändern.
+Diese Befehle können URScript Befehle sein. Ein ganzes Programm in URScript geschrieben oder spezielle zugelassene Befehle die den Roboter Status verändern.
 
-\begin{figure}[ht]
+\begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{pic/secondary_datapackage_scheme.png}
       \caption[Schema des Datenpackets gesendet von der Secondary Schnittstelle]{Grobe Darstellung wie das Nachrichten Packet gesendet von der Secondary/Primary Schnittstelle.}
