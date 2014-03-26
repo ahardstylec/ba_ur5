@@ -3,7 +3,7 @@
 \section{Roboter-Mensch-Kollaboration}
 \label{sec:roboter-mensch-kollaboration_gru}
 
-Man unterscheidet die Arbeiten mit einem Roboter unter mehrere Arten.
+Man unterscheidet die Arbeiten mit einem Roboter in mehrere Arten.
 Roboter die mit anderen Robotern gleichzeitig arbeiten nennt man Kooperation zwischen Robotern.
 Der Mensch ist in diesem Arbeitsumfeld nicht dabei und kann nur von außen Einfluss nehmen.
 \\\\
@@ -22,12 +22,14 @@ Hier wird auch eine Unterteilung vorgenommen die unterschiedliche Richtlinien er
 
 In so gut wie allen fällen sind Roboter in der Industrie in einem extra abgesicherten Bereich umzäunt, damit kein Arbeiter sich verletzen kann. Diese Roboter sind umhaust. Es ist nicht möglich in einem gemeinsamen Arbeitsbereich zu kollaborieren.
 Damit Menschen im Arbeitsbereich vom Robotern Arbeiten dürfen müssen diese Roboter bestimmte Sicherheitsrichtlinien entsprechen.
-Der Roboter darf unter keinen Umständen eine Lebensbedrohliche Gefahr darstellen. Die Norm \ac{ISO} 10218
+Der Roboter darf unter keinen Umständen eine Lebensbedrohliche Gefahr darstellen. \\ Die DIN ISO Normen 10218-1 und 10218-2 sind in der Industrie einzuhalten, wenn Roboter mit Menschen Kollaborieren.
+\\
+``Die Norm ISO 10218-1 legt Anforderungen und Anleitungen für die inhärent sichere Konstruktion, für Schutzmaßnahmen und die Benutzerinformation für Industrieroboter fest. Sie beschreibt grundlegende Gefährdungen in Verbindung mit Robotern und stellt Anforderungen, um die mit diesen Gefährdungen verbundenen Risiken zu beseitigen oder hinreichend zu verringern. '' \cite{DINISO-2012}
 
 \section{UR5 Roboter}
 \label{sec:ur_robot_gru}
 
-Die Dänische Firma Universal Robots hat den leichten UR5 und mittelgroßen UR10 Roboter hergestellt mit den erfüllbaren Normen, um mit diesem Roboter zu kollaborieren. Man kann sich im laufenden Betrieb in der Nähe aufhalten um Wegpunkte zu \ac{teachen} oder auch gleichzeitig an einem Werkstück zu arbeiten.
+Die Dänische Firma Universal Robots hat den leichten UR5 und mittelgroßen UR10 Roboter mit den erfüllbaren Normen hergestellt, um mit diesem Roboter zu Kollaborieren. Man kann sich im laufenden Betrieb in der Nähe aufhalten, um Wegpunkte zu \ac{teachen} oder auch gleichzeitig an einem Werkstück zu arbeiten.
 Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
 
 \subsection{Kinematik}
@@ -40,24 +42,28 @@ Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
       \label{fig:schnittstellen_schichten}
 \end{figure}
 
-Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca. 85 cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet.
-Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
+Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca. 85 cm zu ermöglichen. Der Roboterarm hat eine Tragfähigkeit von 5Kg. In den Motoren der einzelnen Gelenke, sitzt auch gleichzeitig die Steuerung des Gelenks. Die Hardware des Roboters wird er von einem Linux Rechner, der sich in der Nähe befindet, angesprochen.
+Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.\\
+Der Linux Rechner besitzt 10 Digitale Eingänge, 10 Digitale Ausgänge, 4 Analoge eingänge, 2 Analoge Ausgänge die zum Steuern des Roboters benutzt werden kann. Desweiteren besitzt der Roboter ein Netzwerk Anschluss über dem eine Verbindung zu ein oder mehreren Rechnern möglich ist.
 \\\\
-Um den Rechner anzusprechen existiert bei Lieferung ein Touch Tablet(\ref{fig:tablet_picuter}), das für das Linux System den Visuellen Output gibt. Beim Starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per \ac{TCP/IP} auf den URController(\ref{sec:ur_control_gru}). Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner herstellt.
-\\\\
-Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann die Polyscope Software aktualisiert werden.
+Um den Rechner anzusprechen existiert bei Lieferung ein Touch Tablet(\ref{fig:tablet_picuter}), das für das Linux System den Visuellen Output gibt. Es ist möglich über \ac{USB} eine Tastatur anzuschließen um nicht text mit dem Tocuh Tablet auskommen zu müssen. 
+\\
+Beim Starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per \ac{TCP/IP} auf den URController(\ref{sec:ur_control_gru}). Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner herstellt.
 
-\subsection{Peripherie}
+\subsection{Grundlegendes}
 \label{sub:ur_update_gru}
 
+Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann die Polyscope Software aktualisiert werden.
+\\\\
+\textbf{System Aktualisieren}\\
 Zwei Arten von Updates sind hier zu unterscheiden. Zum einen kann das Linux System aktualisiert werden. Dies ist über dem Paketmanager des Systems möglich, oder wenn man das neuste Image von Universal Robots herunterlädt, und dann das System neu aufspielt. Hier ist jedoch zu beachten, dass dabei alle Daten verloren gegangen werden. Deshalb sollte eine Datensicherung vorgenommen werden. Wie dies geschieht wird im darauf folgenden Unterkapitel beschrieben(\ref{ur_datensicherung_gru}).
 \\\\
 Updates für den Roboter müssen allerdings manuell gemacht werden. Hierfür müssen die aktuellen Updates von der Homepage von Universal Robots heruntergeladen werden. Die Update-Datei muss mit der Dateiendung ``.urup'' auf einen USB-Stick mit einem FAT-32 Dateisystem abgelegt werden.\\\\
 Nachdem der USB-Stick an das Linux System angeschlossen ist, kann von der Polyscope Software das Update ausgeführt werden. Einstellungen->Updates.\\
-Im Administrativen Modus können nach dem Update die Firmware's der einzelnen Gelenkcontroller geupdatet werden. Die werden im Update mitgeliefert. Die einzelnen Schritte sind in den Dokumentationen beiliegend auf der CD zu finden.
-
+Im Administrativen Modus können nach dem Update die Firmware's der einzelnen Gelenkcontroller geupdatet werden. Die werden im Update mitgeliefert. Die einzelnen Schritte sind in den Dokumentationen beiliegend auf der CD zu finden.\\
+\newpage
 \textbf{Datensicherung}
-
+\\\\
 Die Daten des Roboters sind abgelegt in root verzeichniss unter 
 
 \begin{lstlisting}[caption={Pfade Der UR5 Relevanten Dateien}, label=lst:ur5data ,captionpos=b] 
@@ -221,25 +227,31 @@ Wenn so etwas im URController passiert, kann der Anwender diese wieder abschalte
 \subsection{Bewegungsprofile}
 \label{sub:bewegungsprofile_gru}
 
-In der Robotik gibt es mehrere Verfahren wie man den Roboter zwischen 2 Punkten bewegen kann. 
+In der Robotik gibt es 3 Verfahren wie man den Roboter zwischen 2 Punkten bewegen kann. 
 
 \begin{itemize}
-\item \acf{PTP}
+\item \ac{PTP}
 \item Linear
 \item Circular
-\item ???
 \end{itemize}
 
-Für die C-\ac{API} wurde das \ac{PTP} und das Linear Verfahren umgesetzt. Die Informationen für die Berechungen sind entnommen aus der Lektüre \sona{Industrieroboter von Wolfgang Weber}\cite{WW-2013}.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/bewegungsarten.png}
+      \caption[Bewegungsarten in Robotik]]{Übersicht über drei verschiedenen Bewegungsarten in der Robotik}
+      \label{fig:bewegungsarten}
+\end{figure}
 
+Für die C-\ac{API} wurde das \ac{PTP} und das Linear Verfahren umgesetzt. Die Informationen für die Berechungen sind entnommen aus der Lektüre \sona{Industrieroboter von Wolfgang Weber}\cite{WW-2013}.
+\\\\
 \textbf{\acs{PTP} Verfahren}
 \\\\
-Um den Roboter bestimmten Wegpunkten abfahren zu lassen, muss man die Bewegungsprofile selbst berechnen und ǘber die C-API an den Roboter im 125Hz Takt übergeben. Das \ac{PTP} Verfahren setzt dabei vorraus das die einzelnen Positionen der Gelenke bekannt sind. Der Wert ist angegeben in radiant. Die Zielposition
+Um den Roboter bestimmten Wegpunkten abfahren zu lassen, muss man die Bewegungsprofile selbst berechnen und ǘber die C-API an den Roboter im 125Hz Takt übergeben. Das \ac{PTP} Verfahren setzt dabei vorraus das die einzelnen Positionen der Gelenke bekannt sind. Die Positionen sind die Achs-Werte. Der Wert ist angegeben in radiant. Die Zielposition ist auch in Achs-Werten anzugeben.
 \\\\
 \textbf{Linear Verfahren}
 \\\\
-Das Lineare Verfahren bedeutet eine Bewegung des Roboters von dem \ac{TCP} Punkt aus. Die Bewegung des Roboters wird so berechnet, dass der \acs{TCP} sich linear zum Zielpunkt bewegt(siehe Abbildung \ref{abbildung_linear}).
-Um die Berechnung durchzuführen muss die die Position des \acs{TCP} im Raum(Kartesische Koordinaten) bekannt sein, um eine Strecke zu einem Zielpunkt abfahren zu können. Der UR5 Roboter kann aber nur Positionen in Achs-Ebene verarbeiten. Deswegen muss zuerst eine Berechnung von Achs-Ebene in Kartesische Koordinaten und nach der Berechnung der Strecke wieder zurück auf Achs-Ebene erfolgen.
+Das Lineare Verfahren bedeutet eine Bewegung des Roboters von dem \ac{TCP} Punkt aus. Die Bewegung des Roboters wird so berechnet, dass der \ac{TCP} sich linear zum Zielpunkt bewegt(siehe Abbildung \ref{fig:bewegungsarten}).
+Um die Berechnung durchzuführen muss die die Position des \ac{TCP} im Raum(Kartesische Koordinaten) bekannt sein, um eine Strecke zu einem Zielpunkt abfahren zu können. Der UR5 Roboter kann aber nur Positionen in Achs-Ebene verarbeiten. Deswegen muss zuerst eine Berechnung von Achs-Ebene in Kartesische Koordinaten und nach der Berechnung der Strecke wieder zurück auf Achs-Ebene erfolgen.
 
 \section{Eigene Adapter Schnittstelle aufbauend auf URScript}
 \label{sec:urscript_adapter}
@@ -251,9 +263,9 @@ In dieser Arbeit wurde dafür Python gewählt. Gründe hierfür sind:
 \begin{itemize}
 \item Weit verbreitete Programmiersprache
 \item Ein vorhandener \acl{parsen} für die Secondary Schnittstelle
-\item Viele vorhandene \acs{Software Bibliotheken}
+\item Viele vorhandene Software Bibliotheken
 \item Höhere Sprache als z.B C und somit etwas leichter zu Programmieren
 \end{itemize}
 
 Da aufbauend auf dieser Arbeit eventuell mit dem Roboter weitergearbeitet wird, wurde eine Sprache genommen die weit verbreitet ist. Python ist eine Sprache die nicht so Hardware nah ist, dass man sich um Speicherbelegung kümmern muss, aber den Code schnell ausführt.
-Für den UR5 wurde eine \ac{ROS} Schnittstelle entwickelt, bei dem schon die Pakete der Secondary Schnittstelle geparsed(\acl{parsen}) werden. Das Projekt ist öffentlich, so konnte dieser Code Abschnitt in die Arbeit übernommen werden.
+Für den UR5 wurde eine \ac{ROS}\footnote{ROS ist eine Große Bibliothek} Schnittstelle entwickelt, bei dem schon die Pakete der Secondary Schnittstelle geparsed(\acl{parsen}) werden. Das Projekt ist öffentlich, so konnte dieser Code Abschnitt in die Arbeit übernommen werden.
