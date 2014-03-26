@@ -47,7 +47,7 @@ Nachdem die Initialisierung abgeschlossen ist, muss wie in Listing \ref{lst:robo
 \\\\
 Innerhalb der beiden Befehlen \sona{robotinterface\_read\_state\_blocking()} und \sona{robotinterface\_send()} kann nun eine Interpolation berechnet werden und die Vorgaben für Position, Geschwindigkeit und Beschleunigung an den Roboter gesandt werden(siehe Listing \ref{lst:interpolate}).
 
-\begin{lstlisting}[language=C,caption={Interpolation eines Berechneten Weges}, label=lst:interpolate,captionpos=b]
+\begin{lstlisting}[language=C,caption={Interpolation eines berechneten Wegs}, label=lst:interpolate,captionpos=b]
 // loop through interpolation length  
 for(i=0; i < move_pva_packet.interpolations+1; i++){
   robotinterface_read_state_blocking();
@@ -87,8 +87,8 @@ Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstopp. Die Abweich
 \\
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.8\textwidth]{pic/joint1_position_capi.png}
-      \caption[Soll und Ist Werte der Position]{Abbildung zeigt die Soll und Ist Werte der Position, bis zum Sicherheitsstop des Roboters}
+    \includegraphics[width=0.6\textwidth]{pic/joint1_position_capi.png}
+      \caption[Soll-und Ist-Werte der Position]{Abbildung zeigt die Soll und Ist Werte der Position, bis zum Sicherheitsstop des Roboters}
       \label{fig:position_join1}
 \end{figure}
 
@@ -126,7 +126,7 @@ Als Nachricht, ja/nein Fragen, oder Text abfragen. Der Benutzer kann dann mit ei
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{pic/popup_question.png}
-      \caption[Popup in Polyscipe]{Abbildung zeigt Zwei verschiedene Arten von Popups in Polyscope}
+      \caption[Popup in Polyscope]{Abbildung zeigt Zwei verschiedene Arten von Popups in Polyscope}
       \label{fig:polyscope_popup}
 \end{figure}
 
@@ -167,7 +167,7 @@ Es ist möglich einzelne Befehle oder ein großes Programm auszuführen. Um einz
 Ein ganzes Programm wird versendet, indem wie in Listing \ref{lst:urscipt_program_lst} gezeigt eine Funktion die ganzen Befehle umschließt. Der Controller führt diese Funktion aus, sobald diese mit dem ``end'' der Funktion abgeschlossen ist.
 Zu beachten ist noch, dass der URcontroller am Ende jeden Befehls oder Programm's ein Zeilenumbruch erwartet.
 
-\begin{lstlisting}[caption={Kleines Beispielprogram in URScript}, label=lst:urscipt_program_lst ,captionpos=b] 
+\begin{lstlisting}[caption={Kleines Beispielprogramm in URScript}, label=lst:urscipt_program_lst ,captionpos=b] 
 def myProg():
 	popup("hello world","test", False, False)
 	set_digital_out(1, True)
@@ -181,7 +181,7 @@ end
 Programmiert werden kann das Script mit allen vorhandenen Textverarbeitungsprogrammen. Vorteilhaft ist es, wenn das Programm \acs{Syntax Highligting} für Python beherrscht Da URScript sehr stark an Python angelehnt ist, hilft dies ein wenig den Überblick zu behalten.
 \\Die Sprache bietet keine möglichkeiten Kommentare zu nutzen, was aber sehr wichtig ist, wenn ein Programm wächst und mehrere Programmierer am Projekt beteiligt sind. Es ist wichtig für die verständlichkeit. Deshalb wurde dafür in dem Programm, welches das URScript liest und an die Schnittstelle sendet, ein Pre-Prozessor eingebaut. Die Script Datei wird nach Kommentaren durchsucht und schneidet diese vor dem senden raus.(siehe \ref{lst:urscipt_comment_lst})
 
-\begin{lstlisting}[caption={Beispiel kommentare vor und nach dem Pre-Prozessor}, label=lst:urscipt_comment_lst ,captionpos=b]
+\begin{lstlisting}[caption={Beispiel-Kommentare vor und nach dem Pre-Prozessor}, label=lst:urscipt_comment_lst ,captionpos=b]
   def testprog():
     # mit # wird ein Kommentar angefangen
     movej([0.23,1.23,0.343,0.34.0.0,0.0],a=0.5,v=0.3) # Bewegung auf Achs Ebene zur Startposition
@@ -221,7 +221,7 @@ Im folgenden Kapitel wird das Anwendungsbeispiel in Python entwickelt. Um zu zei
 
 Die Script befehle zur Secondary Schnittstelle, werden als Text übergeben. Der Adapter, wird in Form einer Klasse geschrieben, die die einzelnen Script Befehle in Funktionen mitliefert(siehe Listing \ref{lst:secondary_interface_scriptfunctions}).
 
-\begin{lstlisting}[caption={Ausschnitt zeigt Funktionen die Scriptbefehle in der Adapter Klasse umgesetzt}, label=lst:urscipt_program_lst ,captionpos=b]
+\begin{lstlisting}[caption={Ausschnitt zeigt Funktionen, die Scriptbefehle in der Adapter Klasse umgesetzten}, label=lst:urscipt_program_lst ,captionpos=b]
 
 # moveJ moves the Robot with joint coordinates
 # positions should include the target joint positions

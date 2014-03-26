@@ -1,25 +1,25 @@
 \select@language {german}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces UR5 Roboter}}{14}{figure.2.1}
-\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Schichten der Software Schnittstellen}}{17}{figure.2.2}
-\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Schema des Datenpakets gesendet von der Secondary Schnittstelle}}{20}{figure.2.3}
-\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces Bewegungsarten in Robotik}}{23}{figure.2.4}
+\contentsline {figure}{\numberline {\relax 2.1}{\ignorespaces UR5 Roboter}}{13}{figure.2.1}
+\contentsline {figure}{\numberline {\relax 2.2}{\ignorespaces Schichten der Software Schnittstellen}}{15}{figure.2.2}
+\contentsline {figure}{\numberline {\relax 2.3}{\ignorespaces Schema des Datenpakets gesendet von der Secondary Schnittstelle}}{18}{figure.2.3}
+\contentsline {figure}{\numberline {\relax 2.4}{\ignorespaces Bewegungsarten in Robotik}}{20}{figure.2.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Kinder Geschicklichkeitsspiel}}{25}{figure.3.1}
+\contentsline {figure}{\numberline {\relax 3.1}{\ignorespaces Kinder Geschicklichkeitsspiel}}{22}{figure.3.1}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Soll und Ist Werte der Position}}{30}{figure.4.1}
-\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Programm Baum in Polyscope}}{31}{figure.4.2}
-\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Popup in Polyscipe}}{32}{figure.4.3}
-\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Selbsterstelltes GUI zur Steuerung des UR5 Roboters}}{38}{figure.4.4}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax 4.1}{\ignorespaces Soll-und Ist-Werte der Position}}{26}{figure.4.1}
+\contentsline {figure}{\numberline {\relax 4.2}{\ignorespaces Programm Baum in Polyscope}}{27}{figure.4.2}
+\contentsline {figure}{\numberline {\relax 4.3}{\ignorespaces Popup in Polyscope}}{28}{figure.4.3}
+\contentsline {figure}{\numberline {\relax 4.4}{\ignorespaces Selbsterstelltes GUI zur Steuerung des UR5 Roboters}}{34}{figure.4.4}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {\relax C.1}{\ignorespaces Soll und Ist-Werte der Stromst\IeC {\"a}rke w\IeC {\"a}rend der Bewegung des 2.Gelenks mit Polyscope}}{49}{figure.C.1}
-\contentsline {figure}{\numberline {\relax C.2}{\ignorespaces Geschwindigkeitsprofil w\IeC {\"a}rend der Bewegung der Gelenke 1-3 mit Polyscope}}{50}{figure.C.2}
-\contentsline {figure}{\numberline {\relax C.3}{\ignorespaces Stromst\IeC {\"a}rke w\IeC {\"a}rend der Bewegung der Gelenke 1-3 mit Polyscope}}{51}{figure.C.3}
-\contentsline {figure}{\numberline {\relax C.4}{\ignorespaces Position w\IeC {\"a}rend der Bewegung der Gelenke 1-3 mit Polyscope}}{52}{figure.C.4}
-\contentsline {figure}{\numberline {\relax C.5}{\ignorespaces Soll und Ist-Werte der Stromst\IeC {\"a}rke des 2.Gelenks}}{53}{figure.C.5}
-\contentsline {figure}{\numberline {\relax C.6}{\ignorespaces Soll und Ist Werte der Position des 2.Gelenks}}{54}{figure.C.6}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {\relax C.1}{\ignorespaces Soll-und Ist-Werte der Stromst\IeC {\"a}rke w\IeC {\"a}rend der Bewegung des 2.Gelenks mit Polyscope}}{44}{figure.C.1}
+\contentsline {figure}{\numberline {\relax C.2}{\ignorespaces Geschwindigkeitsprofil w\IeC {\"a}rend der Bewegung der Gelenke 1-3 mit Polyscope}}{45}{figure.C.2}
+\contentsline {figure}{\numberline {\relax C.3}{\ignorespaces Stromst\IeC {\"a}rke w\IeC {\"a}rend der Bewegung der Gelenke 1-3 mit Polyscope}}{46}{figure.C.3}
+\contentsline {figure}{\numberline {\relax C.4}{\ignorespaces Position w\IeC {\"a}rend der Bewegung der Gelenke 1-3 mit Polyscope}}{47}{figure.C.4}
+\contentsline {figure}{\numberline {\relax C.5}{\ignorespaces Soll und Ist-Werte der Stromst\IeC {\"a}rke des 2.Gelenks}}{48}{figure.C.5}
+\contentsline {figure}{\numberline {\relax C.6}{\ignorespaces Soll und Ist Werte der Position des 2.Gelenks}}{49}{figure.C.6}
 \addvspace {10\p@ }

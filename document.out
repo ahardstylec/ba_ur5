@@ -1,6 +1,6 @@
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Fachliche Umgebung}{chapter.1}% 2
-\BOOKMARK [1][-]{section.1.2}{Motivation und Ziel des Projektes}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Motivation und Ziel des Projekts}{chapter.1}% 3
 \BOOKMARK [1][-]{section.1.3}{Aufgabenstellung}{chapter.1}% 4
 \BOOKMARK [1][-]{section.1.4}{Einordnung in die Themenfelder der Informatik}{chapter.1}% 5
 \BOOKMARK [0][-]{chapter.2}{Grundlagen}{}% 6
@@ -13,13 +13,13 @@
 \BOOKMARK [2][-]{subsection.2.3.1}{Kriterien f\374r die Bewertung der Schnittstellen}{section.2.3}% 13
 \BOOKMARK [1][-]{section.2.4}{URController}{chapter.2}% 14
 \BOOKMARK [2][-]{subsection.2.4.1}{Konfiguration des URControllers}{section.2.4}% 15
-\BOOKMARK [2][-]{subsection.2.4.2}{Echtzeit Schnittstelle}{section.2.4}% 16
+\BOOKMARK [2][-]{subsection.2.4.2}{Echtzeit-Schnittstelle}{section.2.4}% 16
 \BOOKMARK [2][-]{subsection.2.4.3}{Secondary und Primary Schnittstelle}{section.2.4}% 17
 \BOOKMARK [2][-]{subsection.2.4.4}{Polyscope}{section.2.4}% 18
 \BOOKMARK [1][-]{section.2.5}{C-API}{chapter.2}% 19
 \BOOKMARK [2][-]{subsection.2.5.1}{Kontrollstruktur}{section.2.5}% 20
 \BOOKMARK [2][-]{subsection.2.5.2}{Bewegungsprofile}{section.2.5}% 21
-\BOOKMARK [1][-]{section.2.6}{Eigene Adapter Schnittstelle aufbauend auf URScript}{chapter.2}% 22
+\BOOKMARK [1][-]{section.2.6}{Eigene Adapter-Schnittstelle aufbauend auf URScript}{chapter.2}% 22
 \BOOKMARK [0][-]{chapter.3}{Evaluierungskonzept}{}% 23
 \BOOKMARK [1][-]{section.3.1}{Anwendungsbeispiel}{chapter.3}% 24
 \BOOKMARK [1][-]{section.3.2}{Speichern der Anwendungsdaten}{chapter.3}% 25
@@ -52,7 +52,7 @@
 \BOOKMARK [0][-]{chapter.6}{Fazit}{}% 52
 \BOOKMARK [1][-]{section.6.1}{Zusammenfassung}{chapter.6}% 53
 \BOOKMARK [1][-]{section.6.2}{Ausblick}{chapter.6}% 54
-\BOOKMARK [0][-]{appendix*.25}{Literaturverzeichnis}{}% 55
+\BOOKMARK [0][-]{appendix*.22}{Literaturverzeichnis}{}% 55
 \BOOKMARK [0][-]{appendix.B}{Glossar}{}% 56
 \BOOKMARK [0][-]{appendix.C}{Bilder}{}% 57
 \BOOKMARK [1][-]{section.C.1}{Bewegungsprofile geloggt \374ber die Echtzeitschnittstelle \046 geplottet in Matlab}{appendix.C}% 58
