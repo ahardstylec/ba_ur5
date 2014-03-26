@@ -35,15 +35,15 @@ Im Folgenden Kapitel werden die Eigenschaften des UR5 Roboters erörtert.
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.6\textwidth]{pic/ur5_robot.png}
-      \caption[UR5 Roboter]{Abbildung zeigt den UR5 Roboter von universal Robots}
+    \includegraphics[width=0.6\textwidth]{pic/ur5_robot.jpg}
+      \caption[UR5 Roboter]{Abbildung zeigt den UR5 Roboter von Universal Robots}
       \label{fig:schnittstellen_schichten}
 \end{figure}
 
 Der Roboter besitzt 6 Gelenke die ihm ermöglichen einen 360° Arbeitsbereich mit einem Radius von ca. 85 cm zu ermöglichen. Gesteuert wird er von einem Linux Rechner, der sich in der Nähe befindet.
 Die Festplatte für das System ist eine Speicherkarte, die leicht ausgetauscht werden kann.
 \\\\
-Um den Rechner anzusprechen existiert bei Lieferung ein Touch Tablet, das für das Linux System den Visuellen Output gibt. Beim Starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per TCP/IP auf den \ref{URController}. Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner herstellt.
+Um den Rechner anzusprechen existiert bei Lieferung ein Touch Tablet(\ref{fig:tablet_picuter}), das für das Linux System den Visuellen Output gibt. Beim Starten des Systems wird auch automatisch die Software für den Roboter gestartet. Die Software nennt sich Polyscope und wurde in Java geschrieben. Diese Software verbindet sich per \ac{TCP/IP} auf den URController(\ref{sec:ur_control_gru}). Ein Server Programm das die Schnittstelle von dem Linux System zu dem Roboter Controller auf dem Rechner herstellt.
 \\\\
 Die Polyscope Software läuft im normalen Modus und den Administrativen Modus. Der Normale Modus ermöglicht es Programme zu erstellen, laufen zu lassen und Grundeinstellungen vorzunehmen. Außerdem kann die Polyscope Software aktualisiert werden.
 
@@ -65,7 +65,7 @@ Die Daten des Roboters sind abgelegt in root verzeichniss unter
 /programs   		#alle geschriebenen Programme unter Polyscope
 \end{lstlisting}
 
-Es ist möglich die Dateien per USB-Stick zu sichern oder über Programme wie ``\ac{SCP}'' über das Netzwerk zu Kopieren.
+Es ist möglich die Dateien per USB-Stick zu sichern oder über Programme wie \ac{SCP} über das Netzwerk zu Kopieren.
 
 \section{Programmierschnittstellen vom UR5}
 \label{sec:programm_api_uebersicht_gru}
@@ -78,7 +78,7 @@ Der Ur5 Roboter kann auf drei Ebenen angesprochen werden.\\
 \item C-Api
 \end{itemize}
 
-In dieser Arbeit wird versucht über alle Ebenen den Roboter Roboter anzusprechen.
+In dieser Arbeit wird versucht über alle dieser Ebenen den Roboter Roboter anzusprechen.
 Es wird außerdem aufbauend auf URScript ein eigener Adapter entwickelt, um eine neue Möglichkeit zu untersuchen, um den Roboter anzusteuern.
 Der Adapter wird für die Programmiersprache Python entwickelt. Gründe hierfür werden im Kapitel für diese Schnittstelle erörtert(siehe \ref{sec:urscript_adapter})
 
@@ -105,14 +105,14 @@ Die Schnittstellen werden wie folgt bewertet:
 Wie schwer ist es ein Programm für die einzelnen Schnittstellen zu entwickeln.
 Kann der Mensch das Programm intuitiv bedienen? Wichtig hierbei ist, dass der Mensch mit dem Roboter Kommunizieren kann. Dies geschieht am besten, wenn der Mensch nicht kryptisch was eingeben muss. Der Mensch braucht Anwenderfreundliche Programme.
 \\\\
-Beim Entwickeln von Programmen ist es wichtig, dass der Entwickler Fehler im Programm entdeckt um diese schnell zu beheben.
-Je größer und komplexer das Programm wird, desto schwieriger wird es Fehler zu entdecken.
+Beim Entwickeln von Programmen ist es wichtig, dass der Entwickler Fehler im Programm entdeckt, um diese schnell zu beheben.
+Je größer und komplexer das Programm wird, desto schwieriger wird es Fehler zu entdecken. 
 
-\section{URControl}
+\section{URController}
 \label{sec:ur_control_gru}
 
-Der URController eine Server Anwendung die auf dem Rechner des Roboters läuft. 
-Dieser Controller dient als Schnittstelle von der Roboter Hardware und der Software die den Roboter ansteuern wollen. 
+Der URController ist eine Server Anwendung die auf dem Rechner des Roboters läuft. 
+Dieser Controller dient als Schnittstelle, zu der der Roboter Hardware und der Software die den Roboter, die das Roboterprogramm liefert. 
 
 \subsection{Konfiguration des URControllers}
 \label{urcontrol_rci_gru}
@@ -123,14 +123,19 @@ Den URController kann man Konfigurieren. Die Konfigurationsdatei ist abgelegt im
 \end{lstlisting}
 
 Beim Starten des Controllers wird diese Konfigurationsdatei eingelesen.
-Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der UR5 oder UR10 Serie gehören. Folgend ist ein ausschnitt der Konfigurationsdatei zu sehen
+Hier werden wichtige Einstellungen vorgenommen, die zu den jeweiligen Modellen der UR5 oder UR10 Serie gehören. Folgend ist ein Ausschnitt der Konfigurationsdatei zu sehen
 \\
 \begin{lstlisting}[caption={Ausschnitt aus der Datei urcontrol.conf zur vorkonfigurierung des UR5 Roboters}, label=lst:ur5_conf ,captionpos=b]
+[DH]
+a = [0.00000, -0.42500, -0.39243,  0.00000,  0.00000,  0.0000]
+d = [0.08920,  0.00000,  0.00000,  0.10900,  0.09300,  0.0820]
+
+[Link]
+mass = [3.7000, 8.3930, 2.2750, 1.2190, 1.2190, 0.1879]     # Series 3 with tool
+gravity = [0, 0, 9.82]          # upright mounting
 [Config]
-# masterboard_version, 0 = Zero-series, 1 = One-series, 
-# 3 = Pause function enabled, 4 = first cb2 version, 5 = ur10 support added
+# masterboard_version, 0 = Zero-series, 1 = One-series, 3 = Pause function enabled, 4 = first cb2 version, 5 = ur10 support added
 masterboard_version = 4
-dump_bytecode_on_exception = 1
 
 [Hardware]
 controller_box_type = 2 # 1=CB1, 2=CB2UR5, 3=CB2UR10
@@ -141,7 +146,7 @@ robot_sub_type = 1
 \subsection{Echtzeit Schnittstelle}
 \label{urcontrol_rci_gru}
 
-Die Echtzeit Schnittstelle ist eine \acs{TCP/IP} Schnittstelle, die im 125Hz Takt Datenpakete an die verbundenen Clients sendet. Diese Schnittstelle kann keine Daten von den Clients empfangen. Wenn man diese Datenpakete auslesen will, muss man die einzelnen Datentypen in dem Packet \acs{parsen}. Eine Besonderheit ist noch, dass die Byte-Reihenfolge der Datenpakete im \acs{Big-Endian Format} über das Netzwerk übertragen werden. Da der Unix Rechner und der Client Rechner die Byte-Reihenfolge \acs{Little-Endian Format} benutzen, muss diese für die einzelnen Datentypen umgewandelt werden. Hierfür wurde in C ein Struct geschrieben und eine Funktion die das Datenpaket für das Struct in die richtige Byte Reihenfolge umwandelt.
+Die Echtzeit Schnittstelle ist eine \acs{TCP/IP} Schnittstelle, die im 125Hz Takt Datenpakete an die verbundenen Clients sendet. Diese Schnittstelle kann keine Daten von den Clients empfangen. Wenn man diese Datenpakete auslesen will, muss man die einzelnen Datentypen in dem Packet \acs{parsen}. Eine Besonderheit ist noch, dass die Byte-Reihenfolge der Datenpakete im Big-Endian\footnote{Das Big Engian Format ist die Festlegung der Byte-Reihenfolge, wie das Computersystem Speicherbereiche interpretieren und beschreiben soll. Dieses Format legt fest, dass das höchstwertigste Bit an der kleinsten Speicheradresse liegt.} über das Netzwerk übertragen werden. Da der Unix Rechner und der Client Rechner die Byte-Reihenfolge Little-Endian\footnote{Wie bei Big-Endian Format, legt das Little-Endian Format die Byte-Reihenfolge fest. Mit Little-Endian jedoch wird das niedrigwertenste Bit an die kleinste Speicheraddresse gesetzt.} benutzen, muss diese für die einzelnen Datentypen umgewandelt werden. Hierfür wurde in C ein Struct\footnote{Ein Struct ist in C/C++ ein Datentyp, der als Kontainer mehrer variable, verschiender Datentypen dient} geschrieben und eine Funktion die das Datenpaket für das Struct in die richtige Byte Reihenfolge umwandelt.
 
 \begin{lstlisting}[caption={Umwandlung der Byte-Order für Packet über die Echtzeit-Schnittstellen }, label=lst:rci_parse ,captionpos=b]
 struct ur5_data_rci * parse_ur5_realtime_ci(struct ur5_realtime_ci *ur5_rci, char *buf){

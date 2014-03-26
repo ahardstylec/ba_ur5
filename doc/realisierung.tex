@@ -92,7 +92,9 @@ Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstopp. Die Abweich
       \label{fig:position_join1}
 \end{figure}
 
-Die Abweichung ist besonders beim 2. Gelenk hoch, da dieser am meisten Gewicht tragen muss und dort die Erdanziehung am meisten wirkt. Deswegen wird angenommen, dass der Regler die Dynamik der Gravitation falsch berechnet.
+Die Abweichung steigt beim 2. Gelenk hoch. Die Motorleistung reicht anscheinend nicht aus um über die Schwelle der Reibungskräfte und die Erdanziehung zu kommen. Zu sehen ist in Abbildung \ref{joint1_current_capi.eps}, dass für die Stromstärke ein Offset mitberechnet wird. Vergleicht man die Wert, die bei der selben Bewegung von Polyscope berechnet werden(siehe Abbildung \ref{current_profile_joint1_rci}), sieht man eine höhere Stromstärke bei der Polyscope Software, bei der die Bewegung ohne Probleme Funktioniert.
+
+Mit der C-\ac{API} ist es nicht möglich selbst den wert der Stromstärke vorzugeben, deswegen sind die Soll-Werte bei der Polyscope Software und der eigenen Anwendung mit der C-API etwas verschieden.
 
 \section{Polyscope}
 \label{sec:Polyscope_rel}
@@ -145,9 +147,9 @@ Kleine Programme in Polyscope sind sehr schnell geschrieben. Mit dem Touch Table
 \subsection{TCP Server mit Datenbank zum dauerhaften speichern der Daten}
 \label{tcp_datentank_sicherung_rel}
 
-Um mit Polyscope und URScript erhobene Daten zu Speichern wurde ein kleiner TCP Server geschrieben, der eine Verbindung zulässt und Daten in einer Datenbank speichert. Die Daten sind Objektorientiert, und werden von dem Server erstellt.
+Um mit Polyscope und URScript erhobene Daten zu Speichern wurde ein kleiner \ac{TCP/IP} Server geschrieben, der eine Verbindung zulässt und Daten in einer Datenbank speichert. Die Daten sind Objektorientiert, und werden von dem Server erstellt.
 In Polyscope und URScript gibt es keine Objektorientierung, deshalb muss dort alles nacheinander angefragt werden.
-Ein Beispiel einer TCP Servers liegt im Anhang(siehe \ref{save_data_tcp_code_gru})
+Ein Beispiel einer \ac{TCP/IP} Servers liegt im Anhang(siehe \ref{save_data_tcp_code_gru})
 
 \section{URScript}
 \label{sec:ur_script_rel}
@@ -159,11 +161,11 @@ Um Daten persistent zu speichern, muss wie in Polyscope eine \ac{Socket} Verbind
 \subsection{Laden des Scripts auf den Controller}
 \label{load_script_rel}
 
-Das Script kann nicht direkt auf dem Rechner über die Polyscope Software ausgeführt werden. Um ein selbst geschriebenes Programm in URScript auszuführen ist es nötig sich mit der Secondary Schnittstelle des URControllers \ref{urcontrol_spi_gru} per TCP zu verbinden und dann die Einzelnen Zeilen der Script Datei an den Controller zu senden.
+Das Script kann nicht direkt auf dem Rechner über die Polyscope Software ausgeführt werden. Um ein selbst geschriebenes Programm in URScript auszuführen ist es nötig sich mit der Secondary Schnittstelle des URControllers \ref{urcontrol_spi_gru} per \ac{TCP/IP} zu verbinden und dann die Einzelnen Zeilen der Script Datei an den Controller zu senden.
 \\\\
 Es ist möglich einzelne Befehle oder ein großes Programm auszuführen. Um einzelne Befehle auszuführen, werden diese nacheinander versendet.
-Ein ganzes Programm wird versendet, indem wie in Listing \ref{urscipt_program_lst} gezeigt eine Funktion die ganzen Befehle umschließt. Der Controller führt diese Funktion aus, sobald diese mit dem ``end'' der Funktion abgeschlossen ist.
-Zu beachten ist nocht, dass der URcontroller am Ende jeden Befehls oder Programm's ein Zeilenumbruch erwartet.
+Ein ganzes Programm wird versendet, indem wie in Listing \ref{lst:urscipt_program_lst} gezeigt eine Funktion die ganzen Befehle umschließt. Der Controller führt diese Funktion aus, sobald diese mit dem ``end'' der Funktion abgeschlossen ist.
+Zu beachten ist noch, dass der URcontroller am Ende jeden Befehls oder Programm's ein Zeilenumbruch erwartet.
 
 \begin{lstlisting}[caption={Kleines Beispielprogram in URScript}, label=lst:urscipt_program_lst ,captionpos=b] 
 def myProg():
@@ -176,12 +178,28 @@ end
 \subsection{Programmierung}
 \label{programmierung_ur_script_rel}
 
-Programmiert werden kann das Script mit allen vorhandenen Textverarbeitungsprogrammen. Vorteilhaft ist es, wenn das Programm \ac{Syntax Highlighting} für Python beherrscht Da URScript sehr stark an Python angelehnt ist, hilft dies ein wenig den Überblick zu behalten.
+Programmiert werden kann das Script mit allen vorhandenen Textverarbeitungsprogrammen. Vorteilhaft ist es, wenn das Programm \acs{Syntax Highligting} für Python beherrscht Da URScript sehr stark an Python angelehnt ist, hilft dies ein wenig den Überblick zu behalten.
+\\Die Sprache bietet keine möglichkeiten Kommentare zu nutzen, was aber sehr wichtig ist, wenn ein Programm wächst und mehrere Programmierer am Projekt beteiligt sind. Es ist wichtig für die verständlichkeit. Deshalb wurde dafür in dem Programm, welches das URScript liest und an die Schnittstelle sendet, ein Pre-Prozessor eingebaut. Die Script Datei wird nach Kommentaren durchsucht und schneidet diese vor dem senden raus.(siehe \ref{lst:urscipt_comment_lst})
+
+\begin{lstlisting}[caption={Beispiel kommentare vor und nach dem Pre-Prozessor}, label=lst:urscipt_comment_lst ,captionpos=b]
+  def testprog():
+    # mit # wird ein Kommentar angefangen
+    movej([0.23,1.23,0.343,0.34.0.0,0.0],a=0.5,v=0.3) # Bewegung auf Achs Ebene zur Startposition
+  end
+
+  wird zu 
+
+  def testprog():
+    movej([0.23,1.23,0.343,0.34.0.0,0.0],a=0.5,v=0.3)
+  end
+
+\end{lstlisting}
 
 \subsection{Test und Fehlersuche im Programm}
 \label{ur_script_debuggen}
 
-Nach dem Senden des Programms an den URController, ist die einzige Möglichkeit zu sehen ob das Programm Fehler enthält, wenn der Controller kein \sona{Programm läuft} Bit setzt. Man erhält keine Nachrichten was nicht in Ordnung ist, falls das Script Programm nicht abläuft. Um Fehler auszuschließen muss also der Bereich isoliert werden
+Nach dem Senden des Programms an den URController, ist die einzige Möglichkeit zu sehen ob das Programm Fehler enthält, wenn der Controller ein entsprechendes Bit setzt, das in den Datenpaketen von der Secondary Schnittstelle gesendet wird. Über dieses \sona{Programm läuft} Bit, kann man sehen ob ein Programm läuft oder nicht läuft. 
+\\Man erhält keine Nachrichten was nicht in Ordnung ist, falls das Script Programm nicht abläuft. Um Fehler auszuschließen muss also der Bereich isoliert werden, indem der Fehler vorkommt. Das geht meist nur in einem aufwändigem ausschluss Verfahren, bei dem immer wieder Scriptcode entfernt wird.
 
 \subsection{Benutzer Interaktion}
 \label{ur_script_user_interaction}
@@ -196,7 +214,7 @@ Im Gegensatz zur Polyscope Software, kann mit einem Textverarbeitungsprogramm se
 \section{Anwendung mit Adapter zu URScript}
 \label{sec:script_hoerherer_schicht_rel}
 
-Im folgenden Kapitel wird das Anwendungsbeispiel in Python entwickelt. Um zu zeigen, wie die Benutzerinteraktion mit einem Eigenen Adapter gestaltet werden kann, wurde hierfür die \ac{Software Bibliothek} \sona{TKinter}\footnote{Mehr Informationen über TKinter unter folgender Website: \url{https://wiki.python.org/moin/TkInter}}, mit der man sehr schnell eine \ac{GUI} entwickeln kann. Die Interaktion erfolgt durch Buttons, die dann über den Adapter Befehle an den Roboter sendet.
+Im folgenden Kapitel wird das Anwendungsbeispiel in Python entwickelt. Um zu zeigen, wie die Benutzerinteraktion mit einem Eigenen Adapter gestaltet werden kann, wurde hierfür die Software Bibliothek \sona{TKinter}\footnote{Mehr Informationen über TKinter unter folgender Website: \url{https://wiki.python.org/moin/TkInter}}, mit der man sehr schnell eine \ac{GUI} entwickeln kann. Die Interaktion erfolgt durch Buttons, die dann über den Adapter Befehle an den Roboter sendet.
 
 \subsection{Adapter zur Secondary Schnittstelle}
 \label{beschreibung_script_hoeher_schicht}

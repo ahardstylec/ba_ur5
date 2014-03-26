@@ -472,8 +472,47 @@ env.Default(tcp_prog)
 
 \chapter{Berechnung einer PTP Bahn}
 
-Die Formeln für die Berechnung sind aus der Lektüre ``Industrieroboter: Methoden der Steuerung und Regelung '' von Wolfgang Weber 2. Ausgabe
-herrausgebracht von  Carl Hanser Verlag GmbH & Co. KG
+Die Formeln für die Berechnung sind aus der Lektüre ``Industrieroboter: Methoden der Steuerung und Regelung '' von Wolfgang Weber 2. Auflage, herrausgebracht von  Carl Hanser Verlag GmbH \& Co. KG.
+
+Um die Ergebnisse der Berechnungen zu benutzen, werden die ergebnisse in ein selbst geschriebenes Struct zugewiesen.
+
+\begin{lstlisting}
+
+// Momentan ist nicht die Orientierung des mit einbezogen!!
+
+typedef struct MoveLinearPacket{
+    PVAPacket pva; // struct das für alle Gelenke die position, Geschwindigkeit und Beschleunigung enthällt
+    double a_max; // maximale beschleunigung des leitjoints
+    double v_max; // maximale geschwindigkeit des leitjoints 
+    double te; // Zielzeitpunkt
+    double tv; // bremsphase start
+    double tb;  // beschleunigungsphase
+    double qst[3]; // Start Koordinaten im raum(kartesisch) des TCP 
+    double qz[3]; // ziel Koordinaten im raum(kartesisch)
+    double T[16]; // beinhält die 16 möglichen forwärtstransformationen nach der interpolation
+    double se; // streckenlänge
+    double acceleration; // beschleunigung des TCP
+    double velocity; // Geschwindigkeit des TCP
+    double position;  // Aktuelle position des TCP auf der Strecke Nicht Kartesisch
+    double point_in_time;// wärend der interpolation enthällt diese variable die aktuelle interpolationszeit
+    int interpolations;  // anzahl an interpolationen
+} MoveLinearPacket;
+
+typedef struct MovePTPPacket{
+    PVAPacket pva; // struct das für alle Gelenke die position, Geschwindigkeit und Beschleunigung enthällt
+    JointVector a_max; // maximale beschleunigung für die 6 joints
+    JointVector v_max; // maximale geschwindigkeiten für die 6 joints
+    JointVector te; // Zeitpunkt am ende der interpolation
+    JointVector tb; // Zeitpunkt für das ende der Beschleunigungsphasen der 6 joints
+    JointVector tv; // Zeitpunkt für den anfang der Bremsphasen der 6 joints
+    JointVector signse; // richtung der joints
+    JointVector qst; // Startpositionen der 6.Joints
+    JointVector se; // streckenlänge der einzelnen joints
+    JointVector qz; // zielpositionen der 6. Joints
+    double point_in_time; // wärend der interpolation enthällt diese variable die aktuelle interpolationszeit
+    int interpolations; // anzahl an interpolationen
+} MovePTPPacket;
+\end{lstlisting}
 
 \begin{lstlisting}
 
@@ -557,6 +596,7 @@ void calc_ptp_profile(const double * q, double * pz, MovePTPPacket *move_pva, in
         }
     }
 
+    // Wenn mind. Ein joint über die schwelle der 0.2grad hinausgeht, werden die maximalen intrepolationen berechnet, ansohnsten gibt es 0 Interpolationen, der Roboter steht schon an der Zielstelle.
     move_pva->interpolations= move_pva->se[l] < deg_to_rad(EPS) ? 0 :
                                                                  (int) round(move_pva->te[l] / T_IPO);
 
@@ -565,9 +605,61 @@ void calc_ptp_profile(const double * q, double * pz, MovePTPPacket *move_pva, in
 
     return;
 }
+\end{lstlisting}
 
 \chapter{Beispielprogramme}
 
-\section{}
+\section{Interpolieren und PTP Bahn abfahren mit der C-API}
+
+\begin{lstlisting}
+    PVAPacket pva;
+    MovePTPPacket move_pva_packet;
+    bzero(&move_pva_packet,sizeof(move_pva_packet));
+    int profil = RAMPENPROFIL;
+
+    // get the actual position so we can be sure where to start calculating the ptp profile
+    robotinterface_read_state_blocking();
+    robotinterface_get_actual_position(pva.position);
+    memcpy(&last_pva_packet, &pva_packet, sizeof(pva_packet));
+    robotinterface_command_velocity(zero_vector);
+    robotinterface_send();
+
+    // calculate ptp profile
+    calc_ptp_profile(pva.position, qz, &move_pva_packet, profil);
+
+    int i;
+
+    for(i=0; i < move_pva_packet.interpolations+1; i++){
+        robotinterface_read_state_blocking();
+
+        // falls ein Sicherheitsstopp erfolgt, bewegung abbrechen
+        if(robotinterface_is_security_stopped()) {
+            robotinterface_get_actual_current(currents_actual);
+            robotinterface_get_target_current(currents_target);
+            printf("security stopped at interpolation: %d\n", i);
+            robotinterface_command_empty_command();
+            robotinterface_send();
+            break;
+        }
+        //  Zeitpunkt in der Interpolation berechnen
+        move_pva_packet.point_in_time= (double) i * T_IPO;
+        
+        // Interpoliere mit Sinoidenprofil
+        interpolation_sin_ptp(&move_pva_packet);
+
+        // Werte der Position, Geschwindigkeit und Beschleunigung des aktuellen Interpolationsschritts an Roboter übergeben
+        robotinterface_command_position_velocity_acceleration(move_pva_packet.pva.position,
+                                                              move_pva_packet.pva.velocity,
+                                                              move_pva_packet.pva.acceleration);
+        // befehle an roboter senden
+        robotinterface_send();
+    }
+    // Zur Sicherheit nochmal Roboter zum Stillstand bringen
+    for(i=0;i<10;i++){
+        robotinterface_read_state_blocking();
+        robotinterface_command_position_velocity_acceleration(pva.position, zero_vector, zero_vector);
+        robotinterface_send();
+    }
+\end{lstlisting}
 
 \end{document}

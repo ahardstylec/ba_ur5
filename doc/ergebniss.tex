@@ -42,13 +42,13 @@ Im Folgenden Kapitel werden die Schnittstellen werden gegenübergestellt und ver
 
 \section{Vergleich der Schnittstellen}
 
-Die C-API ist eine sehr Hardware nahe Schnittstelle zum Roboter. Der Aufwand der Betrieben werden muss ist sehr hoch. Diese Schnittstelle sollte nur in seltenen Fällen eingesetzt werden. Nur Spezielle Anwendungen die zur Laufzeit anpassungen an Bewegungssteuerung geben sollten diese Schnittstelle nutzen.
+\textbf{Die C-API} ist eine sehr Hardware nahe Schnittstelle zum Roboter. Der Aufwand der Betrieben werden muss ist sehr hoch. Diese Schnittstelle sollte nur in seltenen Fällen eingesetzt werden. Nur Spezielle Anwendungen die zur Laufzeit anpassungen an Bewegungssteuerung geben sollten diese Schnittstelle nutzen.
 \\\\
-Die Polyscope Software ist sehr gut geeignet für wenige komplexe Anwendungen, die keine bzw. kaum Benutzerinteraktion erfordern. Für eine Kollaboration die auf Interaktion angewiesen ist, ist diese Schnittstelle nicht zu empfehlen. Diese Schnittstelle kann nur sehr aufwändig auf persistente Daten zugreifen und speichern.
+\textbf{Die Polyscope Software} ist sehr gut geeignet für wenige komplexe Anwendungen, die keine bzw. kaum Benutzerinteraktion erfordern. Für eine Kollaboration die auf Interaktion angewiesen ist, ist diese Schnittstelle nicht zu empfehlen. Diese Schnittstelle kann nur sehr aufwändig auf persistente Daten zugreifen und speichern.
 \\\\
-URScript bietet in sachen Benutzerinteraktion nur die gleichen möglichkeiten, wie die Polyscope Software(siehe \ref{ur_script_user_interaction}). Es ist Übersichtlicher und verständlicher gegenüber Polyscope Anwendungen zu entwickeln, jedoch bietet die eigens entwickelte Scriptsprache nur wenig möglichkeiten, wirklich komplexe Anwendungen zu entwickeln.
+\textbf{URScript} bietet in sachen Benutzerinteraktion nur die gleichen möglichkeiten, wie die Polyscope Software(siehe \ref{ur_script_user_interaction}). Es ist Übersichtlicher und verständlicher gegenüber Polyscope Anwendungen zu entwickeln, jedoch bietet die eigens entwickelte Scriptsprache nur wenig möglichkeiten, wirklich komplexe Anwendungen zu entwickeln.
 \\\\
-Der Eigene Adapter zum URController vereint die Vorteile einer etablierten Programmiersprache, nämlich vorhandene Entwicklerwerkzeuge und \ac{Software Bibliotheken} zu nutzen. Der Roboter wird über URScriptbefehle gesteuert wird, deshalb muss nicht tief in die Robotersteuerung eingreifen werden wie bei der C-API. Wenn viel Benutzerinteraktion von nöten ist, ist diese Schnittstelle zu empfehlen.
+\textbf{Ein eigener Adapter} zum URController vereint die Vorteile einer etablierten Programmiersprache, nämlich vorhandene Entwicklerwerkzeuge und \acl{Library} zu nutzen. Der Roboter wird über URScriptbefehle gesteuert wird, deshalb muss nicht tief in die Robotersteuerung eingreifen werden wie bei der C-API. Wenn viel Benutzerinteraktion von nöten ist, ist diese Schnittstelle zu empfehlen.
 
 \section{Nicht erreichte Ziele}
 \label{sec:Nicht_erreichte_ziele}

@@ -1,0 +1,7 @@
+\BOOKMARK [0][-]{chapter.1}{Vorbereitung}{}% 1
+\BOOKMARK [1][-]{section.1.1}{ben\366tigte Bibliotheken}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{Funktionen der Lib librobotcomm.a}{section.1.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Compilieren}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Berechnung einer PTP Bahn}{}% 5
+\BOOKMARK [0][-]{chapter.3}{Beispielprogramme}{}% 6
+\BOOKMARK [1][-]{section.3.1}{Interpolieren und PTP Bahn abfahren mit der C-API}{chapter.3}% 7
