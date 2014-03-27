@@ -4,22 +4,23 @@
 \section{C-API}
 \label{sec:capi_rel}
 
-In folgendem Kapitel wird beschrieben wie die C-\ac{API} genutzt werden konnte, um dem Roboter bestimmte Wegpunkte abzufahren.
+In folgendem Kapitel wird beschrieben wie die C-\ac{API} genutzt werden kann, um den Roboter bestimmte Wegpunkte abfahren zu lassen.
 
 \subsection{Beispielanwendung}
 \label{sub:capi-problems_rel}
 
-Es konnte eine Anwendung erstellt werden, dass den Roboter Initialisiert und dann in einer Schleife die Positions, Geschwindigkeits und Beschleunigungsdaten sendet. Desweiteren konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist.
+Es konnte eine Anwendung erstellt werden, die den Roboter initialisiert und dann in einer Schleife die Positions-, Geschwindigkeits-und Beschleunigungsdaten sendet. Des weiteren konnte ein Bewegungsprofil errechnet werden, dem der Roboter gefolgt ist.
 \\\\
-Bevor man Daten vom Roboter Abfragen kann, muss eine Verbindung zum Roboter hergestellt werden, diesem einen hochfahren und initialisieren lassen. Folgend werden diese Vorgänge beschrieben.\\
+Bevor man Daten vom Roboter abfragen kann, muss eine Verbindung zum Roboter hergestellt werden, die ihn hochfahren und initialisieren lassen. Folgend werden diese Vorgänge beschrieben.\\
 Mit dem Befehl \sona{robotinterface\_open()} kann die Verbindung zum Roboter hergestellt werden.
 \\\\
-Um sicher zu gehen das die Verbindung offen ist, wird in einer Schleife eine bestimmte Zeit, immer wieder abgefragt ob der Roboter verbunden ist. Falls dies nicht funktioniert, wird der Vorgang abgebrochen und das Programm sollte beendet werden. Es kommt vor, dass der Roboter beim Starten noch in einem Sicherheitsmodus ist. Wenn dies der Fall ist, muss der Modus abgestellt werden. Dies geht mit der Funktion \sona{robotinterface\_unlock\_security\_stop();}.
+Um sicherzugehen, dass die Verbindung offen ist, wird wiederholend in einer Zeitspanne, immer wieder abgefragt, ob der Roboter verbunden ist. Falls dies nicht funktioniert, wird der Vorgang abgebrochen und das Programm sollte beendet werden. Es kommt vor, dass der Roboter beim Starten noch in einem Sicherheitsmodus ist. Wenn dies der Fall ist, muss der Modus abgestellt werden. Dies geht mit der Funktion \sona{robotinterface\_unlock\_security\_stop();}.
 \\\\
-Auch hier wird zur Sicherheit eine bestimmte Zeitschleife der Befehl wiederholt an den Roboter gesandt. Wenn der Roboter dennoch in dem Sicherheitsmodus ist, ist es möglich, dass der Notausschalter am Touch Tablet aktiviert ist.
-Nachdem die Verbindung offen ist, muss der Roboter mit Strom versorgt werden. Mit dem Befehl \sona{robotinterface\_power\_on\_robot()} kann das Bewerkstelligt werden. Auch hier wird eine bestimmte Zeitschleife abgewartet, bis der Roboter hochgefahren ist. Abgefragt werden kann dies mit der Funktion \sona{robotinterface\_is\_power\_on\_robot()}.
+Auch hier wird zur Sicherheit, eine bestimmte Zeitschleife der Befehl wiederholt an den Roboter gesandt. Wenn der Roboter dennoch im Sicherheitsmodus bleibt, ist es möglich, dass der Notausschalter am Touch Tablet aktiviert ist.
+\\
+Nachdem die Verbindung offen ist, muss der Roboter mit Strom versorgt werden. Mit dem Befehl \sona{robotinterface\_power\_on\_robot()} kann das bewerkstelligt werden. Auch hier wird wiederholend gewartet und abgefragt, bis der Roboter hochgefahren ist. Ob der Roboter hochgefahren ist, kann mit der Funktion \sona{robotinterface\_is\_power\_on\_robot()} abgefragt werden.
 \\\\
-Nun wird der Roboter Initialisiert. Der Roboter geht nach dem Starten automatisch in den Initialisierungs Modus. Jeder einzelne Joint muss nun solang in eine Richtung bewegt werden, bis der Joint in den normalen Modus übergeht. Um die Gelenke zu bewegen, wird eine Geschwindigkeitsvorgabe an den Roboter gesandt.(siehe Listing \ref{lst:initialize_robot_lst})
+Nun wird der Roboter initialisiert. Er geht nach dem Starten automatisch in den Initialisierungs-Modus. Jeder einzelne Joint muss nun so lange in eine Richtung bewegt werden, bis der Joint in den normalen Modus übergeht. Um die Gelenke zu bewegen, wird eine Geschwindigkeitsvorgabe an den Roboter gesandt.(siehe Listing \ref{lst:initialize_robot_lst})
 
 \begin{lstlisting}[language=C,caption={Initialisierung der einzelnen Gelenke}, label=lst:initialize_robot_lst,captionpos=b]
 puts("Initializing robot");
@@ -43,11 +44,11 @@ do {
 puts(" Done!");
 \end{lstlisting}
 
-Nachdem die Initialisierung abgeschlossen ist, muss wie in Listing \ref{lst:robot_control_loop} eine Schleife mit der vorgegebenen Struktur durchlaufen werden, bis das Programm beendet, oder die Verbindung zum Roboter geschlossen werden soll. Wenn dies nicht so gemacht wird, geht der Roboter automatisch in den Sicherheitsstopp, da nicht innerhalb von 8 Millisekunden Nachrichten an den Roboter gesendet wurden.
+Nachdem die Initialisierung abgeschlossen ist, muss wie in Listing \ref{lst:robot_control_loop} eine Schleife mit der vorgegebenen Struktur durchlaufen werden, bis das Programm beendet, oder die Verbindung zum Roboter geschlossen werden soll. Wenn dies nicht so gehandhabt wird, geht der Roboter automatisch in den Sicherheitsstopp, da nicht innerhalb von acht Millisekunden Nachrichten an den Roboter gesendet wurden.
 \\\\
-Innerhalb der beiden Befehlen \sona{robotinterface\_read\_state\_blocking()} und \sona{robotinterface\_send()} kann nun eine Interpolation berechnet werden und die Vorgaben für Position, Geschwindigkeit und Beschleunigung an den Roboter gesandt werden(siehe Listing \ref{lst:interpolate}).
+Innerhalb der beiden Befehle \sona{robotinterface\_read\_state\_blocking()} und \sona{robotinterface\_send()} kann nun eine Interpolation berechnet werden und die Vorgaben für Position, Geschwindigkeit und Beschleunigung an den Roboter gesandt werden(siehe Listing \ref{lst:interpolate}).
 
-\begin{lstlisting}[language=C,caption={Interpolation eines berechneten Wegs}, label=lst:interpolate,captionpos=b]
+\begin{lstlisting}[language=C,caption={Interpolation eines Berechneten Weges}, label=lst:interpolate,captionpos=b]
 // loop through interpolation length  
 for(i=0; i < move_pva_packet.interpolations+1; i++){
   robotinterface_read_state_blocking();
@@ -75,26 +76,61 @@ for(i=0; i < move_pva_packet.interpolations+1; i++){
 }
 \end{lstlisting}
 
-\subsection{Interpolation}
-\label{sub:interpolation_rel}
+\subsection{Bewegungsprofil berechnen und Interpolieren}
+\label{sub:profile_and_interpolation_rel}
 
-TODO interpolation !!
+Ein Bewegungsprofil besteht aus 3 Phasen. Beschleunigungs-, Konstanzfahrt-und Bremsphase.
+Die Formeln für die Berechnung sind dem Buch Industrieroboter: Methoden der Steuerung und Regelung \cite{WW-2013}.
+\\
+Eine Sanfte Beschleunigung, schont die Robotergelenke. Dies wird auch Sinoidenprofil genannt. Die Formeln in der Lektüre können einfach übernommen und müssen nur ausprogrammiert werden. In der Dokumentation ist die Interpolation und Berechnung für eine PTP-und linear-Bahn
+genau beschrieben.
+\\\\
+Um die Berechnung des Profils zu testen, kann Simuliert interpoliert werden und die einzelnen angaben in den interpolationsschritten geloggt werden. Nachher werden die geloggten Daten in Matlab\footnote{``MATLAB® ist eine höhere Programmiersprache und interaktive Umgebung für numerische Berechnungen, Visualisierung und Programmierung. MATLAB dient zur Datenanalyse, Algorithmen-Entwicklung und zur Erstellung von Modellen und Anwendungen.''\cite{MATLAB-2014}} geplottet.
+Folgend sind die Profile der Position-, Beschleunigungs-und Geschwindigkeitswerte für eine PTP-Bahn geplottet.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/position_profile.eps}
+      \caption[Positionsprofil einer PTP-Bahn in Matlab gepplotet]{Abbildung zeigt das Positionsprofil einer PTP-Bahn mit allen Gelenken. Position ist angegeben in Radiant.}
+      \label{fig:position_ptp_profile}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/velocity_profile.eps}
+      \caption[Geschwindigkeitsprofil einer PTP-Bahn in Matlab gepplotet]{Abbildung zeigt das Geschwindigkeitsprofil einer PTP-Bahn mit allen Gelenken. Geschwindigkeit ist angegeben in Radiant/Sekunde.}
+      \label{fig:velocity_ptp_profile}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/acceleration_profile.eps}
+      \caption[Beschleunigungsprofil einer PTP-Bahn in Matlab geplottet]{Abbildung zeigt das Beschleunigungsprofil einer PTP-Bahn mit allen Gelenken. Beschleunigung ist angegeben in Radiant/Sekunde²}
+      \label{fig:acceleration_ptp_profile}
+\end{figure}
 
 \subsection{Aufgetretene Probleme}
 \label{sub:capi-problems_rel}
 
-Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstopp. Die Abweichung der Position wird zu groß. Dies kann analysiert werden, wenn man sich den Durchschnitt der Soll-Werte und der Ist-Werte der Position ansieht(siehe Abbildung \ref{fig:position_join1}).
+Der Roboter geht ab einem bestimmten Winkel in den Sicherheitsstopp. Die Abweichung der Position wird zu groß. Dies kann analysiert werden, wenn man sich den Durchschnitt der Soll-Werte und der Ist-Werte der Position ansieht(siehe Abbildung \ref{fig:position_join1}).Deutlich zu erkennen, steigt die Abweichung beim 2.Gelenk. Die Motorleistung reicht anscheinend nicht aus, um über die Schwelle der Reibungskräfte und die Erdanziehung zu kommen. Zu sehen ist in Abbildung \ref{fig:joint_1_position_capi} das für die Stromstärke ein Offset mitberechnet wird. Vergleicht man die Werte, die bei derselben Bewegung von Polyscope berechnet werden(siehe Abbildung \ref{fig:current_profile_joint1_rci}), sieht man eine höhere Stromstärke bei der Polyscope Software, bei der die Bewegung ohne Probleme funktioniert.
 \\
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.6\textwidth]{pic/joint1_position_capi.png}
-      \caption[Soll-und Ist-Werte der Position]{Abbildung zeigt die Soll und Ist Werte der Position, bis zum Sicherheitsstop des Roboters}
+      \caption[Soll-und Ist-Werte der Position]{Abbildung zeigt die Soll-und Ist-Werte der Position bis zum Sicherheitsstop des Roboters}
       \label{fig:position_join1}
 \end{figure}
 
-Die Abweichung steigt beim 2. Gelenk hoch. Die Motorleistung reicht anscheinend nicht aus um über die Schwelle der Reibungskräfte und die Erdanziehung zu kommen. Zu sehen ist in Abbildung \ref{joint1_current_capi.eps}, dass für die Stromstärke ein Offset mitberechnet wird. Vergleicht man die Wert, die bei der selben Bewegung von Polyscope berechnet werden(siehe Abbildung \ref{current_profile_joint1_rci}), sieht man eine höhere Stromstärke bei der Polyscope Software, bei der die Bewegung ohne Probleme Funktioniert.
+Mit der C-\ac{API} ist es nicht möglich, selbst den Wert der Stromstärke vorzugeben, deswegen sind die Soll-Werte bei der Polyscope Software und der eigenen Anwendung mit der C-API etwas verschieden.
+\\
+Bei dem 2. Gelenk ist auch zu beobachten, dass dieser nicht rechtzeitig anhält, wenn der Notausschalter betätigt wird. Bei einem solchen versuch ist der Roboter zu spät angehalten. Deswegen ist auch eventuell von einem Hardwaredefekt auzugehen.
 
-Mit der C-\ac{API} ist es nicht möglich selbst den wert der Stromstärke vorzugeben, deswegen sind die Soll-Werte bei der Polyscope Software und der eigenen Anwendung mit der C-API etwas verschieden.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{pic/emergency_stop_capi.png}
+      \caption[Warnungsausgabe für 2.Gelenk nach Notausschalter]{Abbildung zeigt eine Warnung die von der C-\ac{API} ausging, weil das 2.Gelenk nicht rechtzeitig nach einem Notaus angehalten hat}
+      \label{fig:acceleration_ptp_profile}
+\end{figure}
 
 \section{Polyscope}
 \label{sec:Polyscope_rel}
@@ -102,7 +138,7 @@ Mit der C-\ac{API} ist es nicht möglich selbst den wert der Stromstärke vorzug
 \subsection{Programmierung}
 \label{sub:programmierung_polyscope_rel}
 
-Die Programmierung findet meist nur auf dem Touch Tablet statt. Ein neues Programm fängt mit einem leeren Ereignisbaum an. Es kann per Toucheingabe alle möglichen Funktionen, die die Script Sprache bietet dem Baum hinzugefügt werden. Wenn das Programm abläuft, werden von der Wurzel an die Befehle abgearbeitet.
+Die Programmierung findet meist nur auf dem Touch Tablet statt. Ein neues Programm fängt mit einem leeren Ereignisbaum an. Es können per Toucheingabe alle möglichen Funktionen, die die Script Sprache bietet, dem Ereignisbaum hinzugefügt werden. Wenn das Programm abläuft, werden von der Wurzel an die Befehle abgearbeitet.
 Wie in Abbildung \ref{fig:programm_in_polyscope} zu sehen ist, ist die Ansicht des Programmbaumes sehr unübersichtlich.
 
 \begin{figure}[H]

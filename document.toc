@@ -27,37 +27,37 @@
 \contentsline {chapter}{\numberline {4}Realisierung}{24}{chapter.4}
 \contentsline {section}{\numberline {4.1}C-API}{24}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Beispielanwendung}{24}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Interpolation}{26}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Aufgetretene Probleme}{26}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}Polyscope}{27}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Programmierung}{27}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Benutzer Interaktion}{28}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Test und Fehlersuche im Programm}{29}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Aufwand der Programmierung}{29}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{29}{subsection.4.2.5}
-\contentsline {section}{\numberline {4.3}URScript}{29}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Laden des Scripts auf den Controller}{30}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Programmierung}{30}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{31}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Benutzer Interaktion}{31}{subsection.4.3.4}
-\contentsline {subsection}{\numberline {4.3.5}Aufwand der Programmierung}{31}{subsection.4.3.5}
-\contentsline {section}{\numberline {4.4}Anwendung mit Adapter zu URScript}{31}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Adapter zur Secondary Schnittstelle}{32}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Programmierung mit Adapter}{33}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Benutzer Interaktion}{33}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Test und Fehlersuche im Programm}{34}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{34}{subsection.4.4.5}
-\contentsline {chapter}{\numberline {5}Ergebnis}{35}{chapter.5}
-\contentsline {section}{\numberline {5.1}Vergleich der Schnittstellen}{36}{section.5.1}
-\contentsline {section}{\numberline {5.2}Nicht erreichte Ziele}{37}{section.5.2}
-\contentsline {chapter}{\numberline {6}Fazit}{38}{chapter.6}
-\contentsline {section}{\numberline {6.1}Zusammenfassung}{38}{section.6.1}
-\contentsline {section}{\numberline {6.2}Ausblick}{38}{section.6.2}
-\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{40}{appendix*.22}
-\contentsline {chapter}{\numberline {B}Glossar}{41}{appendix.B}
-\contentsline {chapter}{\numberline {C}Bilder}{44}{appendix.C}
-\contentsline {section}{\numberline {C.1}Bewegungsprofile geloggt \IeC {\"u}ber die Echtzeitschnittstelle \& geplottet in Matlab}{44}{section.C.1}
-\contentsline {section}{\numberline {C.2}Bewegungsprofile geloggt in der C-\ac {API}}{48}{section.C.2}
-\contentsline {section}{\numberline {C.3}Bilder vom Roboter}{49}{section.C.3}
-\contentsline {chapter}{\numberline {D}Quellcode}{50}{appendix.D}
-\contentsline {section}{\numberline {D.1}Speichern der Daten \IeC {\"u}ber TCP in der Datenbank}{50}{section.D.1}
+\contentsline {subsection}{\numberline {4.1.2}Bewegungsprofil berechnen und Interpolieren}{26}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Aufgetretene Probleme}{28}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}Polyscope}{29}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Programmierung}{29}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Benutzer Interaktion}{30}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Test und Fehlersuche im Programm}{31}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Aufwand der Programmierung}{32}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}TCP Server mit Datenbank zum dauerhaften speichern der Daten}{32}{subsection.4.2.5}
+\contentsline {section}{\numberline {4.3}URScript}{32}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Laden des Scripts auf den Controller}{32}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Programmierung}{33}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Test und Fehlersuche im Programm}{33}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Benutzer Interaktion}{34}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Aufwand der Programmierung}{34}{subsection.4.3.5}
+\contentsline {section}{\numberline {4.4}Anwendung mit Adapter zu URScript}{34}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Adapter zur Secondary Schnittstelle}{34}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Programmierung mit Adapter}{36}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Benutzer Interaktion}{36}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Test und Fehlersuche im Programm}{36}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Aufwand der Programmierung}{37}{subsection.4.4.5}
+\contentsline {chapter}{\numberline {5}Ergebnis}{38}{chapter.5}
+\contentsline {section}{\numberline {5.1}Vergleich der Schnittstellen}{39}{section.5.1}
+\contentsline {section}{\numberline {5.2}Nicht erreichte Ziele}{40}{section.5.2}
+\contentsline {chapter}{\numberline {6}Fazit}{41}{chapter.6}
+\contentsline {section}{\numberline {6.1}Zusammenfassung}{41}{section.6.1}
+\contentsline {section}{\numberline {6.2}Ausblick}{41}{section.6.2}
+\contentsline {chapter}{\numberline {A}{Literaturverzeichnis}}{43}{appendix*.22}
+\contentsline {chapter}{\numberline {B}Glossar}{44}{appendix.B}
+\contentsline {chapter}{\numberline {C}Bilder}{47}{appendix.C}
+\contentsline {section}{\numberline {C.1}Bewegungsprofile geloggt \IeC {\"u}ber die Echtzeitschnittstelle \& geplottet in Matlab}{47}{section.C.1}
+\contentsline {section}{\numberline {C.2}Bewegungsprofile geloggt in der C-\ac {API}}{51}{section.C.2}
+\contentsline {section}{\numberline {C.3}Bilder vom Roboter}{52}{section.C.3}
+\contentsline {chapter}{\numberline {D}Quellcode}{53}{appendix.D}
+\contentsline {section}{\numberline {D.1}Speichern der Daten \IeC {\"u}ber TCP in der Datenbank}{53}{section.D.1}
