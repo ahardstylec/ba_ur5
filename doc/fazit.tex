@@ -3,23 +3,23 @@
 \section{Zusammenfassung}
 \label{sec:Zusammenfassung}
 
-Der Beste weg für die Kollaboration ist einen eigenen Adapter in einer Programmiersprache zu schreiben um Programme mit richtigen \ac{GUI}'s zu entwickeln.
+Der beste weg für die Kollaboration ist es, einen eigenen Adapter in einer Programmiersprache zu schreiben, um Programme mit richtigen \ac{GUI}'s zu entwickeln.
 \\\\
 \textbf{Polyscope}\\
-Die Polyscope Schnittstelle bietet keine Möglichkeiten, diese zu erweitern. Die möglichkeiten für die Kollaboration sind hier auch sehr gering. Diese Schnittstelle kann nur benutzt werden um kleine und wenig Komplexe Programme zu schreiben.
+Die Polyscope Schnittstelle bietet keine Möglichkeiten, diese zu erweitern. Wege für die Kollaboration sind hier auch sehr gering. Diese Schnittstelle kann nur benutzt werden, um kleine und wenig komplexe Programme zu schreiben.
 \\\\
-Die URScript Sprache ist ein wenig angenehmer zu Programmieren als die Polyscope Software, jedoch bleiben die möglichkeiten der Kollaboration genauso beschränkt.
+Die URScript Sprache ist ein wenig angenehmer zu programmieren als die Polyscope Software, doch auch hier ist die Kollaboration eingeschränkt.
 \\\\
-Die C-\ac{API} bietet nur wenig Möglichkeiten zur Steuerung des Roboters. Wenn die hürden überwunden sind, ist es jedoch möglich wie mit dem eigenen Adapter über \ac{GUI}'s mit dem Roboter zu Kollaborieren.
+Die C-API beinhält nur wenig Möglichkeiten zur Steuerung des Roboters. Es besteht nur ein geriner Support für die Schnittstelle. Wenn die Hürden der Robotersteuerung überwunden sind, kann man über \ac{GUI}'s mit dem Roboter zu kollaborieren.
 
 \section{Ausblick}
 \label{sec:ausblick}
 
 \textbf{URScript}\\
-Das Programm, dass für die Beispielanwendung geschrieben wurde um URscript Programm an den Roboter zu senden, kann erweitert werden. Es ist möglich den Pre-Processor so zu erweitern, dass die URScript Sprache mit Funktionen erweitert wird, in dem Textstellen ersetzt werden. Zusätzlich kann man die Syntax überprüfen, um Fehler in der Syntax früh zu erkennen.
+Das Programm, das für die Beispielanwendung geschrieben wurde, um URscript Programme an den Roboter zu senden, kann erweitert werden. Es ist möglich, den Pre-Processor so zu erweitern, dass die URScript Sprache mit Funktionen ergänzt wird, indem Textstellen ersetzt werden. Zusätzlich kann man die Syntax überprüfen, um Fehler in der Syntax frühzeitig zu erkennen.
 \\\\
 \textbf{Eigener Adapter}\\
-Der Adapter kann un unzähliche möglichkeiten erweitert werden. Komplexe Strukturen in der URScriptsprache können leicht abstrahiert werden und mit dem Adapter umgesetzt werden. Es ist möglich auch andere Programmiersprachen zu nutzen. Als Vorbild könnte der geschriebene Adapter dienen. Am Besten geeignet, sind aber schnelle Programmiersprachen. Der Roboter sendet im 60hz Takt die Daten an den Adapter, da wäre es nicht sinnvoll, wenn das \ac{parsen} der Daten zu lange dauert.
+Der Adapter kann unbegrenzt erweitert werden. Komplexe Strukturen in der URScriptsprache können leicht abstrahiert und mit dem Adapter umgesetzt werden. Der Adapter kann in jede etablierte Sprache umgeschrieben werden. Als Vorbild könnte der geschriebene Adapter dienen. Am Besten geeignet sind aber schnelle Programmiersprachen, denn der Roboter sendet im 60 Hz Takt die Daten an den Adapter, der die Datenpakete parsen muss.
 \\\\
 \textbf{C-API}\\
-Mit der Beispielanwendung ist ein kleiner Schritt getan, um über die C-API den Roboter zu steuern, jedoch müssen erst die aufgetretenen Fehler behoben werden.
+Mit der Beispielanwendung ist ein kleiner Schritt getan, um über die C-API den Roboter zu steuern, doch zunächst müssen die aufgetretenen Fehler behoben werden.

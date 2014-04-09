@@ -64,9 +64,13 @@ footsepline,		% Linie für Fußzeile
 \include{doc/gen_macro}
 \begin{document}
 
+\tableofcontents
+
 \chapter{Vorbereitung}
+\label{vorbereitung}
 
 \section{benötigte Bibliotheken}
+\label{software_bibs}
 
 Universal Robots stellt mehrere Bibliotheken zur verfügung. 
 
@@ -83,6 +87,7 @@ Die Lib ``librobotcomm.a'' bietet die Funktionen, die nötig sind um mit dem Con
 ``robotinterface.h''.
 
 \subsection{Funktionen der Lib librobotcomm.a}
+\label{sub: librobotcomm.a}
 
 \begin{lstlisting}
 
@@ -471,6 +476,7 @@ env.Default(tcp_prog)
 \end{lstlisting}
 
 \chapter{Berechnung einer PTP Bahn}
+\label{ptp_bahn}
 
 Die Formeln für die Berechnung sind aus der Lektüre ``Industrieroboter: Methoden der Steuerung und Regelung '' von Wolfgang Weber 2. Auflage, herrausgebracht von  Carl Hanser Verlag GmbH \& Co. KG.
 
@@ -608,8 +614,10 @@ void calc_ptp_profile(const double * q, double * pz, MovePTPPacket *move_pva, in
 \end{lstlisting}
 
 \chapter{Beispielprogramme}
+\label{bsp_programs}
 
 \section{Interpolieren und PTP Bahn abfahren mit der C-API}
+\label{interpolation}
 
 \begin{lstlisting}
     PVAPacket pva;

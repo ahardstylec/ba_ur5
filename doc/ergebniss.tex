@@ -1,23 +1,23 @@
 \chapter{Ergebnis}
 \label{sec:ErreichteErgebnisse}
 
-Im Folgenden Kapitel werden die Schnittstellen werden gegenübergestellt und verglichen. Desweiterem werden die nicht erreichten Ziele erörtert.
+Im Folgenden Kapitel werden die Schnittstellen gegenübergestellt und verglichen. Desweiteren werden die nicht erreichten Ziele erörtert.
 \\\\
 \begin{tabular}{|l|p{0.333\textwidth}|p{0.333\textwidth}|}
 	\hline
 	\textbf{Kriterium} & \textbf{C-API} & \textbf{Polyscope} 
 	\\ \hline \hline 
-	Programmierbarkeit & Schwer einfache Roboterprogramme zu Realisieren. & Leichter Einstieg zum Programmieren für Anfänger.
+	Programmierbarkeit & Schon für einfache Roboterprogramme ist es schwer zu programmieren & Leichter Einstieg zum Programmieren für Anfänger
 	\\ \hline
-	Benutzerinteraktion &  Es ist möglich ein Übersichtliches \& intuitives Interface zu entwickeln & 
-	Keine Komplexen Menüs möglich. Nur schwache Interaktion möglich.
+	Benutzerinteraktion &  Es ist möglich ein übersichtliches \& intuitives Interface zu entwickeln & 
+	Keine komplexen Menüs möglich/ Nur schwache Interaktion möglich.
 	\\ \hline
-	Testen & Test sind möglich, aber nur mit Simulation des Roboters & Keine eigenen Tests möglich. Getestet wird immer Live an Roboter.
+	Testen & Tests sind möglich, aber nur mit Simulation des Roboters & Keine eigenen Tests möglich/ Getestet wird immer Live an Roboter.
 	\\ \hline
-	Debuggen & Compiler findet Syntax Fehler \& Debugging ist nur mit Simuliertem Roboter möglich & Bedingt möglich beim Testen Live am Roboter.
+	Debuggen & Compiler findet Syntax Fehler \& Debugging ist nur mit simuliertem Roboter möglich & Beim Testen live am Roboter, bedingt möglich.
 	\\ \hline
-	Aufwand & Sehr großer Aufwand von nöten. Es muss alles selbst Entwickelt werden. & \label{krit_polyscope_aufwand}
-	Bei kleinen Programmen kaum Aufwand. Aufwand steigt enorm bei mehr Anforderungen.\\ \hline
+	Aufwand & Sehr großer Aufwand von nöten/ Es muss alles selbst entwickelt werden. & \label{krit_polyscope_aufwand}
+	Bei kleinen Programmen kaum Aufwand/ Aufwand steigt enorm bei mehr Anforderungen.\\ \hline
 \end{tabular}
 \captionof{table}{Zusammenfassung der Evaluierungskriterien für C-API und Polyscope}
 \label{tab:vgl_interfaces_first}
@@ -25,32 +25,35 @@ Im Folgenden Kapitel werden die Schnittstellen werden gegenübergestellt und ver
 \begin{tabular}{|l|p{0.33\textwidth}|p{0.33\textwidth}|}
 	\hline
 	\textbf{Kriterium} & \textbf{URScript} & \textbf{Eigener Adapter}\\ \hline \hline 
-	Programmierung & verständnissvolle Dokumentation ermöglicht es einen schnellen Einstieg. Entwicklerwerkzeuge und \ac{Syntax Highlighting} erleichtern die Übersicht und Vereinfachen die Programmierung & Eine Etablierte Programmiersprache erleichtert das Programmieren deutlich. Vorhandene \acl{Librarys} erleichtern das Programmieren. \\
+	Programmierung & Verständliche Dokumentation ermöglicht einen schnellen Einstieg/ Entwicklerwerkzeuge und Syntax Highlighting erleichtern die Übersicht und vereinfachen die Programmierung & eine etablierte Programmiersprache und vorhandene Software Bibliotheken erleichtern das Programmieren. \\
 	\hline 
-	Benutzerinteraktion & Die möglichkeiten bleiben wie bei Polyscope mit Popups beschränkt(siehe \ref{user_interaktion_polyscope_rel}) & Wie bei C-\ac{API} können \ac{GUI}'s erstellt werden, die komplexe Formulare und Menüs bieten. \\
+	Benutzerinteraktion & Die Möglichkeiten bleiben wie bei Polyscope auf Popups beschränkt(siehe \ref{user_interaktion_polyscope_rel}) & Wie bei C-API können \ac{GUI}s erstellt werden, die komplexe Formulare und Menüs bieten \\
 	\hline 
-	Testen & Mit gegebenen Mitteln sind automatische Tests nicht möglich. Es kann nur wie mit Polyscope Live getestet werden. & Automatische Test sind möglich. \\
+	Testen & Mit gegebenen Mitteln sind automatische Tests nicht möglich. Es kann nur wie mit Polyscope Live getestet werden. & Automatische Tests sind möglich \\
 	\hline
-	Debuggen & Es gibt keine Möglichkeit zu Debuggen. URController liefert bei Fehler in der Syntax keine information & Fehler werden leicht gefunden, da die Etablierten Programmiersprachen den Programmcode nach Syntaxfehlern durchsuchen und anzeigen.
+	Debuggen & Keine Möglichkeit zu Debuggen/ URController liefert bei Fehler in der Syntax keine Information & Fehler werden leicht gefunden, da die etablierten Programmiersprachen den Programmcode nach Syntaxfehlern durchsuchen und anzeigen
 	\\
 	\hline 
-	Aufwand & Ähnlich wie bei Polyscope, jedoch etwas besser durch mehr Übersicht des Projektes & Anfangs ein Großer Aufwand von nöten. Bei mehreren Anwendungen für den Roboter ist Aufwand jedoch geringer als bei den anderen Schnittstellen.\\ 
+	Aufwand & Ähnlich wie bei Polyscope, jedoch etwas besser durch mehr Übersicht des Projekts & Anfangs ein großer Aufwand von Nöten. Bei mehreren Anwendungen für den Roboter ist Aufwand jedoch geringer als bei den anderen Schnittstellen.\\
 	\hline 
 \end{tabular}
-\captionof{table}{Zusammenfassung der Evaluierungskriterien für URScript und Eigener Adapter}
+\captionof{table}{Zusammenfassung der Evaluierungskriterien für URScript und eigenem Adapter}
 \label{tab:vgl_interfaces_second}
 
 \section{Vergleich der Schnittstellen}
 
-\textbf{Die C-API} ist eine sehr Hardware nahe Schnittstelle zum Roboter. Der Aufwand der Betrieben werden muss ist sehr hoch. Diese Schnittstelle sollte nur in seltenen Fällen eingesetzt werden. Nur Spezielle Anwendungen die zur Laufzeit anpassungen an Bewegungssteuerung geben sollten diese Schnittstelle nutzen.
+\textbf{Die C-API} ist eine sehr hardwarenahe Schnittstelle zum Roboter. Der Aufwand, der betrieben werden muss ist äußerst hoch. Diese Schnittstelle sollte nur in seltenen Fällen eingesetzt werden. Nur spezielle Anwendungen, die wärend der Laufzeit Anpassungen an die Bewegungssteuerung geben, sollten diese Schnittstelle nutzen.
+\newpage
+\textbf{Die Polyscope Software} eignet sich hervorragend für wenige komplexe Anwendungen, die keine bzw. kaum Benutzerinteraktion erfordern. Für eine Kollaboration die auf direkte Kommunikation zwischen Mensch und Roboter angewiesen ist, ist diese Schnittstelle nicht zu empfehlen, denn diese sie kann nur sehr aufwändig auf persistente Daten zugreifen und speichern.
 \\\\
-\textbf{Die Polyscope Software} ist sehr gut geeignet für wenige komplexe Anwendungen, die keine bzw. kaum Benutzerinteraktion erfordern. Für eine Kollaboration die auf Interaktion angewiesen ist, ist diese Schnittstelle nicht zu empfehlen. Diese Schnittstelle kann nur sehr aufwändig auf persistente Daten zugreifen und speichern.
+\textbf{URScript} bietet in Sachen Benutzerinteraktion nur die gleichen Möglichkeiten wie die Polyscope Software(siehe \ref{ur_script_user_interaction}). Es ist übersichtlicher und verständlicher gegenüber Polyscope-Anwendungen zu entwickeln, bietet jedoch die eigens entwickelte Scriptsprache nur wenig Spielraum, um wirklich komplexe Anwendungen zu entwickeln.
 \\\\
-\textbf{URScript} bietet in sachen Benutzerinteraktion nur die gleichen möglichkeiten, wie die Polyscope Software(siehe \ref{ur_script_user_interaction}). Es ist Übersichtlicher und verständlicher gegenüber Polyscope Anwendungen zu entwickeln, jedoch bietet die eigens entwickelte Scriptsprache nur wenig möglichkeiten, wirklich komplexe Anwendungen zu entwickeln.
-\\\\
-\textbf{Ein eigener Adapter} zum URController vereint die Vorteile einer etablierten Programmiersprache, nämlich vorhandene Entwicklerwerkzeuge und \acl{Library} zu nutzen. Der Roboter wird über URScriptbefehle gesteuert wird, deshalb muss nicht tief in die Robotersteuerung eingreifen werden wie bei der C-API. Wenn viel Benutzerinteraktion von nöten ist, ist diese Schnittstelle zu empfehlen.
+\textbf{Ein eigener Adapter} zum URController vereint die Vorteile einer etablierten Programmiersprache, nämlich vorhandene Entwicklerwerkzeuge und Software-Bibliotheken zu nutzen. Der Roboter wird über URScriptbefehle gesteuert, deshalb muss nicht tief in die Robotersteuerung, wie bei der C-API eingreifen werden. Wenn viel Benutzerinteraktion notwendig ist, ist diese Schnittstelle empfehlenswert.
 
 \section{Nicht erreichte Ziele}
 \label{sec:Nicht_erreichte_ziele}
 
-Mit der C-API konnte keine Anwendung geschrieben werden, die für die Evaluierungskriterien vollständige Daten liefern.
+Die aufgetretenen Probleme mit der C-API haben verhindert, dass keine vollständige Anwendung geschrieben werden konnte. Aus Zeitmangel wurde dort die Entwicklung abgebrochen. 
+Die Fehler konnten ein wenig eingegrenzt werden. Ein Hardwaredefekt ist nicht auszuschließen. 
+\\
+Es ist nicht bekannt, welche C-API Version in dem URController benutzt wird. Die selbst erstellten Bewegungsprofile sehen korrekt aus, jedoch konnte man sehen, dass der URController funktionierende Soll-Werte übergeben hat. Es ist möglich, dass dem URController mehr Funktionen in der C-API zur Verfügung stehen.

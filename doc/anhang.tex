@@ -1,49 +1,46 @@
 \chapter{Bilder}
 \label{bewegungsprofile_anhang}
 
-\section{Bewegungsprofile geloggt über die Echtzeitschnittstelle \& geplottet in Matlab}
-\label{sec:profile_polyscope_rci}
+\textbf{Bewegungsprofile geloggt über die Echtzeitschnittstelle \& geplottet in Matlab}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{pic/joint1_polyscope_current.eps}
-      \caption[Soll-und Ist-Werte der Stromstärke wärend der Bewegung des 2.Gelenks mit Polyscope]{Abbildung zeigt eindeutig den Berechneten Offset des Ist-Wertes.}
+      \caption[Soll-und Ist-Werte der Stromstärke wärend der Bewegung des 2.Gelenks mit Polyscope]{Abbildung zeigt den berechneten Offset des Ist-Wertes.}
       \label{fig:current_profile_joint1_rci}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{pic/velocity_profile_polyscope.eps}
-      \caption[Geschwindigkeitsprofil wärend der Bewegung der Gelenke 1-3 mit Polyscope]{Abbildung zeigt das Geschwindigkeitsprofil der Gelenke 1-3 wärend eines Bewegungsprofils mit Polyscope. Profil wurde mit der Echtzeitschnittstelle geloggt}
+      \caption[Geschwindigkeitsprofil wärend der Bewegung der Gelenke 1-3 mit Polyscope]{Abbildung zeigt das Geschwindigkeitsprofil der Gelenke 1-3, während eines Bewegungsprofils mit Polyscope. Profil wurde mit der Echtzeitschnittstelle geloggt}
       \label{fig:velocity_joints_rci}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{pic/current_profile_polyscope.eps}
-      \caption[Stromstärke wärend der Bewegung der Gelenke 1-3 mit Polyscope]{Abbildung zeigt die Stromstärke der drei Gelenke 1,2 und 3 wärend eines Bewegungsprofils. Profil wurde mit der Echtzeitschnittstelle geloggt}
+      \caption[Stromstärke wärend der Bewegung der Gelenke 1-3 mit Polyscope]{Abbildung zeigt die Stromstärke der drei Gelenke 1,2 und  während eines Bewegungsprofils, das wurde mit der Echtzeitschnittstelle geloggt wurde.}
       \label{fig:acceleration_profile_rci}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{pic/position_profile_polyscope.eps}
-      \caption[Position wärend der Bewegung der Gelenke 1-3 mit Polyscope]{Abbildung zeigt die Position der Gelenke 1-3 wärend eines Bewegungsprofils mit Polyscope. Profil wurde mit der Echtzeitschnittstelle geloggt}
+      \caption[Position wärend der Bewegung der Gelenke 1-3 mit Polyscope]{Abbildung zeigt die Position der Gelenke 1-3, während eines Bewegungsprofils mit Polyscope. Profil wurde mit der Echtzeitschnittstelle geloggt}
       \label{fig:position_joints_rci}
 \end{figure}
 
-\section{Bewegungsprofile geloggt in der C-\ac{API}}
-\label{sec:profiles_with_capi}
+\textbf{Bewegungsprofile geloggt in der C-API}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=1\textwidth]{pic/joint1_current_capi.eps}
-      \caption[Soll und Ist-Werte der Stromstärke des 2.Gelenks]{Abbildung zeigt die Soll-Werte und Ist-Werte der Stromstärke des 2.Gelenks, kurz vor dem Sicherheitsstopp}
+      \caption[Soll-und Ist-Werte der Stromstärke des 2.Gelenks]{Abbildung zeigt die Soll-Werte und Ist-Werte der Stromstärke des 2.Gelenks, kurz vor dem Sicherheitsstopp}
       \label{fig:joint_1_position_capi}
 \end{figure}
 
-\section{Bilder vom Roboter}
-\label{pic_of_robot}
+\textbf{Bilder vom Roboter}
 
 \begin{figure}[H]
   \centering
@@ -56,7 +53,7 @@
 \chapter{Quellcode}
 \label{quellcode}
 
-\section{Speichern der Daten über TCP in der Datenbank}
+\section{Speichern der Daten über \ac{TCP/IP} in der Datenbank}
 \label{save_data_tcp_code_gru}
 
 \begin{lstlisting}

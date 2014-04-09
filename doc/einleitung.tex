@@ -4,36 +4,33 @@
 \section{Fachliche Umgebung}
 \label{fachliche_domaene}
 
-Hauptaugenmerk dieser Arbeit liegt bei der überprüfung der Möglichkeiten der Roboter-Mensch-Kollaboration,
-in der Industrie, Medizin, oder Schule.
-Inwiefern der Mensch mit einem heutigen Roboter mit entsprechenden Richtlinen programmiert werden kann, um in entsprechenden Feldern mit dem Menschen zusammenzuarbeiten.
+In der Industrie werden Roboter in den Fertigungsanlagen eingesetzt. 
+Dies geschieht meist nur in Koordination mit anderen Robotern, jedoch nie kollaborativ mit Menschen. In der Nähe dieser Roboter darf sich kein Mensch aufhalten. Die Roboter sind umhaust, sprich in einem speziellen Bereich abgesichert, damit keine Unfälle passieren können. 
+Auf diese Weise kann man sehr effizient über automatisierte Fließbandstraßen Produkte herstellen. 
+Bisher gibt es nur wenig Roboter, die entsprechende Sicherheitsauflagen erfüllen, um mit Menschen zu kollaborieren.
 
 \section{Motivation und Ziel des Projekts}
 \label{projektziel_motivation}
 
-In der Industrie werden Roboter in den Fertigungsanlagen eingesetzt. 
-Dies geschieht meist nur in Koordination mit anderen Robotern, jedoch nie kollaborativ mit Menschen. In der Nähe dieser Roboter darf sich kein Mensch aufhalten. Die Roboter sind umhaust, sprich in einem speziellen Bereich abgesichert, damit keine Unfälle passieren können. 
-Auf diese Weise kann man sehr effizient über automatisierte Fließbandstraßen Produkte herstellen.
-\\\\
-Wenn jedoch eine sehr filigrane Arbeit gefragt ist, muss das Werkstück von einem Menschen bearbeitet werden, da der Mensch wesentlich bessere Fähigkeiten hat, auf Probleme zu reagieren oder Korrekturen vorzunehmen. In diesem Fall wird die Fließbandstraße unterbrochen. Das Produkt muss aus dem umhausten Bereich gebracht werden, wo es von einem Menschen bearbeitet werden kann.
+Industrieroboter unterstützen die Produktion von Produkten, jedoch zumeist noch in abgesicherten Bereichen. Wenn eine sehr filigrane Arbeit gefragt ist, muss das Werkstück von einem Menschen bearbeitet werden, da der Mensch wesentlich bessere Fähigkeiten hat, auf Probleme zu reagieren oder Korrekturen vorzunehmen. In diesem Fall wird die Produktion unterbrochen. Das Produkt muss aus dem umhausten Bereich gebracht werden, wo es von einem Menschen bearbeitet werden kann.
 \\
 Für die Prodution wäre es viel sinnvoller und zeitsparender, wenn Roboter für den Menschen so sicher sind, dass keine Trennung zwischen Mensch und Robotern existiert.
 \\\\
-In dem Bereich Pflege und Medizin, müssen oft Hebe-Arbeiten ausgeführt werden. Dies führt dazu, dass die Menschen in solchen Berufen im späteren Alltag mit Rückenproblemen oder ähnlichem Leiden leben müssen. Roboter, die eingesetzt werden, um diese Lasten abzunehmen, würden die Arbeit erleichtern und Verletzungen vorbeugen.
-\\
+In vielen Arbeitsbereichen wie z. B. Pflege und Medizin, müssen oft Hebe-Arbeiten ausgeführt werden. Dies führt dazu, dass die Menschen in solchen Berufen im späteren Alltag mit Rückenproblemen oder ähnlichem Leiden leben müssen. Roboter, die eingesetzt werden, um diese Lasten abzunehmen, würden die Arbeit erleichtern und Verletzungen vorbeugen.
+\\\\
 Es soll untersucht werden, inwiefern es möglich ist, den UR5 Roboter zu programmieren, um mit Menschen zu kollaborieren.
 
 \section{Aufgabenstellung}
 \label{aufgabenstellung}
 
-Es soll ein Anwendungsprogramm für alle möglichen Programmierschnittstellen, des UR5 Roboters von Universal Robots entwickelt werden.
+Der UR5 Roboter besitzt mehrere Programmierschnittstellen. Für diese Schnittstellen soll ein Anwendungsprogramm erstell werden.
 Dieses Anwendungsprogramm soll als eine Beispielanwendung einer Roboter-Mensch Kollaboration dienen.
-Diese verschiedenen Programme werden miteinander verglichen. Es soll eine Entscheidungshilfe gegeben werden, für welchen Anwendungsfall welche Schnittstelle am besten geeignet ist.
-
-Die Programmierschnittellen sollen möglichst gut dokumentiert werden.  
+Diese verschiedenen Programme werden miteinander verglichen. Es soll eine Entscheidungshilfe gegeben werden, für welchen Anwendungsfall welche Schnittstelle am besten geeignet ist. Hierfür werden Kriterien erhoben, die auf die Beispielanwendung zugeschnitten sind.
+Menschen wollen Eingaben nicht wiederholen, deshalb sollen erhobene Daten persistent gespeichert werden.
 
 \section{Einordnung in die Themenfelder der Informatik}
 \label{sec:einordnung}
 
 Die Schnittstellen werden mit den etablierten Programmiersprachen C/C++ und Python programmiert. Hinzu kommt noch die eigens von Universal Robots entwickelte URScript Sprache.
-Da versucht wird, den Roboter von einem anderen Rechner zu steuern, wird auch Netzwerkprogrammierung benötigt. Es muss ein kleines Protokoll entwickelt werden, mit dem der Roboter kommunizieren kann, um Anwenderdaten zu speichern. 
+Da auch versucht wird, den Roboter von einem anderen Rechner zu steuern, wird auch Netzwerkprogrammierung benötigt.
+Für die Steuerung des Roboters wird auf das Themenfeld Robotik eingegangen. Robotik ist nicht in den Grundlagen für den Bachelor-Studiengang der Informatik enthalten, deswegen sind die Themenfelder dieser Arbeit etwas weiter gestreut.
